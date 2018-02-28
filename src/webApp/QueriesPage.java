@@ -46,6 +46,10 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 	private String successPopupTitle_askQuestion_WebPAge_loc = id + "ui-id-1";
 	private String successPopupClose_askQuestion_WebPAge_loc = cls + "ui-dialog-titlebar-close";
 
+	private String askQueryBtn_WebPage_loc = xpath + "/html/body/div[6]/div[3]/img";
+	private String queryTxt_WebPage_loc = id + "query";
+	private String querySubmitBtn_WebPage_loc = id + "submit-btn";
+
 	public void navigateToAskQuestionPage_WebPage_QueriesPage() {
 		super.click(patientInfo_WebPage_loc, waitTime);
 		super.click(askQuestion_WebPage_loc, waitTime);
@@ -73,6 +77,18 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 				super.getText(successPopupMsg_askQuestion_WebPAge_loc, waitTime),
 				super.pvd("askQuestionSuccessMessage"));
 		super.click(successPopupClose_askQuestion_WebPAge_loc, waitTime);
+	}
+
+	public void askQuery_Website_QueriesPage(String testName, String name_AskQuery_WebPage_QueriesPage,
+			String email_AskQuery_WebPage_QueriesPage, String mobileNumber_AskQuery_WebPage_QueriesPage,
+			String queryText_AskQuery_WebPage_QueriesPage) throws IOException {
+super.click(askQueryBtn_WebPage_loc, waitTime);
+		super.setText(name_WebPage_loc, name_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText(email_WebPage_loc, email_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText(mobile_WebPage_loc, mobileNumber_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText(queryTxt_WebPage_loc, queryText_AskQuery_WebPage_QueriesPage, waitTime);
+		super.click(querySubmitBtn_WebPage_loc, waitTime);
+		super.sleep(3000);
 	}
 
 	public void verifyData_QueriesPage(String testName, int queryCategory_droopDwnNumber, String expectedTitle,
@@ -117,11 +133,13 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 				super.click(profileIcon_ChatScreen_loc, waitTime);
 
 				super.assertEquals_Text(testName, "Profile Name",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 1 + "]/td[2]", waitTime), customerName);
+						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 1 + "]/td[2]", waitTime),
+						customerName);
 				super.assertEquals_Text(testName, "Profile Age",
 						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 2 + "]/td[2]", waitTime), age);
 				super.assertEquals_Text(testName, "Profile Gender",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc +3 + "]/td[2]", waitTime).substring(0, 1),
+						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 3 + "]/td[2]", waitTime)
+								.substring(0, 1),
 						gender_M_F);
 				super.assertEquals_Text(testName, "Profile Mobile Number",
 						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 4 + "]/td[2]", waitTime),
