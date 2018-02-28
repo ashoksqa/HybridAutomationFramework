@@ -19,32 +19,39 @@ public class P1_TestCases extends MarketingCalenderPage {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.updateTrow(Trow);
 		super.launchBrowser();
-		//super.openSiteUrl();
+		// super.openSiteUrl();
 		System.out.println("Current Executing Method : " + testName);
-		//super.login("ramesh", "ramesh");
-		//super.click_NoTahnks_Notification();
+		// super.login("ramesh", "ramesh");
+		// super.click_NoTahnks_Notification();
 	}
-	
+
 	@Test
 	public void testt() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();
-		//super.login("ramesh", "ramesh");
-		//super.click_NoTahnks_Notification();
-		super.askQuestion_Website_QueriesPage(1, testName, testName, testName, testName, testName, testName, 1);
+		// super.login("ramesh", "ramesh");
+		// super.click_NoTahnks_Notification();
+		super.navigateToAskQuestionPage_WebPage_QueriesPage();
+		super.askQuestion_Website_QueriesPage(testName, 1, subject_AskQuestion_WebPage_QueriesPage,
+				message_AskQuestion_WebPage_QueriesPage, name_AskQuestion_WebPage_QueriesPage,
+				email_AskQuestion_WebPage_QueriesPage, age_AskQuestion_WebPage_QueriesPage,
+				mobileNumber_AskQuestion_WebPage_QueriesPage, 2);
+		System.out.println(subject_AskQuestion_WebPage_QueriesPage+" :: "+
+				message_AskQuestion_WebPage_QueriesPage+" :: "+ name_AskQuestion_WebPage_QueriesPage+" :: "+
+				email_AskQuestion_WebPage_QueriesPage+" :: "+ age_AskQuestion_WebPage_QueriesPage+" :: "+
+				mobileNumber_AskQuestion_WebPage_QueriesPage);
 		super.sleep(5000);
-		super.click_SideMenuTabs_HomePage(5);
-		int i=super.listCount("/html/body/app-root/app-leads/div/div/div/div/div/div[2]/table");
-		int j=super.listCount("/html/body/app-root/app-leads/div/div/div/div/div/div[2]");
-
-		System.out.println("count is : "+i);
-		System.out.println("count is : "+j);
-
-		//super.addTopicToCalendar_MarketingCalenderPage(testName, super.newTopic_MarketingCalendarPage, 2, "27");
-super.verifyData_MarketingCalendarPage(testName, "7", "test blog", "Ionized", "News", "Ramesh");	
-super.sleep(5000);
+		super.openWebAppUrl();
+		super.login("Ramesh", "ramesh");
+		super.click_NoTahnks_Notification();
+		super.click_SideMenuTabs_HomePage(4);
+		super.sleep(5000);
+		super.verifyData_QueriesPage(testName, 1, subject_AskQuestion_WebPage_QueriesPage,
+				message_AskQuestion_WebPage_QueriesPage, name_AskQuestion_WebPage_QueriesPage, age_AskQuestion_WebPage_QueriesPage, "F",
+				mobileNumber_AskQuestion_WebPage_QueriesPage, email_AskQuestion_WebPage_QueriesPage);
+		
+		super.sleep(5000);
 	}
-
 
 	@AfterMethod
 	public void results(ITestResult testResult) throws IOException {

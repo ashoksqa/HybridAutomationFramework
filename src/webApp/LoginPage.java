@@ -29,7 +29,7 @@ public class LoginPage extends DataPage { // Next Extends : HomePage
 			+ "\r\n" + "This article originally appeared in the April 2011 issue of Physicians Practice.\r\n" + "";
 	protected String doctorFullName = "Dr Ramesh Ramesh";
 
-	public void openSiteUrl() {
+	public void openWebAppUrl() {
 		String r=super.pvd("runIn");
 		super.getPage("siteUrl"+r);
 

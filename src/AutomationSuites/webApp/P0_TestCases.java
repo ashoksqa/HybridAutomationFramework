@@ -19,7 +19,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 		System.out.println("BeforeTest Executing");
 		super.updateTrow(Trow);
 		super.launchBrowser();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.click_NoTahnks_Notification();
 	}
@@ -27,7 +27,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 0)
 	public void addLeadFromHomePage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.clickOptions_QuickStartPopup_HomePage(3);
 		super.addLead_HomePage(firstName_addLead_HomePage, lastName_addLead_HomePage, emailId_addLead_HomePage,
@@ -44,7 +44,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 1)
 	public void addLeadFromLeadsPage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 
 		super.click_SideMenuTabs_HomePage(5);
@@ -62,7 +62,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	//@Test(priority = 2)
 	public void addVisitFromHomePage_Ramesh_New() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.clickOptions_QuickStartPopup_HomePage(1);
 		String visit_Month_Date_Time = super.addVisit_VisitsPage(1, 1, 1, amount_addVisit_HomePage,
@@ -80,7 +80,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	@Test(priority = 3)
 	public void addVisitFromVisitsPage_Manoj_Accepted() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 
 		super.click_SideMenuTabs_HomePage(3);
@@ -102,7 +102,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	@Test(priority = 4)
 	public void newTopicAdd_MarketingCalendarPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addTopicToCalendar_MarketingCalenderPage(testName, newTopic_MarketingCalendarPage, 2,
 				super.getTodayDate());
@@ -112,7 +112,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 5)
 	public void newBlog_SelectTopic_Draft_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 1, 1, 1, 2);
 		super.verifyData_PublishPage(testName, 1, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -122,7 +122,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 6)
 	public void newBlog_SelectTopic_Ionize_Event_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 1, 1, 2, 3);
 		super.verifyData_PublishPage(testName, 2, 3, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -132,7 +132,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 7)
 	public void newBlog_SelectTopic_PublishNow_News_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 1, 1, 3, 1);
 		super.verifyData_PublishPage(testName, 3, 1, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -142,7 +142,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 8)
 	public void newBlog_SelectTopic_Schedule_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 1, 1, 4, 2);
 		super.verifyData_PublishPage(testName, 4, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -152,7 +152,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 9)
 	public void newBlog_NewTopic_Draft_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		System.out.println("testName is :" + testName);
 		super.addNewBlog_PublishPage(testName, 2, 2, 1, 1);
@@ -163,7 +163,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 10)
 	public void newBlog_NewTopic_Ionize_Blog_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 2, 2, 2, 2);
 		super.verifyData_PublishPage(testName, 2, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -173,7 +173,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 11)
 	public void newBlog_NewTopic_PublishNow_Event_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 2, 2, 3, 3);
 		super.verifyData_PublishPage(testName, 3, 3, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
@@ -183,7 +183,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 	// @Test(priority = 12)
 	public void newBlog_NewTopic_Schedule_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
+		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.addNewBlog_PublishPage(testName, 2, 2, 4, 1);
 		super.verifyData_PublishPage(testName, 4, 1, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",

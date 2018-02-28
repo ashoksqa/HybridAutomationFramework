@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Web_Windows_Chrome_1.2_2"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="118.099">
+  <properties />
+  
+  
+            <testcase name="testt" time="118.099" classname="AutomationSuites.webApp.P1_TestCases" />
+      
+</testsuite>

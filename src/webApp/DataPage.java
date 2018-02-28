@@ -81,9 +81,9 @@ public class DataPage extends webDriverConfig { // Next Extends : LoginPage
 
 	
 	// ========================= Web-site Ask Question Page =================
-	protected String subject_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion Subject " + super.randomString(5);
-	protected String message_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion Message " + super.randomString(5);
-	protected String name_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion Name " + super.randomString(5);
+	protected String subject_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion Subject S" + super.randomString(5);
+	protected String message_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion Message M" + super.randomString(5);
+	protected String name_AskQuestion_WebPage_QueriesPage = "AutoName A" + super.randomString(5);
 	protected String email_AskQuestion_WebPage_QueriesPage = "AutoAskQuestion_" + super.randomString(3) + "@" + super.randomString(3)+"."
 			+ super.randomString(3);
 	protected String age_AskQuestion_WebPage_QueriesPage = super.randomNumString(2);
