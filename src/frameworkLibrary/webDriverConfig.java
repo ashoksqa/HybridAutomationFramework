@@ -247,7 +247,9 @@ public class webDriverConfig extends Config {
 	public void getPage(String pageURL) {
 		driver.get(super.pvd(pageURL));
 	}
-
+	public void getPage_Direct(String pageURL) {
+		driver.get(pageURL);
+	}
 	public void naavigateToUrl(String navigationUrl) {
 		driver.navigate().to(super.pvd(navigationUrl+super.pvd("runIn")));
 		super.sleep(3000);

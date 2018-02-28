@@ -17,14 +17,17 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 			+ "/html/body/div[2]/div/div[2]/div[2]/div/div/div/div/div/div/div/div/div[2]/div[1]/div/div/div[1]/div/form/p[4]";
 	private String submitBtn_WebPage_loc = id + "btnShow";
 
+	public void navigateToAskQuestionPage_WebPAge_QueriesPage() {
+		super.click(patientInfo_WebPage_loc, waitTime);
+		super.click(askQuestion_WebPage_loc, waitTime);
+	}
 	
 	public void askQuestion_Website_QueriesPage(int dropDownNumber_Category,
 			String subject_AskQuestion_WebPage_QueriesPage, String message_AskQuestion_WebPage_QueriesPage,
 			String name_AskQuestion_WebPage_QueriesPage, String email_AskQuestion_WebPage_QueriesPage,
 			String age_AskQuestion_WebPage_QueriesPage, String mobileNumber_AskQuestion_WebPage_QueriesPage,
 			int dropDownNumber_Gender) {
-		super.click(patientInfo_WebPage_loc, waitTime);
-		super.click(askQuestion_WebPage_loc, waitTime);
+
 		super.selectDropDownValue(selectCategory_WebPage_loc, dropDownNumber_Category);
 		super.setText(subject_WebPage_loc, subject_AskQuestion_WebPage_QueriesPage, waitTime);
 		super.setText(message_WebPage_loc, message_AskQuestion_WebPage_QueriesPage, waitTime);

@@ -28,9 +28,10 @@ public class P1_TestCases extends MarketingCalenderPage {
 	@Test
 	public void testt() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openSiteUrl();
-		super.login("ramesh", "ramesh");
+		super.openWebsiteUrl();
+		//super.login("ramesh", "ramesh");
 		//super.click_NoTahnks_Notification();
+		super.askQuestion_Website_QueriesPage(1, testName, testName, testName, testName, testName, testName, 1);
 		super.sleep(5000);
 		super.click_SideMenuTabs_HomePage(5);
 		int i=super.listCount("/html/body/app-root/app-leads/div/div/div/div/div/div[2]/table");
