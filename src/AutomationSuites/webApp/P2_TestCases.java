@@ -434,12 +434,12 @@ public class P2_TestCases extends MarketingCalenderPage {
 
 	// ========= Queries Page=====================================
 
- @Test(priority = 600)
+ // @Test(priority = 600)
 	public void askQuestionS1_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();
 		super.navigateToAskQuestionPage_WebPage_QueriesPage();
-		super.askQuestion_Website_QueriesPage(testName, 1, subject_AskQuestionS1_WebPage_QueriesPage,
+		super.askQuestion_Website_QueriesPage(testName, 2, subject_AskQuestionS1_WebPage_QueriesPage,
 				message_AskQuestionS1_WebPage_QueriesPage, name_AskQuestionS1_WebPage_QueriesPage,
 				email_AskQuestionS1_WebPage_QueriesPage, age_AskQuestionS1_WebPage_QueriesPage,
 				mobileNumber_AskQuestionS1_WebPage_QueriesPage, 2);
@@ -447,14 +447,14 @@ public class P2_TestCases extends MarketingCalenderPage {
 		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.click_SideMenuTabs_HomePage(4);
-		super.verifyData_QueriesPage(testName, 1, subject_AskQuestionS1_WebPage_QueriesPage,
+		super.verifyData_QueriesPage(testName, 2, subject_AskQuestionS1_WebPage_QueriesPage,
 				message_AskQuestionS1_WebPage_QueriesPage, name_AskQuestionS1_WebPage_QueriesPage,
 				age_AskQuestionS1_WebPage_QueriesPage, "F", mobileNumber_AskQuestionS1_WebPage_QueriesPage,
 				email_AskQuestionS1_WebPage_QueriesPage);
 
 	}
 
- @Test(priority = 601)
+ // @Test(priority = 601)
 	public void askQuestionS2_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();

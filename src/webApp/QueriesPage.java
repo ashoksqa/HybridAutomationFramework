@@ -83,10 +83,11 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 			String email_AskQuery_WebPage_QueriesPage, String mobileNumber_AskQuery_WebPage_QueriesPage,
 			String queryText_AskQuery_WebPage_QueriesPage) throws IOException {
 super.click(askQueryBtn_WebPage_loc, waitTime);
-		super.setText(name_WebPage_loc, name_AskQuery_WebPage_QueriesPage, waitTime);
-		super.setText(email_WebPage_loc, email_AskQuery_WebPage_QueriesPage, waitTime);
-		super.setText(mobile_WebPage_loc, mobileNumber_AskQuery_WebPage_QueriesPage, waitTime);
-		super.setText(queryTxt_WebPage_loc, queryText_AskQuery_WebPage_QueriesPage, waitTime);
+super.sleep(2000);
+		super.setText_ByActions(name_WebPage_loc, name_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText_ByActions(email_WebPage_loc, email_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText_ByActions(mobile_WebPage_loc, mobileNumber_AskQuery_WebPage_QueriesPage, waitTime);
+		super.setText_ByActions(queryTxt_WebPage_loc, queryText_AskQuery_WebPage_QueriesPage, waitTime);
 		super.click(querySubmitBtn_WebPage_loc, waitTime);
 		super.sleep(3000);
 	}
