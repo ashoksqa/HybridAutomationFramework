@@ -34,7 +34,11 @@ public class LoginPage extends DataPage { // Next Extends : HomePage
 		super.getPage("siteUrl"+r);
 
 	}
+	public void openWebsiteUrl() {
+		String r=super.pvd("runIn");
+		super.getPage("webUrl"+r);
 
+	}
 	public String login(String userId, String password) {
 		String uid = xpath + "/html/body/app-root/app-login/div/div/div/div[2]/div/form/div/div[1]/div[2]/input";
 		String pwd = xpath + "/html/body/app-root/app-login/div/div/div/div[2]/div/form/div/div[2]/div[2]/input";

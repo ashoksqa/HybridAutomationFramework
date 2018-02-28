@@ -30,9 +30,10 @@ public class MarketingCalenderPage extends SearchPage { // End
 
 	//================ Calendar page Locators =============================================================
 	
-	private String dateStartXpath = xpath
+	private String dateStartXpath_loc = xpath
 			+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/table/tbody/tr/td/div/div/div[";
-	
+	private String plusMoreStartXpath_loc = "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[2]/div/a";
+	private String plusMorePopuCloseIcon_loc=xpath+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[1]/span[1]";
 	
 	public void createTopic_MarketingCalenderPage(String testName, String topicName, int topicDropDownValue)
 			throws IOException {
@@ -98,19 +99,19 @@ public class MarketingCalenderPage extends SearchPage { // End
 		super.scrollDown(1, 150);
 		outerloop: for (int i = 1; i <= 6; i++) {
 			for (int j = 1; j <= 7; j++) {
-				String dateV = dateStartXpath + i + "]/div[2]/table/thead/tr/td[" + j + "]";
-				String cd = super.getAttributeValue_String(dateV, "innerText", waitTime);
-				String cd_cls = super.getAttributeValue_String(dateV, "className", waitTime);
-				System.out.println("date and cls name are : " + cd + "/" + cd_cls);
-				if (cd.equals(dateValue) && cd_cls.contains("fc-past")) {
+				String dateV = dateStartXpath_loc + i + "]/div[2]/table/thead/tr/td[" + j + "]";
+				String currentDate = super.getAttributeValue_String(dateV, "innerText", waitTime);
+				String currentDate_cls = super.getAttributeValue_String(dateV, "className", waitTime);
+				System.out.println("date and cls name are : " + currentDate + "/" + currentDate_cls);
+				if (currentDate.equals(dateValue) && currentDate_cls.contains("fc-past")) {
 					System.out.println(dateValue + " is past date");
-				} else if (cd.equals(dateValue)) {
+				} else if (currentDate.equals(dateValue)) {
 					String firstRowText = super.getTextOptional(
-							dateStartXpath + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]", waitTime);
+							dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]", waitTime);
 					System.out.println("firstRowText : " + firstRowText);
 					if (firstRowText.equals(blotTitle_Topic)) {
 						super.clickAndHold_Actions(
-								dateStartXpath + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]",
+								dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]",
 								waitTime);
 						this.verifyToolTipData_MarketingCalendarPage(testName, blotTitle_Topic, blogStatus,
 								doctorFirstName, blogType);
@@ -118,13 +119,13 @@ public class MarketingCalenderPage extends SearchPage { // End
 					} else {
 						for (int m = 1; m < 14; m++) {
 							String secondRowText = super.getTextOptional(
-									dateStartXpath + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]", 1);
+									dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]", 1);
 							System.out.println(
 									"secondRowText : " + secondRowText + " date is : " + dateFormat.format(new Date()));
 
 							if (secondRowText.equals(blotTitle_Topic)) {
 								super.clickAndHold_Actions(
-										dateStartXpath + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]",
+										dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]",
 										waitTime);
 								this.verifyToolTipData_MarketingCalendarPage(testName, blotTitle_Topic, blogStatus,
 										doctorFirstName, blogType);
@@ -137,26 +138,21 @@ public class MarketingCalenderPage extends SearchPage { // End
 					for (int k = 1; k <= 15; k++) {
 						System.out.println("K loop is : " + k);
 						String more_loc = super.getTextOptional(
-								dateStartXpath + i + "]/div[2]/table/tbody/tr[2]/td[" + k + "]/div/a", 0);
+								dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + k + "]/div/a", 0);
 						System.out.println("More info text is : " + more_loc);
 						if (more_loc.isEmpty()) {
 							System.out.println("Not Found +More link");
 						} else {
 							String f = more_loc.substring(0, 1);
 							if (f.equals("+")) {
-								super.click(dateStartXpath + i + "]/div[2]/table/tbody/tr[2]/td[" + k + "]/div/a",
+								super.click(dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + k + "]/div/a",
 										waitTime);
 								super.sleep(1000);
-								int listCount_More = super.listCount(
-										"/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[2]/div/a");
+								int listCount_More = super.listCount(plusMoreStartXpath_loc);
 								for (int l = 1; l <= listCount_More; l++) {
-									String title = super.getText(xpath
-											+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[2]/div/a["
-											+ l + "]/div/span[2]", waitTime);
+									String title = super.getText(xpath+plusMoreStartXpath_loc+ "["+ l + "]/div/span[2]", waitTime);
 									if (title.equals(blotTitle_Topic)) {
-										super.clickAndHold_Actions(xpath
-												+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[2]/div/a["
-												+ l + "]/div/span[2]", waitTime);
+										super.clickAndHold_Actions(xpath+plusMoreStartXpath_loc+ "["+ l + "]/div/span[2]", waitTime);
 
 										this.verifyToolTipData_MarketingCalendarPage(testName, blotTitle_Topic,
 												blogStatus, doctorFirstName, blogType);
@@ -168,9 +164,7 @@ public class MarketingCalenderPage extends SearchPage { // End
 									}
 
 									if (l == listCount_More) {
-										super.click(xpath
-												+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[1]/span[1]",
-												waitTime);
+										super.click(plusMorePopuCloseIcon_loc,waitTime);
 									}
 								}
 							}
