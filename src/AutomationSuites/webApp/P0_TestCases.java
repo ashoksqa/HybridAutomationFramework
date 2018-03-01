@@ -24,7 +24,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 		super.click_NoTahnks_Notification();
 	}
 
-	// @Test(priority = 0)
+	@Test(priority = 0)
 	public void addLeadFromHomePage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -41,7 +41,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				phoneNumber_addLead_HomePage, emailId_addLead_HomePage, "Lead", tagName_addLead_HomePage);
 	}
 
-	// @Test(priority = 1)
+	@Test(priority = 1)
 	public void addLeadFromLeadsPage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -59,7 +59,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				emailId_addLead_LeadsPage, "Lead", tagName_addLead_LeadsPage);
 	}
 
-	// @Test(priority = 2)
+	@Test(priority = 2)
 	public void addVisitFromHomePage_Ramesh_New() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -77,7 +77,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				phoneNumber_addVisit_HomePage, emailId_addVisit_HomePage, "Visit", tagName_addVisit_HomePage);
 	}
 
-	// @Test(priority = 3)
+	@Test(priority = 3)
 	public void addVisitFromVisitsPage_Manoj_Accepted() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -100,7 +100,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				phoneNumber_addVisit_VisitsPage, emailId_addVisit_VisitsPage, "Visit", tagName_addVisit_VisitsPage);
 	}
 
-	// @Test(priority = 4)
+	@Test(priority = 4)
 	public void newTopicAdd_MarketingCalendarPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -111,7 +111,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"Disha Clinic", "Ramesh");
 	}
 
-	// @Test(priority = 5)
+	@Test(priority = 5)
 	public void newBlog_SelectTopic_Draft_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -121,7 +121,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 6)
+	@Test(priority = 6)
 	public void newBlog_SelectTopic_Ionize_Event_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -131,7 +131,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 7)
+	@Test(priority = 7)
 	public void newBlog_SelectTopic_PublishNow_News_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -141,7 +141,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 8)
+	@Test(priority = 8)
 	public void newBlog_SelectTopic_Schedule_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -151,7 +151,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 9)
+	@Test(priority = 9)
 	public void newBlog_NewTopic_Draft_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -162,7 +162,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 10)
+	@Test(priority = 10)
 	public void newBlog_NewTopic_Ionize_Blog_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -172,7 +172,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 11)
+	@Test(priority = 11)
 	public void newBlog_NewTopic_PublishNow_Event_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -182,7 +182,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	// @Test(priority = 12)
+	@Test(priority = 12)
 	public void newBlog_NewTopic_Schedule_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -212,18 +212,17 @@ public class P0_TestCases extends MarketingCalenderPage {
 
 	}
 
-	@Test(priority = 13)
+	@Test(priority = 14)
 	public void AskQuery_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();
-
 		super.askQuery_Website_QueriesPage(testName, name_AskQuery_WebPage_QueriesPage,
 				email_AskQuery_WebPage_QueriesPage, mobileNumber_AskQuery_WebPage_QueriesPage,
 				queryText_AskQuery_WebPage_QueriesPage);
 		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.click_SideMenuTabs_HomePage(4);
-		super.verifyData_QueriesPage(testName, 1, queryText_AskQuery_WebPage_QueriesPage,
+		super.verifyData_QueriesPage(testName, 1, queryText_AskQuery_WebPage_QueriesPage+"...",
 				queryText_AskQuery_WebPage_QueriesPage, name_AskQuery_WebPage_QueriesPage, "", "",
 				mobileNumber_AskQuery_WebPage_QueriesPage, email_AskQuery_WebPage_QueriesPage);
 

@@ -1,4 +1,4 @@
-package AutomationSuites.webApp;
+package AutomationSuites.nativeApp;
 
 import java.io.IOException;
 import org.testng.ITestResult;
@@ -7,7 +7,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import webApp.MarketingCalenderPage;
+import nativeApp.MarketingCalenderPage;
 
 public class P2_TestCases extends MarketingCalenderPage {
 	@Parameters({ "Trow" })

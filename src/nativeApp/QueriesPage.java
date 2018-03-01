@@ -1,4 +1,4 @@
-package webApp;
+package nativeApp;
 
 import java.io.IOException;
 

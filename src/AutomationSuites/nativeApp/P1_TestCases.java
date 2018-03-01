@@ -1,4 +1,4 @@
-package AutomationSuites.webApp;
+package AutomationSuites.nativeApp;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import webApp.MarketingCalenderPage;
+import nativeApp.MarketingCalenderPage;
 
 public class P1_TestCases extends MarketingCalenderPage {
 
@@ -18,7 +18,7 @@ public class P1_TestCases extends MarketingCalenderPage {
 	public void beforeTest(int Trow) throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.updateTrow(Trow);
-		super.launchBrowser();
+		super.androidAppInstall();
 		// super.openSiteUrl();
 		System.out.println("Current Executing Method : " + testName);
 		// super.login("ramesh", "ramesh");

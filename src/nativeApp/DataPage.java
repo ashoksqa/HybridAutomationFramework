@@ -1,8 +1,8 @@
-package webApp;
+package nativeApp;
 
-import frameworkLibrary.webDriverConfig;
+import frameworkLibrary.mobDriverConfig;
 
-public class DataPage extends webDriverConfig { // Next Extends : LoginPage
+public class DataPage extends mobDriverConfig { // Next Extends : LoginPage
 	
 	
 	

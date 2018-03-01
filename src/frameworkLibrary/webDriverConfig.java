@@ -175,8 +175,10 @@ public class webDriverConfig extends Config {
 	}
 
 	public void setText(String locator, String value,int waitTime) {
+		try {
 		super.element(driver, locator, waitTime).click();
 		super.element(driver, locator, waitTime).clear();
+		}catch(Exception e){System.out.println(e);}
 		super.element(driver, locator, waitTime).sendKeys(value);
 	}
 

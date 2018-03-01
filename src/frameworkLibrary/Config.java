@@ -58,7 +58,10 @@ public class Config {
 	protected String name = "name" + locatorSeparator;
 	protected String css = "css" + locatorSeparator;
 	protected String cls = "cls" + locatorSeparator;
-	protected String AppsPath = Dir + "lib/apps/";
+	protected String AppsPath = Dir + "/lib/apps/";
+	protected File appDir = new File(AppsPath);
+	protected String nodeExecutablePath = "C:\\Program Files\\nodejs\\node.exe";
+	protected String appiumJS_Path = "C:\\Users\\Ashok\\AppData\\Local\\Programs\\appium-desktop\\resources\\app\\node_modules\\appium\\build\\lib\\main.js";
 	protected String screenshotsPath = Dir + "/test-output/html/Screenshots_Output/";
 
 	public void updateTrow(int Trow1) throws IOException {
