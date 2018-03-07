@@ -1,4 +1,4 @@
-package frameworkLibrary;
+/*package frameworkLibrary;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,22 +18,56 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
+
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 
 public class testing extends Config {
 	protected DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
 	protected String dateWithTime = dateFormat.format(new Date());
-	WebDriver driver;
-	WebDriver driver1;
+	//WebDriver driver;
+	//WebDriver driver1;
 
+	private AppiumDriverLocalService service;
+	AppiumDriver<?> driver;
+	private DesiredCapabilities cap;	
+	
+	// Android App Installation with appium server
+		public AppiumDriver<?> androidAppLaunch() {
+			int Trow=1;
+			cap = new DesiredCapabilities();
+			cap.setCapability("clearSystemFiles", true);
 
-	public void getBrowser() throws Exception {
-		System.setProperty("webdriver.gecko.driver", Dir + "/lib/windows/drivers/geckodriver.exe");
-		driver = new FirefoxDriver();
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.get("https://in.godaddy.com/dpp/find?checkAvail=1&tmskey=&domainToCheck=Archives.gov");
-	}
+			service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
+					.usingDriverExecutable(new File(nodeExecutablePath)).withAppiumJS(new File(appiumJS_Path))
+					.withCapabilities(cap).withIPAddress("127.0.0.1").usingAnyFreePort());
+			File apk = new File(appDir, "ION.apk");
+
+			DesiredCapabilities cap = new DesiredCapabilities();
+			cap.setCapability(MobileCapabilityType.DEVICE_NAME, this.pvts("DeviceName" + Trow));
+			cap.setCapability(AndroidMobileCapabilityType.PLATFORM, "ANDROID");
+			cap.setCapability("automationName", "uiautomator2");
+			cap.setCapability("udid", this.pvts("Udid" + Trow));
+			cap.setCapability("appPackage", "com.medico.ionAndroid");
+			cap.setCapability("appActivity", "com.medico.ionAndroid.Splash.SplashActivity");
+			// cap.setCapability("clearSystemFiles", true);
+			cap.setCapability(MobileCapabilityType.FULL_RESET, false);
+			cap.setCapability(MobileCapabilityType.NO_RESET, true);
+			cap.setCapability("PlatformVersion", this.pvts("PlatformVersion" + Trow));
+			String systemPort = randomNumString(3);
+			String systemPort1 = Trow + systemPort;
+			cap.setCapability("systemPort", systemPort1);
+			// cap.setCapability("app", apk.getAbsolutePath());
+			driver = new AndroidDriver<AndroidElement>(service, cap);
+			return driver;
+		}
 
 	// https://moz.com/top500
 	/// html/body/div[1]/div/div[1]/section/table/tbody/tr[1]/td[2]/a
@@ -61,14 +95,12 @@ public class testing extends Config {
 		}
 	}
 
-	//@Test
+	@Test
 	public void sitesUpdate() throws Exception {
-
-		this.getBrowser();
-		Thread.sleep(5000);
-		for (int i = 1; i <= 500; i++) {
-			//this.updateTestSuiteProperties(i);
-		}
+		 androidAppLaunch();
+		 System.out.println(driver.getCapabilities().getCapability("platformName"));
+		 String a=driver.getCapabilities().getVersion();
+		 System.out.println(driver.getCapabilities().getVersion());
 
 	}
 	
@@ -170,7 +202,7 @@ public class testing extends Config {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void tt() {
 		String a="9:30AM - 10:30PM";
         String b="9:30AM-10:30PM";
@@ -184,3 +216,4 @@ public class testing extends Config {
 	}
 
 }
+*/

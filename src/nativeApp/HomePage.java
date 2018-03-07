@@ -1,124 +1,156 @@
 package nativeApp;
 
+import java.io.IOException;
+
+import io.appium.java_client.AppiumDriver;
+
 public class HomePage extends LoginPage { // Next Extends : PublishPage
 
-	// =======================HomePage
-	// Locators=================================================================================
+	// --- Add Lead Data
+	protected String firstName_addLead = "HL_" + super.randomString(5);
+	protected String lastName_addLead = "HL_" + super.randomString(3);
+	protected String emailId_addLead = "HL_" + super.randomString(4) + "@" + super.randomString(3)
+			+ ".ION";
+	protected String phoneNumber_addLead = "55" + super.randomNumString(8);
+	protected String city_addLead = "HL_" + super.randomString(5);
+	protected String area_addLead = "HL_" + super.randomString(5);
+	protected String remarks_addLead = "HL_" + super.randomString(5);
+	protected String tagName_addLead = "HL_" + super.randomString(5);
 
-	private String notification_NothanksBtn_loc = xpath + "//*[@id=\"onesignal-popover-cancel-button\"]";
-	private String notification_AllowBtn_loc = xpath + "//*[@id=\"onesignal-popover-allow-button\"]";
-	private String OkBtn_Popup_loc = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div/div";
-	private String successMsg_Popup_loc = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/p";
+	// --- Add Visit Data
+	protected String firstName_addVisit = "AutoHomeVisits_" + super.randomString(3);
+	protected String lastName_addVisit = "AutoHomeVisits_" + super.randomString(3);
+	protected String emailId_addVisit = "AutoHomeVisits_" + super.randomString(3) + "@" + super.randomString(3)
+			+ ".ION";
+	protected String amount_addVisit = super.randomNumString(3);
+	protected String phoneNumber_addVisit = "44" + super.randomNumString(8);
+	protected String city_addVisit = "AutoHomeVisits_" + super.randomString(6);
+	protected String area_addVisit = "AutoHomeVisits_" + super.randomString(6);
+	protected String remarks_addVisit = "AutoHomeVisits_" + super.randomString(4);
+	protected String tagName_addVisit = "AutoHomeVisits_" + super.randomString(4);
 
-	private String addNewBtn_loc = cls + "add_new";
-	private String calendarIcon_loc = cls + "cal-date";
-	private String tabsListXpathStart_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/app-dashboard/div/div[2]/ul/li[";
-
-	// -------------Leads_HomePage
-
-	private String firstName_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[1]/li[1]";
-	private String lastName_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[2]/li[1]";
-	private String email_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[1]/li[2]";
-	private String phoneNumber_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[2]/li[2]";
-	private String DOB_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[2]/li[3]/div/owl-date-time/div/div[1]";
-	private String DOBCalendaStartXpath_loc = "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[2]/li[3]/div/owl-date-time/div/div[3]/div/div[2]/table/tbody/tr[";
-
-	private String city_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[1]/li[4]";
-	private String area_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[2]/li[4]";
-	private String remarks_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[2]/ul/li[1]";
-	private String tag_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[2]/ul/li[2]/tag-input/div/div/tag-input-form/form/input";
-	private String submitBtn_loc = xpath
-			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[3]/button[1]";
-
-	public void click_CalendarIcon_HomePage() {
-		super.click(calendarIcon_loc, waitTime);
+	public void click_CalendarIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "marketing_calender", locator_iOS, waitTime);
 		super.sleep(5000);
 	}
 
-	public void click_AddNew_HomePage() {
-		super.click(addNewBtn_loc, waitTime);
+	public void click_FooterPlusIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "navigation_blank", locator_iOS, waitTime);
 	}
 
-	public void click_SideMenuTabs_HomePage(int tabNumber) {
-		super.sleep(2000);
-		String tab = tabsListXpathStart_loc + tabNumber + "]";
-		super.click(tab, waitTime);
-		super.sleep(7000);
+	public void click_HomeIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "navigation_home", locator_iOS, waitTime);
 	}
 
-	public void clickOptions_QuickStartPopup_HomePage(int option) {
-		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/a[" + option + "]";
-		click_AddNew_HomePage();
-		super.click(opt, waitTime);
-		super.sleep(1000);
+	public void click_PublishIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "navigation_publish", locator_iOS, waitTime);
 	}
 
-	public void click_QuickStartPopup_StartBlogOptions_HomePage(int option) {
-		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/div[2]/div/button["
-				+ option + "]";
-		this.clickOptions_QuickStartPopup_HomePage(4);
-		super.click(opt, waitTime);
-		super.sleep(3000);
+	public void click_VisitsIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "navigation_visit", locator_iOS, waitTime);
 	}
 
-	public void click_NoTahnks_Notification() {
-		try {
-			super.click(notification_NothanksBtn_loc, waitTime);
-		} catch (Exception e) {
-			System.out.println("Elemnt Not found : " + notification_NothanksBtn_loc);
+	public void click_QueriesIcon_HomePage(AppiumDriver<?> driver) {
+		super.click(driver, id + "navigation_query", locator_iOS, waitTime);
+	}
+
+	public void click_AddVisitFromFooter_HomePage(AppiumDriver<?> driver) {
+		click_FooterPlusIcon_HomePage(driver);
+		super.click(driver, id + "add_visit_view", locator_iOS, waitTime);
+	}
+
+	public void click_AddPromotionsFromFooter_HomePage(AppiumDriver<?> driver) {
+		click_FooterPlusIcon_HomePage(driver);
+		super.click(driver, id + "add_promotions_view", locator_iOS, waitTime);
+	}
+
+	public void click_AddLeadFromFooter_HomePage(AppiumDriver<?> driver) {
+		click_FooterPlusIcon_HomePage(driver);
+		super.click(driver, id + "add_lead_view", locator_iOS, waitTime);
+	}
+
+	public void click_AddBlogFromFooter_HomePage(AppiumDriver<?> driver) {
+		click_FooterPlusIcon_HomePage(driver);
+		super.click(driver, id + "add_new_blog", locator_iOS, waitTime);
+	}
+
+	public void click_Menu(AppiumDriver<?> driver) {
+		super.click(driver, id + "side_menu_bar", locator_iOS, waitTime);
+	}
+
+	public void click_PromotionsTab_MenuPage(AppiumDriver<?> driver) {
+		String locator_Android = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]";
+		super.click(driver, locator_Android, locator_iOS, waitTime);
+	}
+
+	public void click_LeadsTab_MenuPage(AppiumDriver<?> driver) {
+		String locator_Android = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]";
+		super.click(driver, locator_Android, locator_iOS, waitTime);
+	}
+
+	public void click_UsersTab_MenuPage(AppiumDriver<?> driver) {
+		String locator_Android = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[3]";
+		super.click(driver, locator_Android, locator_iOS, waitTime);
+	}
+
+	public void click_AnalyticsTab_MenuPage(AppiumDriver<?> driver) {
+		String locator_Android = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[4]";
+		super.click(driver, locator_Android, locator_iOS, waitTime);
+	}
+
+	public void click_SubscriptionTab_MenuPage(AppiumDriver<?> driver) {
+		String locator_Android = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout[2]/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout[5]";
+		super.click(driver, locator_Android, locator_iOS, waitTime);
+	}
+
+	public void logout(AppiumDriver<?> driver) {
+		click_Menu(driver);
+		super.click(driver, id + "side_bar_logout", locator_iOS, waitTime);
+	}
+
+	public String addLead_HomePage(AppiumDriver<?> driver, String firstName_addLead,
+			String lastName_addLead, String emailId_addLead, String phoneNumber_addLead,
+			String city_addLead, String area_addLead, String remarks_addLead,
+			String tagName_addLead, String gender_M_F) throws IOException {
+
+		this.click_AddLeadFromFooter_HomePage(driver);
+
+		super.setText(driver, id + "lead_firstname", locator_iOS, firstName_addLead, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "lead_lastname", locator_iOS, lastName_addLead, waitTime);
+		super.keypadClose(driver);
+
+		if (gender_M_F.equals("M") || gender_M_F.equals("m")) {
+			super.click(driver, id + "leadMale", locator_iOS, waitTime);
+		} else if (gender_M_F.equals("F") || gender_M_F.equals("f")) {
+			super.click(driver, id + "leadFemale", locator_iOS, waitTime);
 		}
-		super.sleep(3000);
-	}
+		super.click(driver, id + "input_layout_dob", locator_iOS, waitTime);
+		super.click(driver, id + "android:id/button1", locator_iOS, waitTime);
+		super.setText(driver, id + "lead_phone", locator_iOS, phoneNumber_addLead, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "lead_email", locator_iOS, emailId_addLead, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "lead_city", locator_iOS, city_addLead, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "lead_area", locator_iOS, area_addLead, waitTime);
+		super.keypadNext(driver);
+		super.setValue(driver, id + "searchView", locator_iOS, tagName_addLead, waitTime);
+		super.click(driver, id + "input_layout_group", locator_iOS, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "lead_add_remarks", locator_iOS, remarks_addLead, waitTime);
+		super.keypadClose(driver);
 
-	public void click_Allow_Notification() {
-		try {
-			super.click(notification_AllowBtn_loc, waitTime);
-			super.waitForElement_InVisibility(notification_AllowBtn_loc, waitTime);
-		} catch (Exception e) {
-			System.out.println("Elemnt Not found : " + notification_AllowBtn_loc);
-		}
+		String dob_addLead = super.getText(driver, id + "lead_dob", locator_iOS, waitTime);
+		super.scrollDown_Mobile(driver, 3);
+		super.click(driver, id + "add_lead", locator_iOS, waitTime);
 
-	}
-
-	public void okBtn_Popup_HomePage() {
-		super.click(OkBtn_Popup_loc, waitTime);
-	}
-
-	public String getSuccessMsg_Popup_HomePage() {
-		String successMsg = super.getTextOptional(successMsg_Popup_loc, waitTime);
-		return successMsg;
-	}
-
-	public void logout() {
-		String logout = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div/div/button";
-		super.click(logout, waitTime);
-	}
-
-	public void addLead_HomePage(String firstName_addLead_HomePage, String lastName_addLead_HomePage,
-			String emailId_addLead_HomePage, String phoneNumber_addLead_HomePage, String city_addLead_HomePage,
-			String area_addLead_HomePage, String remarks_addLead_HomePage, String tagName_addLead_HomePage) {
-
-		super.setText_ByActions(firstName_loc, firstName_addLead_HomePage, waitTime);
-		super.setText_ByActions(lastName_loc, lastName_addLead_HomePage, waitTime);
-		super.setText_ByActions(email_loc, emailId_addLead_HomePage, waitTime);
-		super.setText_ByActions(phoneNumber_loc, phoneNumber_addLead_HomePage, waitTime);
-		super.selectDateFromCalender(DOB_loc, DOBCalendaStartXpath_loc, super.getTodayDate(), "owl-calendar-outFocus");
-		super.setText_ByActions(city_loc, city_addLead_HomePage, waitTime);
-		super.setText_ByActions(area_loc, area_addLead_HomePage, waitTime);
-		super.setText_ByActions(remarks_loc, remarks_addLead_HomePage, waitTime);
-		super.setText_ByActions(tag_loc, tagName_addLead_HomePage, waitTime);
-		super.kepad_Enter(tag_loc, waitTime);
-		super.click(submitBtn_loc, waitTime);
+		return dob_addLead;
 	}
 
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="194223" started-at="2018-03-05T17:51:59Z" finished-at="2018-03-05T17:55:13Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="194223" started-at="2018-03-05T17:51:59Z" finished-at="2018-03-05T17:55:13Z">
+      <class name="frameworkLibrary.Exec">
+        <test-method status="PASS" signature="executeBefore()[pri:0, instance:frameworkLibrary.Exec@28ac3dc3]" name="executeBefore" is-config="true" duration-ms="5192" started-at="2018-03-05T23:21:59Z" finished-at="2018-03-05T23:22:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- executeBefore -->
+        <test-method status="PASS" signature="execute()[pri:0, instance:frameworkLibrary.Exec@28ac3dc3]" name="execute" duration-ms="189004" started-at="2018-03-05T23:22:04Z" finished-at="2018-03-05T23:25:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- execute -->
+        <test-method status="PASS" signature="sendMail()[pri:0, instance:frameworkLibrary.Exec@28ac3dc3]" name="sendMail" is-config="true" duration-ms="0" started-at="2018-03-05T23:25:13Z" finished-at="2018-03-05T23:25:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendMail -->
+      </class> <!-- frameworkLibrary.Exec -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

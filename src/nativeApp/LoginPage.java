@@ -1,5 +1,9 @@
 package nativeApp;
 
+import java.io.IOException;
+
+import io.appium.java_client.AppiumDriver;
+
 public class LoginPage extends DataPage { // Next Extends : HomePage
 
 	protected String large_BlogContent = "Blogging is the great Internet equalizer. Anyone can opine, dish, complain, and philosophize free of charge, but the true test is whether your blog gets read. Many physicians have discovered that blogging is a great way to build community with others in healthcare, share their opinions and successes, and vent (without using patient names, mind you). Some of them have drawn a crowd of readers with great writing, stimulating discussions, or winning personalities. We read lots of physician bloggers and think you should, too. Here are 9 stellar ones to add to your blog roll.\r\n"
@@ -29,30 +33,28 @@ public class LoginPage extends DataPage { // Next Extends : HomePage
 			+ "\r\n" + "This article originally appeared in the April 2011 issue of Physicians Practice.\r\n" + "";
 	protected String doctorFullName = "Dr Ramesh Ramesh";
 
-	public void openWebAppUrl() {
-		String r=super.pvd("runIn");
-		super.getPage("siteUrl"+r);
-
-	}
-	public void openWebsiteUrl() {
-		String r=super.pvd("runIn");
-		super.getPage("webUrl"+r);
-
-	}
-	public String login(String userId, String password) {
-		String uid = xpath + "/html/body/app-root/app-login/div/div/div/div[2]/div/form/div/div[1]/div[2]/input";
-		String pwd = xpath + "/html/body/app-root/app-login/div/div/div/div[2]/div/form/div/div[2]/div[2]/input";
-		String submitBtn = xpath + "/html/body/app-root/app-login/div/div/div/div[2]/div/form/div/div[3]/button";
-		super.setText(uid, userId, waitTime);
-		super.setText(pwd, password, waitTime);
-		super.click(submitBtn, waitTime);
-		super.sleep(9000);
-		doctorFullName = super.getText(xpath + "/html/body/app-root/app-home/div/div/div/app-header/div/label",
-				waitTime).substring(6);
+	public String loginAfterResetApp(AppiumDriver<?> driver,String uid, String pwd) throws IOException {
+		super.sleep(3000);
+		super.setText(driver,id + "input_username",locator_iOS, super.pvd(uid), waitTime);
+		super.keypadNext(driver);
+		super.setText(driver,id + "input_password", locator_iOS,super.pvd(pwd),waitTime);
+		super.keypadClose(driver);
+		super.click(driver, id + "btn_login",locator_iOS, waitTime);
+		super.click(driver,id+"tvSkip", locator_iOS,waitTime);	
+		this.allowPermissions(driver,5);
+		doctorFullName=super.getText(driver,id+"login_name", locator_iOS, waitTime);
 		System.out.println("Doctor Full Name Is :" + doctorFullName);
+		super.sleep(5000);
 		return doctorFullName;
+		
 	}
-
+	
+	public void allowPermissions(AppiumDriver<?> driver,int maxCount) {
+		for(int i=1;i<=maxCount;i++) {
+		super.click(driver,id+"com.android.packageinstaller:id/permission_allow_button", locator_iOS, waitTime);
+		}
+		}
+	
 	// --------Reusable Methods ------------//
 
 }

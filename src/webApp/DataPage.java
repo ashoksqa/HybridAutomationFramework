@@ -1,13 +1,8 @@
 package webApp;
 
-import frameworkLibrary.webDriverConfig;
+import frameworkLibrary.WebActions;
 
-public class DataPage extends webDriverConfig { // Next Extends : LoginPage
-	
-	
-	
-	
-	
+public class DataPage extends WebActions { // Next Extends : LoginPage
 	
 	
 	// ========================= Home Page

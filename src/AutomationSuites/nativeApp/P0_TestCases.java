@@ -9,57 +9,44 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import nativeApp.MarketingCalenderPage;
+import io.appium.java_client.AppiumDriver;
+import webApp.MarketingCalendarPageWeb;
+import nativeApp.MarketingCalendarPageDevice;
 
-public class P0_TestCases extends MarketingCalenderPage {
-
+public class P0_TestCases extends MarketingCalendarPageDevice {
+	AppiumDriver<?> driver;
+	MarketingCalendarPageWeb mc = new MarketingCalendarPageWeb();
 	@Parameters({ "Trow" })
 	@BeforeTest
 	public void beforeTest(int Trow) throws Exception {
 		System.out.println("BeforeTest Executing");
 		super.updateTrow(Trow);
-		super.launchBrowser();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.click_NoTahnks_Notification();
+		if (super.pvts("OS"+Trow).equals("Android")) {
+			super.androidAppInstallAndDelete();
+			driver = super.androidAppInstall_Override();
+		} /*
+			 * else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }
+			 */
 	}
 
-	@Test(priority = 0)
-	public void addLeadFromHomePage() throws Exception {
+	 @Test(priority = 0)
+	public void addLead() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.clickOptions_QuickStartPopup_HomePage(3);
-		super.addLead_HomePage(firstName_addLead_HomePage, lastName_addLead_HomePage, emailId_addLead_HomePage,
-				phoneNumber_addLead_HomePage, city_addLead_HomePage, area_addLead_HomePage, remarks_addLead_HomePage,
-				tagName_addLead_HomePage);
-		super.assertEquals_Text(testName, "SuccessMsg_Popup", super.getSuccessMsg_Popup_HomePage(),
-				"Lead added successfully.");
-		super.okBtn_Popup_HomePage();
-		super.click_SideMenuTabs_HomePage(5);
-		super.verifyData_LeadsPage("addLeadFromHomePage", firstName_addLead_HomePage, "Male", "0",
-				phoneNumber_addLead_HomePage, emailId_addLead_HomePage, "Lead", tagName_addLead_HomePage);
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver,"uid", "pwd");
+		String dob = super.addLead_HomePage(driver,firstName_addLead, lastName_addLead,
+				emailId_addLead, phoneNumber_addLead, city_addLead, area_addLead,
+				remarks_addLead, tagName_addLead, "F");
+		super.click_Menu(driver);
+
+		super.click_LeadsTab_MenuPage(driver);
+		super.verifyData_LeadsPage(driver,testName, firstName_addLead, lastName_addLead, "F", dob,
+				phoneNumber_addLead, emailId_addLead, city_addLead, area_addLead,
+				"Lead", tagName_addLead+", ", remarks_addLead);
+		mc.verifyData_LeadsPage(methodName, firstName, gender_Male_Female, age, phoneNumber, emailId, source, tagName)
 	}
 
-	@Test(priority = 1)
-	public void addLeadFromLeadsPage() throws Exception {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-
-		super.click_SideMenuTabs_HomePage(5);
-		super.click_AddLead_LeadsPage();
-		super.addLead_LeadsPage(firstName_addLead_LeadsPage, lastName_addLead_LeadsPage, emailId_addLead_LeadsPage,
-				phoneNumber_addLead_LeadsPage, city_addLead_LeadsPage, area_addLead_LeadsPage,
-				remarks_addLead_LeadsPage, tagName_addLead_LeadsPage);
-		super.assertEquals_Text("addLeadFromLeadsPage", "SuccessMsg_Popup", super.getSuccessMsg_Popup_LeadsPage(),
-				"Lead added successfully.");
-		super.okBtn_Popup_LeadsPage();
-		super.verifyData_LeadsPage(testName, firstName_addLead_LeadsPage, "Male", "0", phoneNumber_addLead_LeadsPage,
-				emailId_addLead_LeadsPage, "Lead", tagName_addLead_LeadsPage);
-	}
-
-	@Test(priority = 2)
+	// @Test(priority = 1)
 	public void addVisitFromHomePage_Ramesh_New() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -77,7 +64,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				phoneNumber_addVisit_HomePage, emailId_addVisit_HomePage, "Visit", tagName_addVisit_HomePage);
 	}
 
-	@Test(priority = 3)
+	// @Test(priority = 2)
 	public void addVisitFromVisitsPage_Manoj_Accepted() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -100,7 +87,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				phoneNumber_addVisit_VisitsPage, emailId_addVisit_VisitsPage, "Visit", tagName_addVisit_VisitsPage);
 	}
 
-	@Test(priority = 4)
+	// @Test(priority = 4)
 	public void newTopicAdd_MarketingCalendarPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -111,7 +98,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"Disha Clinic", "Ramesh");
 	}
 
-	@Test(priority = 5)
+	// @Test(priority = 5)
 	public void newBlog_SelectTopic_Draft_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -121,7 +108,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 6)
+	// @Test(priority = 6)
 	public void newBlog_SelectTopic_Ionize_Event_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -131,7 +118,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 7)
+	// @Test(priority = 7)
 	public void newBlog_SelectTopic_PublishNow_News_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -141,7 +128,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 8)
+	// @Test(priority = 8)
 	public void newBlog_SelectTopic_Schedule_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -151,7 +138,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 9)
+	// @Test(priority = 9)
 	public void newBlog_NewTopic_Draft_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -162,7 +149,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 10)
+	// @Test(priority = 10)
 	public void newBlog_NewTopic_Ionize_Blog_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -172,7 +159,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 11)
+	// @Test(priority = 11)
 	public void newBlog_NewTopic_PublishNow_Event_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -182,7 +169,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 12)
+	// @Test(priority = 12)
 	public void newBlog_NewTopic_Schedule_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl();
@@ -192,7 +179,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 				"11", "12");
 	}
 
-	@Test(priority = 13)
+	// @Test(priority = 13)
 	public void AskQuestionGC_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();
@@ -212,7 +199,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 
 	}
 
-	@Test(priority = 14)
+	// @Test(priority = 14)
 	public void AskQuery_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl();
@@ -222,7 +209,7 @@ public class P0_TestCases extends MarketingCalenderPage {
 		super.openWebAppUrl();
 		super.login("ramesh", "ramesh");
 		super.click_SideMenuTabs_HomePage(4);
-		super.verifyData_QueriesPage(testName, 1, queryText_AskQuery_WebPage_QueriesPage+"...",
+		super.verifyData_QueriesPage(testName, 1, queryText_AskQuery_WebPage_QueriesPage + "...",
 				queryText_AskQuery_WebPage_QueriesPage, name_AskQuery_WebPage_QueriesPage, "", "",
 				mobileNumber_AskQuery_WebPage_QueriesPage, email_AskQuery_WebPage_QueriesPage);
 
