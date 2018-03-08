@@ -2,6 +2,8 @@ package webApp;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
+
 public class PublishPage extends HomePage { // Next Extends : VisitsPage
 
 	// -------------locators---------------------------------------------
@@ -75,72 +77,72 @@ public class PublishPage extends HomePage { // Next Extends : VisitsPage
 	protected String blogStartXpath_ListPage_loc = xpath
 			+ "/html/body/app-root/app-publish/div/div/div/div/div/div[2]/div/div/div[";
 
-	public void click_SubTabs_PublishPage(int SubTabsOpt_PublishPage) {
+	public void click_SubTabs_PublishPage(WebDriver driver,int SubTabsOpt_PublishPage) {
 		if (SubTabsOpt_PublishPage == 4) {
 			SubTabsOpt_PublishPage = 3;
 		}
-		super.click(subTabsStartXpath_loc + SubTabsOpt_PublishPage + "]", waitTime);
+		super.click(driver,subTabsStartXpath_loc + SubTabsOpt_PublishPage + "]", waitTime);
 		super.sleep(7000);
 	}
 
-	public void verifyData_PublishPage(String testName, int draft_ionize_publishNow_Schedule_OptNumber,
+	public void verifyData_PublishPage(WebDriver driver,String testName, int draft_ionize_publishNow_Schedule_OptNumber,
 			int news_blog_event_OptNumber, String blogTitle, String description, String DoctorFirtName, String date,
 			String time) throws IOException {
 		String blogType = super.pvd("blogType" + news_blog_event_OptNumber);
 
-		this.click_SubTabs_PublishPage(draft_ionize_publishNow_Schedule_OptNumber);
+		this.click_SubTabs_PublishPage(driver,draft_ionize_publishNow_Schedule_OptNumber);
 		if (draft_ionize_publishNow_Schedule_OptNumber > 1) {
-			super.scrollDownFullPage(10);
-			super.scrollUp(2);
+			super.scrollDownFullPage_Web(driver,10);
+			super.scrollUp_Web(driver,2);
 		}
 		for (int i = 1; i <= 200; i++) {
-			String actualTitle = super.getText(blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime);
+			String actualTitle = super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime);
 			System.out.println(actualTitle + " : " + blogTitle);
 			if (i % 4 == 0) {
-				super.scrollDown(1, 300);
+				super.scrollDown_Web(driver,1, 300);
 			}
 
 			if (actualTitle.equals(blogTitle)) {
 
-				super.assertEquals_Text(testName, "BlogStatus",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[1]/a", waitTime),
+				super.assertEquals_Text(driver,testName, "BlogStatus",
+						super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[1]/a", waitTime),
 						super.pvd("BlogStatus_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
-				super.assertEquals_Text(testName, "BlogActionBtn_Lists_PublishPage",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime),
+				super.assertEquals_Text(driver,testName, "BlogActionBtn_Lists_PublishPage",
+						super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime),
 						super.pvd("BlogActionBtn_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
 
 				if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
 
-					super.assertEquals_Text(testName, "BlogNextStatus",
-							super.getText(blogStartXpath_ListPage_loc + i + "]/div[6]/button[2]", waitTime), "IONIZE");
+					super.assertEquals_Text(driver,testName, "BlogNextStatus",
+							super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[6]/button[2]", waitTime), "IONIZE");
 
 				}
-				super.assertEquals_Text(testName, "BlogTitle",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime), blogTitle);
+				super.assertEquals_Text(driver,testName, "BlogTitle",
+						super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime), blogTitle);
 
-				super.assertEquals_Text(testName, "BlogTypeAndDoctor",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[3]", waitTime),
+				super.assertEquals_Text(driver,testName, "BlogTypeAndDoctor",
+						super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[3]", waitTime),
 						"By " + DoctorFirtName + "|" + blogType);
 
-				super.assertEquals_Text(testName, "DaysLeft_CenterText",
+				super.assertEquals_Text(driver,testName, "DaysLeft_CenterText",
 						super.removeSpaceInStr(
-								super.getText(blogStartXpath_ListPage_loc + i + "]/div[4]/div/div/div/span", waitTime)),
+								super.getText(driver,blogStartXpath_ListPage_loc + i + "]/div[4]/div/div/div/span", waitTime)),
 						super.removeSpaceInStr(super.pvd(
 								"centerText_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber)));
 
-				super.click(blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime);
+				super.click(driver,blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime);
 
 				if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
-					super.assertEquals_Text(testName, "Description",
-							super.getText(description_EditorBeforePublish_loc, waitTime), description);
+					super.assertEquals_Text(driver,testName, "Description",
+							super.getText(driver,description_EditorBeforePublish_loc, waitTime), description);
 				} else /* if (draft_ionize_publishOptNumber == 2) */ {
-					super.assertEquals_Text(testName, "Description",
-							super.getText(description_EditorAfterPublish_loc, waitTime), description);
+					super.assertEquals_Text(driver,testName, "Description",
+							super.getText(driver,description_EditorAfterPublish_loc, waitTime), description);
 				}
 				String expectedWindowTitle = "Topic : " + blogTitle
 						+ super.pvd("windowTitleEnd_Editor_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber);
-				super.assertEquals_Text(testName, "WindowTitle",
-						super.getText(windowTitle_Editor_loc, waitTime).replaceAll("\\s+", ""),
+				super.assertEquals_Text(driver,testName, "WindowTitle",
+						super.getText(driver,windowTitle_Editor_loc, waitTime).replaceAll("\\s+", ""),
 						expectedWindowTitle.replaceAll("\\s+", ""));
 				break;
 			}
@@ -148,22 +150,22 @@ public class PublishPage extends HomePage { // Next Extends : VisitsPage
 			else {
 				if (i == 18 || i == 38 || i == 58 || i == 78 || i == 98 || i == 118 || i == 138 || i == 158
 						|| i == 178) {
-					super.scrollDown(2, 300);
+					super.scrollDown_Web(driver,2, 300);
 				}
 			}
 
 		}
 	}
 
-	public void addNewBlog_PublishPage(String testName, int Home_PublishPage_1_2_OptNumber,
+	public void addNewBlog_PublishPage(WebDriver driver,String testName, int Home_PublishPage_1_2_OptNumber,
 			int select_NewTopic_1_2_OptNumber, int draft_ionize_publishNow_Schedule_OptNumber,
 			int news_blog_event_OptNumber) throws IOException {
 		if (Home_PublishPage_1_2_OptNumber == 1) {
-			super.click_QuickStartPopup_StartBlogOptions_HomePage(select_NewTopic_1_2_OptNumber);
+			super.click_QuickStartPopup_StartBlogOptions_HomePage(driver,select_NewTopic_1_2_OptNumber);
 		} else if (Home_PublishPage_1_2_OptNumber == 2) {
-			super.click_SideMenuTabs_HomePage(2);
-			super.click(this.CreatePostBtn_loc, waitTime);
-			super.click(select_Add_BlogBtnStartXpath_loc + select_NewTopic_1_2_OptNumber + "]",
+			super.click_SideMenuTabs_HomePage(driver,2);
+			super.click(driver,this.CreatePostBtn_loc, waitTime);
+			super.click(driver,select_Add_BlogBtnStartXpath_loc + select_NewTopic_1_2_OptNumber + "]",
 					news_blog_event_OptNumber);
 		}
 
@@ -184,78 +186,78 @@ public class PublishPage extends HomePage { // Next Extends : VisitsPage
 		}
 
 		if (select_NewTopic_1_2_OptNumber == 1) {
-			String topic = super.getText(firstTopicTxt_TrendingTopics_loc, waitTime).replaceAll("\\s+", "");
-			super.click(firstTopicRadioBtn_TrendingTopics_loc, waitTime);
-			super.click(selectAndStartBtn_TrendingTopics_loc, waitTime);
-			String actualTopic = super.getAttributeValue_String(blogTitle_Editor_loc, "value", waitTime)
+			String topic = super.getText(driver,firstTopicTxt_TrendingTopics_loc, waitTime).replaceAll("\\s+", "");
+			super.click(driver,firstTopicRadioBtn_TrendingTopics_loc, waitTime);
+			super.click(driver,selectAndStartBtn_TrendingTopics_loc, waitTime);
+			String actualTopic = super.getAttributeValue_String(driver,blogTitle_Editor_loc, "value", waitTime)
 					.replaceAll("\\s+", "");
 			System.out.println("Topic is : " + topic);
 			System.out.println("Actual Topic is : " + actualTopic);
-			super.assertEquals_Text(testName, "SelectedTopic", actualTopic, topic);
+			super.assertEquals_Text(driver,testName, "SelectedTopic", actualTopic, topic);
 		}
-		super.setText(blogTitle_Editor_loc, blogTitle_AddNewBlog, waitTime);
-		super.setText_ByActions(description_EditorBeforePublish_loc, description_AddNewBlog, waitTime);
+		super.setText(driver,blogTitle_Editor_loc, blogTitle_AddNewBlog, waitTime);
+		super.setText_ByActions(driver,description_EditorBeforePublish_loc, description_AddNewBlog, waitTime);
 		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 2) {
-			super.click(blogStatusStartXpath_Editor_loc + draft_ionize_publishNow_Schedule_OptNumber + "]", waitTime);
+			super.click(driver,blogStatusStartXpath_Editor_loc + draft_ionize_publishNow_Schedule_OptNumber + "]", waitTime);
 		} else {
-			super.click(blogStatusStartXpath_Editor_loc + 3 + "]", waitTime);
+			super.click(driver,blogStatusStartXpath_Editor_loc + 3 + "]", waitTime);
 		}
-		super.click(blogTypeStartXpath_Editor_loc + news_blog_event_OptNumber + "]", waitTime);
-		super.setText_ByActions(tagName_Editor_loc, tagName_AddNewBlog, waitTime);
-		super.kepad_Enter(tagName_Editor_loc, waitTime);
+		super.click(driver,blogTypeStartXpath_Editor_loc + news_blog_event_OptNumber + "]", waitTime);
+		super.setText_ByActions(driver,tagName_Editor_loc, tagName_AddNewBlog, waitTime);
+		super.kepad_Enter_Web(driver,tagName_Editor_loc, waitTime);
 		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 3) {
-			super.selectDateFromCalender(calenderloc_Editor_loc, dateFieldXpathStartValue_loc, super.getTodayDate(),
+			super.selectDateFromCalender(driver,calenderloc_Editor_loc, dateFieldXpathStartValue_loc, super.getTodayDate(),
 					"owl-calendar-invalid");
 		} else if (draft_ionize_publishNow_Schedule_OptNumber == 2 || draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.selectDateFromCalender(calenderloc_Editor_loc, dateFieldXpathStartValue_loc,
+			super.selectDateFromCalender(driver,calenderloc_Editor_loc, dateFieldXpathStartValue_loc,
 					super.convertIntToStr(nday), "owl-calendar-invalid");
 		}
 
-		super.click(timeloc_Editor_loc, hourTxt_Editor_loc);
+		super.click(driver,timeloc_Editor_loc, hourTxt_Editor_loc);
 
-		// String publishTime=super.getText(enteredTimeTxt_Editor_PublishPage);
+		// String publishTime=super.getText(driver,enteredTimeTxt_Editor_PublishPage);
 
 		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 2
 				|| draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.click(draft_Ionize_Schedule_Btn_Editor_loc, waitTime);
+			super.click(driver,draft_Ionize_Schedule_Btn_Editor_loc, waitTime);
 		} else if (draft_ionize_publishNow_Schedule_OptNumber == 3) {
-			super.click(publishNowBtn_Editor_loc, waitTime);
+			super.click(driver,publishNowBtn_Editor_loc, waitTime);
 		}
 		// Assert time not added.Add it later
-		super.scrollDown(1, 500);
-		super.assertEquals_Text(testName, "SuccessMsg",
+		super.scrollDown_Web(driver,1, 500);
+		super.assertEquals_Text(driver,testName, "SuccessMsg",
 				super.removeSpaceInStr(
-						super.getAttributeValue_String(successMsg_SuccessPopup_loc, "innerText", waitTime)),
+						super.getAttributeValue_String(driver,successMsg_SuccessPopup_loc, "innerText", waitTime)),
 				super.removeSpaceInStr(
 						super.pvd("successMsg_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber)));
 
 		if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
 
-			super.assertContains_Text(testName, "SuccessDate", super.getTodayDate(),
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
+			super.assertContains_Text(driver,testName, "SuccessDate", super.getTodayDate(),
+					super.getText(driver,publishDate_SuccessPopup_loc, waitTime));
 
 		} else if (draft_ionize_publishNow_Schedule_OptNumber == 2 || draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.assertContains_Text(testName, "SuccessDate", super.convertIntToStr(nday),
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
-			super.assertEquals_Text(testName, "CreditsUsed", super.getText(creditsUsed_SuccessPopup_loc, waitTime),
+			super.assertContains_Text(driver,testName, "SuccessDate", super.convertIntToStr(nday),
+					super.getText(driver,publishDate_SuccessPopup_loc, waitTime));
+			super.assertEquals_Text(driver,testName, "CreditsUsed", super.getText(driver,creditsUsed_SuccessPopup_loc, waitTime),
 					super.pvd("creditsUsed_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
-			super.assertEquals_Text(testName, "DaysLeft", super.getText(daysLeft_SuccessPopup_loc, waitTime),
+			super.assertEquals_Text(driver,testName, "DaysLeft", super.getText(driver,daysLeft_SuccessPopup_loc, waitTime),
 					super.pvd("daysLeft_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
 		} else if (draft_ionize_publishNow_Schedule_OptNumber == 3) {
 
-			super.assertContains_Text(testName, "SuccessDate", "Today",
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
-			super.assertEquals_Text(testName, "CreditsUsed", super.getText(creditsUsed_SuccessPopup_loc, waitTime),
+			super.assertContains_Text(driver,testName, "SuccessDate", "Today",
+					super.getText(driver,publishDate_SuccessPopup_loc, waitTime));
+			super.assertEquals_Text(driver,testName, "CreditsUsed", super.getText(driver,creditsUsed_SuccessPopup_loc, waitTime),
 					"0");
 
 		}
 
-		super.assertEquals_Text(testName, "BlogTitle", super.getText(blogTitle_SuccessPopup_loc, waitTime),
+		super.assertEquals_Text(driver,testName, "BlogTitle", super.getText(driver,blogTitle_SuccessPopup_loc, waitTime),
 				blogTitle_AddNewBlog);
-		super.assertEquals_Text(testName, "ByUser", super.getText(byUser_SuccessPopup_loc, waitTime),
+		super.assertEquals_Text(driver,testName, "ByUser", super.getText(driver,byUser_SuccessPopup_loc, waitTime),
 				super.doctorFullName);
 
-		super.click(this.closeIcon_SuccessPopup_loc, waitTime);
+		super.click(driver,this.closeIcon_SuccessPopup_loc, waitTime);
 		super.sleep(3000);
 	}
 

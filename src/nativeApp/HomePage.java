@@ -7,15 +7,15 @@ import io.appium.java_client.AppiumDriver;
 public class HomePage extends LoginPage { // Next Extends : PublishPage
 
 	// --- Add Lead Data
-	protected String firstName_addLead = "HL_" + super.randomString(5);
-	protected String lastName_addLead = "HL_" + super.randomString(3);
-	protected String emailId_addLead = "HL_" + super.randomString(4) + "@" + super.randomString(3)
+	protected String firstName_addLead = "AndFn_" + super.randomString(5);
+	protected String lastName_addLead = "AndLn" + super.randomString(3);
+	protected String emailId_addLead = "AndEmail_" + super.randomString(4) + "@" + super.randomString(3)
 			+ ".ION";
 	protected String phoneNumber_addLead = "55" + super.randomNumString(8);
-	protected String city_addLead = "HL_" + super.randomString(5);
-	protected String area_addLead = "HL_" + super.randomString(5);
-	protected String remarks_addLead = "HL_" + super.randomString(5);
-	protected String tagName_addLead = "HL_" + super.randomString(5);
+	protected String city_addLead = "AndCity_" + super.randomString(5);
+	protected String area_addLead = "AndArea_" + super.randomString(5);
+	protected String remarks_addLead = "AndRemarks_" + super.randomString(5);
+	protected String tagName_addLead = "AndTag_" + super.randomString(5);
 
 	// --- Add Visit Data
 	protected String firstName_addVisit = "AutoHomeVisits_" + super.randomString(3);

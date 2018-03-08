@@ -14,7 +14,7 @@ public class LeadsPage extends QueriesPage {// Next Extends : DesignPostersPage
 			String phoneNumber, String emailId, String city, String area, String source, String tagName, String remarks) throws IOException {
 		String leadName = "";
 		outerloop: for (int pager = 2; pager <= 50; pager++) {
-			for (int i = 1; i <= 11; i++) {
+			for (int i = 1; i <= 10; i++) {
 				leadName = this.getText(driver,leadsListStartXpath_LeadsPage + i + leadsListEndXpath_LeadsPage,locator_iOS, waitTime);
 				System.out.println("Lead Name is :"+leadName);
 				if (leadName.equals(firstName+" "+lastName)) {
@@ -35,6 +35,7 @@ public class LeadsPage extends QueriesPage {// Next Extends : DesignPostersPage
 							area);
 					super.scrollDown_Mobile(driver,5);
 					super.assertEquals_Text(driver,testName ,"Source", super.getText(driver,id+ "leads_input_source",locator_iOS, waitTime), source);
+					super.sleep(2000);
 					super.assertEquals_Text(driver,testName ,"TagName", super.getText(driver,id + "leads_input_groups",locator_iOS, waitTime),
 							tagName);
 					super.assertEquals_Text(driver,testName ,"Remarks", super.getText(driver,id + "leads_input_remarks",locator_iOS, waitTime),

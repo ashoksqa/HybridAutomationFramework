@@ -1,5 +1,7 @@
 package webApp;
 
+import org.openqa.selenium.WebDriver;
+
 public class HomePage extends LoginPage { // Next Extends : PublishPage
 
 	// =======================HomePage
@@ -40,85 +42,85 @@ public class HomePage extends LoginPage { // Next Extends : PublishPage
 	private String submitBtn_loc = xpath
 			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[3]/button[1]";
 
-	public void click_CalendarIcon_HomePage() {
-		super.click(calendarIcon_loc, waitTime);
+	public void click_CalendarIcon_HomePage(WebDriver driver) {
+		super.click(driver,calendarIcon_loc, waitTime);
 		super.sleep(5000);
 	}
 
-	public void click_AddNew_HomePage() {
-		super.click(addNewBtn_loc, waitTime);
+	public void click_AddNew_HomePage(WebDriver driver) {
+		super.click(driver,addNewBtn_loc, waitTime);
 	}
 
-	public void click_SideMenuTabs_HomePage(int tabNumber) {
+	public void click_SideMenuTabs_HomePage(WebDriver driver,int tabNumber) {
 		super.sleep(2000);
 		String tab = tabsListXpathStart_loc + tabNumber + "]";
-		super.click(tab, waitTime);
+		super.click(driver,tab, waitTime);
 		super.sleep(7000);
 	}
 
-	public void clickOptions_QuickStartPopup_HomePage(int option) {
+	public void clickOptions_QuickStartPopup_HomePage(WebDriver driver,int option) {
 		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/a[" + option + "]";
-		click_AddNew_HomePage();
-		super.click(opt, waitTime);
+		click_AddNew_HomePage(driver);
+		super.click(driver,opt, waitTime);
 		super.sleep(1000);
 	}
 
-	public void click_QuickStartPopup_StartBlogOptions_HomePage(int option) {
+	public void click_QuickStartPopup_StartBlogOptions_HomePage(WebDriver driver,int option) {
 		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/div[2]/div/button["
 				+ option + "]";
-		this.clickOptions_QuickStartPopup_HomePage(4);
-		super.click(opt, waitTime);
+		this.clickOptions_QuickStartPopup_HomePage(driver,4);
+		super.click(driver,opt, waitTime);
 		super.sleep(3000);
 	}
 
-	public void click_NoTahnks_Notification() {
+	public void click_NoTahnks_Notification(WebDriver driver) {
 		try {
-			super.click(notification_NothanksBtn_loc, waitTime);
+			super.click(driver,notification_NothanksBtn_loc, waitTime);
 		} catch (Exception e) {
 			System.out.println("Elemnt Not found : " + notification_NothanksBtn_loc);
 		}
 		super.sleep(3000);
 	}
 
-	public void click_Allow_Notification() {
+	public void click_Allow_Notification(WebDriver driver) {
 		try {
-			super.click(notification_AllowBtn_loc, waitTime);
-			super.waitForElement_InVisibility(notification_AllowBtn_loc, waitTime);
+			super.click(driver,notification_AllowBtn_loc, waitTime);
+			super.waitForElement_InVisibility(driver,notification_AllowBtn_loc, waitTime);
 		} catch (Exception e) {
 			System.out.println("Elemnt Not found : " + notification_AllowBtn_loc);
 		}
 
 	}
 
-	public void okBtn_Popup_HomePage() {
-		super.click(OkBtn_Popup_loc, waitTime);
+	public void okBtn_Popup_HomePage(WebDriver driver) {
+		super.click(driver,OkBtn_Popup_loc, waitTime);
 	}
 
-	public String getSuccessMsg_Popup_HomePage() {
-		String successMsg = super.getTextOptional(successMsg_Popup_loc, waitTime);
+	public String getSuccessMsg_Popup_HomePage(WebDriver driver) {
+		String successMsg = super.getTextOptional(driver,successMsg_Popup_loc, waitTime);
 		return successMsg;
 	}
 
-	public void logout() {
+	public void logout(WebDriver driver) {
 		String logout = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div/div/button";
-		super.click(logout, waitTime);
+		super.click(driver,logout, waitTime);
 	}
 
-	public void addLead_HomePage(String firstName_addLead_HomePage, String lastName_addLead_HomePage,
+	public void addLead_HomePage(WebDriver driver,String firstName_addLead_HomePage, String lastName_addLead_HomePage,
 			String emailId_addLead_HomePage, String phoneNumber_addLead_HomePage, String city_addLead_HomePage,
 			String area_addLead_HomePage, String remarks_addLead_HomePage, String tagName_addLead_HomePage) {
 
-		super.setText_ByActions(firstName_loc, firstName_addLead_HomePage, waitTime);
-		super.setText_ByActions(lastName_loc, lastName_addLead_HomePage, waitTime);
-		super.setText_ByActions(email_loc, emailId_addLead_HomePage, waitTime);
-		super.setText_ByActions(phoneNumber_loc, phoneNumber_addLead_HomePage, waitTime);
-		super.selectDateFromCalender(DOB_loc, DOBCalendaStartXpath_loc, super.getTodayDate(), "owl-calendar-outFocus");
-		super.setText_ByActions(city_loc, city_addLead_HomePage, waitTime);
-		super.setText_ByActions(area_loc, area_addLead_HomePage, waitTime);
-		super.setText_ByActions(remarks_loc, remarks_addLead_HomePage, waitTime);
-		super.setText_ByActions(tag_loc, tagName_addLead_HomePage, waitTime);
-		super.kepad_Enter(tag_loc, waitTime);
-		super.click(submitBtn_loc, waitTime);
+		super.setText_ByActions(driver,firstName_loc, firstName_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,lastName_loc, lastName_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,email_loc, emailId_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,phoneNumber_loc, phoneNumber_addLead_HomePage, waitTime);
+		super.selectDateFromCalender(driver,DOB_loc, DOBCalendaStartXpath_loc, super.getTodayDate(), "owl-calendar-outFocus");
+		super.setText_ByActions(driver,city_loc, city_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,area_loc, area_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,remarks_loc, remarks_addLead_HomePage, waitTime);
+		super.setText_ByActions(driver,tag_loc, tagName_addLead_HomePage, waitTime);
+		super.kepad_Enter_Web(driver,tag_loc, waitTime);
+		super.click(driver,submitBtn_loc, waitTime);
 	}
 
 }

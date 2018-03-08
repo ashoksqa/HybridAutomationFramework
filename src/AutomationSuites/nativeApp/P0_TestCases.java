@@ -10,10 +10,13 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import webApp.MarketingCalendarPageWeb;
 import nativeApp.MarketingCalendarPageDevice;
 
 public class P0_TestCases extends MarketingCalendarPageDevice {
+	AndroidDriver<AndroidElement> adriver;
 	AppiumDriver<?> driver;
 	MarketingCalendarPageWeb mc = new MarketingCalendarPageWeb();
 	@Parameters({ "Trow" })
@@ -22,9 +25,8 @@ public class P0_TestCases extends MarketingCalendarPageDevice {
 		System.out.println("BeforeTest Executing");
 		super.updateTrow(Trow);
 		if (super.pvts("OS"+Trow).equals("Android")) {
-			super.androidAppInstallAndDelete();
-			driver = super.androidAppInstall_Override();
-		} /*
+			driver=super.installAndroidApp(adriver);
+			} /*
 			 * else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }
 			 */
 	}
@@ -43,7 +45,7 @@ public class P0_TestCases extends MarketingCalendarPageDevice {
 		super.verifyData_LeadsPage(driver,testName, firstName_addLead, lastName_addLead, "F", dob,
 				phoneNumber_addLead, emailId_addLead, city_addLead, area_addLead,
 				"Lead", tagName_addLead+", ", remarks_addLead);
-		mc.verifyData_LeadsPage(methodName, firstName, gender_Male_Female, age, phoneNumber, emailId, source, tagName)
+		mc.verifyData_LeadsPage(driver,methodName, firstName, gender_Male_Female, age, phoneNumber, emailId, source, tagName)
 	}
 
 	// @Test(priority = 1)
@@ -217,13 +219,13 @@ public class P0_TestCases extends MarketingCalendarPageDevice {
 
 	@AfterMethod
 	public void results(ITestResult testResult) throws IOException {
-		super.testResult(testResult);
+		super.testResult(driver,testResult);
 		// super.closeDriver();
 	}
 
 	@AfterTest
 	public void Quit() throws InterruptedException, IOException {
-		super.quitDriver();
+		super.quitDriver(driver);
 		System.out.println("Stopped");
 	}
 

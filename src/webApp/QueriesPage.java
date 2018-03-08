@@ -2,6 +2,8 @@ package webApp;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
+
 public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 	// ================== WebApp
 	// Page===========================================================//
@@ -54,110 +56,110 @@ public class QueriesPage extends VisitsPage { // Next Extends : LeadsPage
 	private String querySubmitBtn_WebPage_loc = id + "submit-btn";
 	private String successMessageAskQuery_WebPage_loc = xpath + "/html/body/nav[2]/form/div";
 
-
-	public void navigateToAskQuestionPage_WebPage_QueriesPage() {
-		super.click(patientInfo_WebPage_loc, waitTime);
-		super.click(askQuestion_WebPage_loc, waitTime);
+	public void navigateToAskQuestionPage_WebPage_QueriesPage(WebDriver driver) {
+		super.click(driver,patientInfo_WebPage_loc, waitTime);
+		super.click(driver,askQuestion_WebPage_loc, waitTime);
 	}
 
-	public void askQuestion_Website_QueriesPage(String testName, int dropDownNumber_Category,
+	public void askQuestion_Website_QueriesPage(WebDriver driver, String testName, int dropDownNumber_Category,
 			String subject_AskQuestion_WebPage_QueriesPage, String message_AskQuestion_WebPage_QueriesPage,
 			String name_AskQuestion_WebPage_QueriesPage, String email_AskQuestion_WebPage_QueriesPage,
 			String age_AskQuestion_WebPage_QueriesPage, String mobileNumber_AskQuestion_WebPage_QueriesPage,
 			int dropDownNumber_Gender) throws IOException {
 
-		super.selectDropDownValue(selectCategory_WebPage_loc, dropDownNumber_Category);
-		super.setText(subject_WebPage_loc, subject_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.setText(message_WebPage_loc, message_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.setText(name_WebPage_loc, name_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.setText(email_WebPage_loc, email_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.setText(age_WebPage_loc, age_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.setText(mobile_WebPage_loc, mobileNumber_AskQuestion_WebPage_QueriesPage, waitTime);
-		super.selectDropDownValue(gender_WebPage_loc, dropDownNumber_Gender);
-		super.click(submitBtn_WebPage_loc, waitTime);
-		super.assertEquals_Text(testName, "askQuestion SuccessMessage Title",
-				super.getText(successPopupTitle_askQuestion_WebPAge_loc, waitTime),
+		super.selectDropDownValue(driver,selectCategory_WebPage_loc, dropDownNumber_Category);
+		super.setText(driver,subject_WebPage_loc, subject_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.setText(driver,message_WebPage_loc, message_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.setText(driver,name_WebPage_loc, name_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.setText(driver,email_WebPage_loc, email_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.setText(driver,age_WebPage_loc, age_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.setText(driver,mobile_WebPage_loc, mobileNumber_AskQuestion_WebPage_QueriesPage, waitTime);
+		super.selectDropDownValue(driver,gender_WebPage_loc, dropDownNumber_Gender);
+		super.click(driver,submitBtn_WebPage_loc, waitTime);
+		super.assertEquals_Text(driver,testName, "askQuestion SuccessMessage Title",
+				super.getText(driver,successPopupTitle_askQuestion_WebPAge_loc, waitTime),
 				super.pvd("askQuestionSuccessMessagetitle"));
-		super.assertEquals_Text(testName, "askQuestion SuccessMessage Subject",
-				super.getText(successPopupMsg_askQuestion_WebPAge_loc, waitTime),
+		super.assertEquals_Text(driver,testName, "askQuestion SuccessMessage Subject",
+				super.getText(driver,successPopupMsg_askQuestion_WebPAge_loc, waitTime),
 				super.pvd("askQuestionSuccessMessage"));
-		super.click(successPopupClose_askQuestion_WebPAge_loc, waitTime);
+		super.click(driver,successPopupClose_askQuestion_WebPAge_loc, waitTime);
 	}
 
-	public void askQuery_Website_QueriesPage(String testName, String name_AskQuery_WebPage_QueriesPage,
+	public void askQuery_Website_QueriesPage(WebDriver driver,String testName, String name_AskQuery_WebPage_QueriesPage,
 			String email_AskQuery_WebPage_QueriesPage, String mobileNumber_AskQuery_WebPage_QueriesPage,
 			String queryText_AskQuery_WebPage_QueriesPage) throws IOException {
-super.click(askQueryBtn_WebPage_loc, waitTime);
-super.sleep(5000);
+		super.click(driver,askQueryBtn_WebPage_loc, waitTime);
+		super.sleep(5000);
 
-	
-		super.setText(nameAskQuery_WebPage_loc, name_AskQuery_WebPage_QueriesPage, 3);
-super.setText(emailAskQuery_WebPage_loc, email_AskQuery_WebPage_QueriesPage, 3);
+		super.setText(driver,nameAskQuery_WebPage_loc, name_AskQuery_WebPage_QueriesPage, 3);
+		super.setText(driver,emailAskQuery_WebPage_loc, email_AskQuery_WebPage_QueriesPage, 3);
 
-super.setText(mobileAskQuery_WebPage_loc, mobileNumber_AskQuery_WebPage_QueriesPage, 3);
-super.setText(queryTxt_WebPage_loc, queryText_AskQuery_WebPage_QueriesPage, 3);
-		super.click(querySubmitBtn_WebPage_loc, waitTime);
-	super.assertEquals_Text(testName, "Ask Query Success Message", super.getTextOptional(successMessageAskQuery_WebPage_loc, waitTime), "Thank you for your query.");	
+		super.setText(driver,mobileAskQuery_WebPage_loc, mobileNumber_AskQuery_WebPage_QueriesPage, 3);
+		super.setText(driver,queryTxt_WebPage_loc, queryText_AskQuery_WebPage_QueriesPage, 3);
+		super.click(driver,querySubmitBtn_WebPage_loc, waitTime);
+		super.assertEquals_Text(driver,testName, "Ask Query Success Message",
+				super.getTextOptional(driver,successMessageAskQuery_WebPage_loc, waitTime), "Thank you for your query.");
 	}
 
-	public void verifyData_QueriesPage(String testName, int queryCategory_droopDwnNumber, String expectedTitle,
+	public void verifyData_QueriesPage(WebDriver driver,String testName, int queryCategory_droopDwnNumber, String expectedTitle,
 			String expectedMessage, String customerName, String age, String gender_M_F, String mobileNumber,
 			String emailId) throws IOException {
 		for (int i = 1; i <= 200; i++) {
-			String title = super.getTextOptional(queryStartXpath_loc + i + "]/div/div[3]", waitTime);
-			System.out.println(title+" : "+expectedTitle);
+			String title = super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[3]", waitTime);
+			System.out.println(title + " : " + expectedTitle);
 			if (title.equals(expectedTitle)) {
-				super.click(queryStartXpath_loc + i + "]/div/div[3]", waitTime);
+				super.click(driver,queryStartXpath_loc + i + "]/div/div[3]", waitTime);
 				super.sleep(3000);
-				super.scrollUp(1);
-				super.assertEquals_Text(testName, "Title",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[3]", waitTime), expectedTitle);
-				super.assertEquals_Text(testName, "Message",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[4]", waitTime), expectedMessage);
-				super.assertEquals_Text(testName, "Customer Name",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[5]/b", waitTime), customerName);
-				super.assertEquals_Text(testName, "Query Category",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[5]/span[2]", waitTime),
+				super.scrollUp_Web(driver,1);
+				super.assertEquals_Text(driver,testName, "Title",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[3]", waitTime), expectedTitle);
+				super.assertEquals_Text(driver,testName, "Message",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[4]", waitTime), expectedMessage);
+				super.assertEquals_Text(driver,testName, "Customer Name",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[5]/b", waitTime), customerName);
+				super.assertEquals_Text(driver,testName, "Query Category",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[5]/span[2]", waitTime),
 						"In " + super.pvd("queryCategory" + queryCategory_droopDwnNumber));
-				super.assertEquals_Text(testName, "Quck Reply Button",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[6]/a[1]", waitTime), "Quick Reply");
-				super.assertEquals_Text(testName, "Reply Button",
-						super.getTextOptional(queryStartXpath_loc + i + "]/div/div[6]/a[2]", waitTime), "Reply");
+				super.assertEquals_Text(driver,testName, "Quck Reply Button",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[6]/a[1]", waitTime), "Quick Reply");
+				super.assertEquals_Text(driver,testName, "Reply Button",
+						super.getTextOptional(driver,queryStartXpath_loc + i + "]/div/div[6]/a[2]", waitTime), "Reply");
 
-				super.assertEquals_Text(testName, "Customer Name in Chat Screen Header",
-						super.getTextOptional(HeaderStartXpath_ChatScreen_loc + "1]", waitTime), customerName);
-				super.assertEquals_Text(testName, "Customer age in Chat Screen Header",
-						super.getTextOptional(HeaderStartXpath_ChatScreen_loc + "2]/span[2]", waitTime), age);
-				super.assertEquals_Text(testName, "Customer Name in Chat Screen Header",
-						super.getTextOptional(HeaderStartXpath_ChatScreen_loc + "2]/span[3]/span", waitTime),
+				super.assertEquals_Text(driver,testName, "Customer Name in Chat Screen Header",
+						super.getTextOptional(driver,HeaderStartXpath_ChatScreen_loc + "1]", waitTime), customerName);
+				super.assertEquals_Text(driver,testName, "Customer age in Chat Screen Header",
+						super.getTextOptional(driver,HeaderStartXpath_ChatScreen_loc + "2]/span[2]", waitTime), age);
+				super.assertEquals_Text(driver,testName, "Customer Name in Chat Screen Header",
+						super.getTextOptional(driver,HeaderStartXpath_ChatScreen_loc + "2]/span[3]/span", waitTime),
 						gender_M_F);
 
-				super.assertEquals_Text(testName, "subjectHeader_ChatScreen",
-						super.getTextOptional(subjectHeader_ChatScreen_loc, waitTime), expectedTitle);
-				super.assertEquals_Text(testName, "customerName_ChatScreen",
-						super.getTextOptional(customerName_ChatScreen_loc, waitTime), customerName);
-				super.assertEquals_Text(testName, "customerMessage_ChatScreen",
-						super.getTextOptional(customerMessage_ChatScreen_loc, waitTime), expectedMessage);
-				super.assertEquals_Text(testName, "replyBtn_ChatScreen",
-						super.getTextOptional(replyBtn_ChatScreen_loc, waitTime), "Reply Query");
-				super.click(profileIcon_ChatScreen_loc, waitTime);
+				super.assertEquals_Text(driver,testName, "subjectHeader_ChatScreen",
+						super.getTextOptional(driver,subjectHeader_ChatScreen_loc, waitTime), expectedTitle);
+				super.assertEquals_Text(driver,testName, "customerName_ChatScreen",
+						super.getTextOptional(driver,customerName_ChatScreen_loc, waitTime), customerName);
+				super.assertEquals_Text(driver,testName, "customerMessage_ChatScreen",
+						super.getTextOptional(driver,customerMessage_ChatScreen_loc, waitTime), expectedMessage);
+				super.assertEquals_Text(driver,testName, "replyBtn_ChatScreen",
+						super.getTextOptional(driver,replyBtn_ChatScreen_loc, waitTime), "Reply Query");
+				super.click(driver,profileIcon_ChatScreen_loc, waitTime);
 
-				super.assertEquals_Text(testName, "Profile Name",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 1 + "]/td[2]", waitTime),
+				super.assertEquals_Text(driver,testName, "Profile Name",
+						super.getTextOptional(driver,userProfileStartXpath_ChatScreen_loc + 1 + "]/td[2]", waitTime),
 						customerName);
-				super.assertEquals_Text(testName, "Profile Age",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 2 + "]/td[2]", waitTime), age);
-				String profilegender=super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 3 + "]/td[2]", waitTime);
-				if(profilegender.length()>0) {
+				super.assertEquals_Text(driver,testName, "Profile Age",
+						super.getTextOptional(driver,userProfileStartXpath_ChatScreen_loc + 2 + "]/td[2]", waitTime), age);
+				String profilegender = super.getTextOptional(driver,userProfileStartXpath_ChatScreen_loc + 3 + "]/td[2]",
+						waitTime);
+				if (profilegender.length() > 0) {
 					profilegender = profilegender.substring(0, 1);
 				}
-				
-				super.assertEquals_Text(testName, "Profile Gender",profilegender,gender_M_F);
-				super.assertEquals_Text(testName, "Profile Mobile Number",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 4 + "]/td[2]", waitTime),
+
+				super.assertEquals_Text(driver,testName, "Profile Gender", profilegender, gender_M_F);
+				super.assertEquals_Text(driver,testName, "Profile Mobile Number",
+						super.getTextOptional(driver,userProfileStartXpath_ChatScreen_loc + 4 + "]/td[2]", waitTime),
 						mobileNumber);
-				super.assertEquals_Text(testName, "Profile Mail ID",
-						super.getTextOptional(userProfileStartXpath_ChatScreen_loc + 5 + "]/td[2]", waitTime), emailId);
+				super.assertEquals_Text(driver,testName, "Profile Mail ID",
+						super.getTextOptional(driver,userProfileStartXpath_ChatScreen_loc + 5 + "]/td[2]", waitTime), emailId);
 
 				break;
 			}

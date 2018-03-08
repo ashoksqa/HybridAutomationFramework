@@ -382,6 +382,11 @@ public class Config {
 		String s = driver.getPlatformName().toString();
 		return s;
 	}
+	// Get OS Version name by passing row value in TestSuite excel value
+		public String getVersion(AppiumDriver<?> driver) {
+			String s = this.pvts("DeviceName"+Trow);			
+			return s;
+		}
 
 	public String locatorByOS(AppiumDriver<?> driver, String locator_Android, String locator_iOS) {
 		String locator = null;
@@ -1045,7 +1050,6 @@ public class Config {
 
 	// Complete unInstall and install the app
 	public AndroidDriver<AndroidElement> installAndroidApp(AndroidDriver<AndroidElement> driver) {
-
 		this.androidAppInstallAndDelete(driver, this.pvts("DeviceName" + Trow), this.pvts("PlatformVersion" + Trow),
 				this.pvts("Udid" + Trow));
 		return this.androidAppInstall_Override(driver, this.pvts("DeviceName" + Trow),
