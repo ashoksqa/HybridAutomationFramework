@@ -1,5 +1,4 @@
-/frameworkLibrary/
-/sanityTesting/
-/AutomationSuites/
-/nativeApp/
 /webApp/
+/nativeApp/
+/AutomationSuites/
+/frameworkLibrary/

@@ -2,6 +2,7 @@ package AutomationSuites.nativeApp;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -13,22 +14,25 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import webApp.MarketingCalendarPageWeb;
-import nativeApp.MarketingCalendarPageDevice;
+import nativeApp.EndPage;
+import nativeApp.MarketingCalendarPageApp;
 
-public class P0_TestCases extends MarketingCalendarPageDevice {
+public class P0_TestCases extends EndPage {
 	AndroidDriver<AndroidElement> adriver;
 	AppiumDriver<?> driver;
-	MarketingCalendarPageWeb mc = new MarketingCalendarPageWeb();
+	WebDriver wdriver;
 	@Parameters({ "Trow" })
 	@BeforeTest
 	public void beforeTest(int Trow) throws Exception {
 		System.out.println("BeforeTest Executing");
-		super.updateTrow(Trow);
+		Trow=super.updateTrow(Trow);
 		if (super.pvts("OS"+Trow).equals("Android")) {
 			driver=super.installAndroidApp(adriver);
 			} /*
-			 * else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }
-			 */
+		 else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }*/
+		wdriver=super.launchChromeBrowser(wdriver);	
+		super.login(wdriver,"uid", "pwd");
+		super.click_NoTahnks_Notification(wdriver);
 	}
 
 	 @Test(priority = 0)
@@ -36,17 +40,23 @@ public class P0_TestCases extends MarketingCalendarPageDevice {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.resetApp(driver);
 		super.loginAfterResetApp(driver,"uid", "pwd");
-		String dob = super.addLead_HomePage(driver,firstName_addLead, lastName_addLead,
+		super.addLead_HomePage(driver,firstName_addLead, lastName_addLead,
 				emailId_addLead, phoneNumber_addLead, city_addLead, area_addLead,
-				remarks_addLead, tagName_addLead, "F");
+				remarks_addLead, tagName_addLead, "Female");
 		super.click_Menu(driver);
-
 		super.click_LeadsTab_MenuPage(driver);
-		super.verifyData_LeadsPage(driver,testName, firstName_addLead, lastName_addLead, "F", dob,
+		super.verifyData_LeadsPage(driver,testName, firstName_addLead, lastName_addLead, "Female", dateWithYear,
 				phoneNumber_addLead, emailId_addLead, city_addLead, area_addLead,
 				"Lead", tagName_addLead+", ", remarks_addLead);
-		mc.verifyData_LeadsPage(driver,methodName, firstName, gender_Male_Female, age, phoneNumber, emailId, source, tagName)
-	}
+		 System.out.println(super.pvts("AppType" + Trow));
+		// Verifying the Leads data in WebApp 
+		super.openWebAppUrl(wdriver);
+		super.login(wdriver, "ramesh", "ramesh");
+		super.click_NoTahnks_Notification(wdriver);
+		super.click_SideMenuTabs_HomePage(wdriver,5);
+		super.verifyData_LeadsPage(wdriver,testName, firstName_addLead, "Female", "0", phoneNumber_addLead, emailId_addLead, "Lead", tagName_addLead);
+		super.quitDriver(wdriver);
+	 }
 
 	// @Test(priority = 1)
 	public void addVisitFromHomePage_Ramesh_New() throws Exception {

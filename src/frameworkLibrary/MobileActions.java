@@ -5,7 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class MobileActions extends Config {
+public class MobileActions extends WebActions {
 
 	public WebElement element(AppiumDriver<?> driver,String locator_Android, String locator_iOS, int waitTime) {
 		WebElement Element = null;

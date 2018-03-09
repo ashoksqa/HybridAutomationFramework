@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.openqa.selenium.WebDriver;
 
-public class MarketingCalendarPageWeb extends SearchPage { // End
+public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 
 	private String addNewTopicBtn_MarketingCalenderPage_loc = xpath
 			+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[1]/button";

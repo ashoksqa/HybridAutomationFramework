@@ -10,10 +10,15 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import webApp.MarketingCalendarPageWeb;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import nativeApp.EndPage;
 
-public class P0_TestCases extends MarketingCalendarPageWeb {
+public class P0_TestCases extends EndPage {
 WebDriver driver;
+AndroidDriver<AndroidElement> adriver;
+//AppiumDriver<?> driver;
 	@Parameters({ "Trow" })
 	@BeforeTest
 	public void beforeTest(int Trow) throws Exception {
@@ -21,28 +26,35 @@ WebDriver driver;
 		super.updateTrow(Trow);
 		driver=super.launchBrowser(driver);
 		super.openWebAppUrl(driver);
-		super.login(driver,"ramesh", "ramesh");
+		super.login(driver,"uid", "pwd");
 		super.click_NoTahnks_Notification(driver);
+		adriver=super.installAndroidApp(adriver, "Android_6.0", " ", "emulator-5556");
 	}
 
-	@Test(priority = 0)
+	 @Test(priority = 0)
 	public void addLeadFromHomePage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
-		super.login(driver,"ramesh", "ramesh");
+		super.login(driver,"uid", "pwd");
 		super.clickOptions_QuickStartPopup_HomePage(driver,3);
-		super.addLead_HomePage(driver,firstName_addLead_HomePage, lastName_addLead_HomePage, emailId_addLead_HomePage,
+		super.addLead_HomePage(driver,testName,firstName_addLead_HomePage, lastName_addLead_HomePage, emailId_addLead_HomePage,
 				phoneNumber_addLead_HomePage, city_addLead_HomePage, area_addLead_HomePage, remarks_addLead_HomePage,
 				tagName_addLead_HomePage);
-		super.assertEquals_Text(driver,testName, "SuccessMsg_Popup", super.getSuccessMsg_Popup_HomePage(driver),
-				"Lead added successfully.");
-		super.okBtn_Popup_HomePage(driver);
 		super.click_SideMenuTabs_HomePage(driver,5);
-		super.verifyData_LeadsPage(driver,"addLeadFromHomePage", firstName_addLead_HomePage, "Male", "0",
+		super.verifyData_LeadsPage(driver,testName, firstName_addLead_HomePage, "Male", "0",
 				phoneNumber_addLead_HomePage, emailId_addLead_HomePage, "Lead", tagName_addLead_HomePage);
+		// Verifying the Leads data in Android mobile
+		super.resetApp(adriver);
+		super.loginAfterResetApp(adriver,"uid", "pwd");
+		super.click_Menu(adriver);
+		super.click_LeadsTab_MenuPage(adriver);
+		super.verifyData_LeadsPage(adriver,testName, firstName_addLead_HomePage, lastName_addLead_HomePage, "Male", dateWithYear,
+				phoneNumber_addLead_HomePage, emailId_addLead_HomePage, city_addLead_HomePage, area_addLead_HomePage,
+				"Lead", tagName_addLead_HomePage+", ", remarks_addLead_HomePage);
+
 	}
 
-	@Test(priority = 1)
+	// @Test(priority = 1)
 	public void addLeadFromLeadsPage() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -60,7 +72,7 @@ WebDriver driver;
 				emailId_addLead_LeadsPage, "Lead", tagName_addLead_LeadsPage);
 	}
 
-	@Test(priority = 2)
+	// @Test(priority = 2)
 	public void addVisitFromHomePage_Ramesh_New() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -78,7 +90,7 @@ WebDriver driver;
 				phoneNumber_addVisit_HomePage, emailId_addVisit_HomePage, "Visit", tagName_addVisit_HomePage);
 	}
 
-	@Test(priority = 3)
+	// @Test(priority = 3)
 	public void addVisitFromVisitsPage_Manoj_Accepted() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -101,7 +113,7 @@ WebDriver driver;
 				phoneNumber_addVisit_VisitsPage, emailId_addVisit_VisitsPage, "Visit", tagName_addVisit_VisitsPage);
 	}
 
-	@Test(priority = 4)
+	// @Test(priority = 4)
 	public void newTopicAdd_MarketingCalendarPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -112,7 +124,7 @@ WebDriver driver;
 				"Disha Clinic", "Ramesh");
 	}
 
-	@Test(priority = 5)
+	// @Test(priority = 5)
 	public void newBlog_SelectTopic_Draft_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -122,7 +134,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 6)
+	// @Test(priority = 6)
 	public void newBlog_SelectTopic_Ionize_Event_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -132,7 +144,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 7)
+	// @Test(priority = 7)
 	public void newBlog_SelectTopic_PublishNow_News_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -142,7 +154,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 8)
+	// @Test(priority = 8)
 	public void newBlog_SelectTopic_Schedule_Blog_HomePage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -152,7 +164,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 9)
+	// @Test(priority = 9)
 	public void newBlog_NewTopic_Draft_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -163,7 +175,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 10)
+	// @Test(priority = 10)
 	public void newBlog_NewTopic_Ionize_Blog_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -173,7 +185,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 11)
+	// @Test(priority = 11)
 	public void newBlog_NewTopic_PublishNow_Event_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -183,7 +195,7 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 12)
+	// @Test(priority = 12)
 	public void newBlog_NewTopic_Schedule_News_PublishPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebAppUrl(driver);
@@ -193,12 +205,12 @@ WebDriver driver;
 				"11", "12");
 	}
 
-	@Test(priority = 13)
+	// @Test(priority = 13)
 	public void AskQuestionGC_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl(driver);
 		super.navigateToAskQuestionPage_WebPage_QueriesPage(driver);
-		super.askQuestion_Website_QueriesPage(driver,testName, 1, subject_AskQuestionGC_WebPage_QueriesPage,
+		super.askQuestion_Website_QueriesPage(driver,testName, 2, subject_AskQuestionGC_WebPage_QueriesPage,
 				message_AskQuestionGC_WebPage_QueriesPage, name_AskQuestionGC_WebPage_QueriesPage,
 				email_AskQuestionGC_WebPage_QueriesPage, age_AskQuestionGC_WebPage_QueriesPage,
 				mobileNumber_AskQuestionGC_WebPage_QueriesPage, 2);
@@ -206,14 +218,14 @@ WebDriver driver;
 		super.openWebAppUrl(driver);
 		super.login(driver,"ramesh", "ramesh");
 		super.click_SideMenuTabs_HomePage(driver,4);
-		super.verifyData_QueriesPage(driver,testName, 1, subject_AskQuestionGC_WebPage_QueriesPage,
+		super.verifyData_QueriesPage(driver,testName, 2, subject_AskQuestionGC_WebPage_QueriesPage,
 				message_AskQuestionGC_WebPage_QueriesPage, name_AskQuestionGC_WebPage_QueriesPage,
 				age_AskQuestionGC_WebPage_QueriesPage, "F", mobileNumber_AskQuestionGC_WebPage_QueriesPage,
 				email_AskQuestionGC_WebPage_QueriesPage);
 
 	}
 
-	@Test(priority = 14)
+	// @Test(priority = 14)
 	public void AskQuery_WebSite_QueriesPage() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openWebsiteUrl(driver);

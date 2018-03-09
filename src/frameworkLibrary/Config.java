@@ -68,19 +68,22 @@ public class Config {
 	private DesiredCapabilities cap;
 	private AppiumDriverLocalService service;
 
-	//protected WebDriver driver;
-	//protected AndroidDriver<AndroidElement> aDriver;
+	// protected WebDriver driver;
+	// protected AndroidDriver<AndroidElement> aDriver;
 	protected int Trow;
 	protected String Dir = System.getProperty("user.dir");
-	protected String prop_TestSuite = Dir + "/src/frameworkLibrary/TestSuite.properties";
+	protected String prop_TestSuite = "../HybridAutomationFramework/src/frameworkLibrary/TestSuite.properties";
 	String excelPath = Dir + "/TestSuite.xlsx";
 	String sheetName = "MainSheet";
 	protected DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
+	protected DateFormat dateFormat2 = new SimpleDateFormat("dd MMM,yyyy");
+	protected String dateWithTime = dateFormat.format(new Date());
+	protected String dateWithYear = dateFormat2.format(new Date());
+
 	protected String ION_App_Version = "1.2";
 	protected String gmailUserId = "ionqa1@gmail.com";
 	protected String gmailPassword = "ion12345";
 	protected String gmailUsersInCC = "ashok.g@medicodesk.com";
-	protected String dateWithTime = dateFormat.format(new Date());
 	protected String customReportFilename = Dir + "/test-output/custom-report.html";
 	protected int waitTime = 60;
 	protected int waitTimeMin = 10;
@@ -96,9 +99,17 @@ public class Config {
 	protected String appiumJS_Path = "C:\\Users\\Ashok\\AppData\\Local\\Programs\\appium-desktop\\resources\\app\\node_modules\\appium\\build\\lib\\main.js";
 	protected String screenshotsPath = Dir + "/test-output/html/Screenshots_Output/";
 	protected String locator_iOS = "";
+	protected String nativeAppPropertyFilePath = "../HybridAutomationFramework/src/nativeApp/nativeAppData.properties";
+	protected String webAppPropertyFilePath = "../HybridAutomationFramework/src/webApp/webAppData.properties";
 
-	public void updateTrow(int Trow1) throws IOException {
+	protected String requireSuccessScreenshot="no";
+	protected String requireSuccessScreenshotInLogs="no";
+
+	
+	public int updateTrow(int Trow1) throws IOException {
 		Trow = Trow1;
+		System.out.println("Trow is 1st method :" + Trow);
+		return Trow;
 	}
 
 	// --------------Excel Library-----------------//
@@ -113,6 +124,9 @@ public class Config {
 		return sh;
 	}
 
+	public void testRow() {
+		System.out.println("testRow OS is :"+ this.pvts("AppType"+Trow));
+	}
 	// Get the row count by passing sheet name and excel path.
 	public int getSheetRowCount(String excelPath, String sheetName) throws IOException {
 		int rowCount = 0;
@@ -248,13 +262,14 @@ public class Config {
 
 				test.addParameter("Trow", String.valueOf(Trow));
 				int merchantColumnNumber = 1;
-				test.setName(this.pvts("OS" + Trow) + "_" + this.pvts("DeviceName" + Trow) + "_" + ION_App_Version + "_"
+				test.setName(this.getCellValueFromTestSuite(Trow, 2, excelPath, sheetName) + "_"
+						+ this.getCellValueFromTestSuite(Trow, 3, excelPath, sheetName) + "_" + ION_App_Version + "_"
 						+ Trow);
 				test.setPreserveOrder(true);
 
 				List<XmlClass> list = new ArrayList<XmlClass>();
 
-				if (this.pvts("P0" + Trow).equals("Yes")) {
+				if (this.getCellValueFromTestSuite(Trow, 5, excelPath, sheetName).equals("Yes")) {
 					list.add(new XmlClass("AutomationSuites."
 							+ this.getCellValueFromTestSuite(Trow, merchantColumnNumber, excelPath, sheetName) + "."
 							+ "P0_TestCases"));
@@ -263,20 +278,20 @@ public class Config {
 							+ "P0_TestCases");
 				}
 
-				if (this.pvts("P1" + Trow).equals("Yes")) {
+				if (this.getCellValueFromTestSuite(Trow, 6, excelPath, sheetName).equals("Yes")) {
 					list.add(new XmlClass("AutomationSuites."
 							+ this.getCellValueFromTestSuite(Trow, merchantColumnNumber, excelPath, sheetName) + "."
 							+ "P1_TestCases"));
 
 				}
 
-				if (this.pvts("P2" + Trow).equals("Yes")) {
+				if (this.getCellValueFromTestSuite(Trow, 7, excelPath, sheetName).equals("Yes")) {
 					list.add(new XmlClass("AutomationSuites."
 							+ this.getCellValueFromTestSuite(Trow, merchantColumnNumber, excelPath, sheetName) + "."
 							+ "P2_TestCases"));
 
 				}
-				if (this.pvts("Sanity" + Trow).equals("Yes")) {
+				if (this.getCellValueFromTestSuite(Trow, 8, excelPath, sheetName).equals("Yes")) {
 					list.add(new XmlClass("AutomationSuites."
 							+ this.getCellValueFromTestSuite(Trow, merchantColumnNumber, excelPath, sheetName) + "."
 							+ "Sanity_TestCases"));
@@ -312,16 +327,14 @@ public class Config {
 		return propertyFileValue;
 	}
 
-	public String pvd(String propertyFileKey) {
-
-		String propertyFilePath = Dir + "/src/" + this.pvts("AppType" + Trow) + "/" + this.pvts("AppType" + Trow)
-				+ "Data.properties";
+	public String pvWebApp(String propertyFileKey) {
+		System.out.println("Trow is : " + Trow);
 		String propertyFileValue = "Please check property file key";
 		InputStream is = null;
 		Properties prop = null;
 		try {
 			prop = new Properties();
-			is = new FileInputStream(new File(propertyFilePath));
+			is = new FileInputStream(new File(this.webAppPropertyFilePath));
 			prop.load(is);
 			propertyFileValue = prop.getProperty(propertyFileKey);
 
@@ -334,16 +347,14 @@ public class Config {
 		return propertyFileValue;
 	}
 
-	public String pvl(String propertyFileKey) {
-
-		String propertyFilePath = Dir + "/src/" + this.pvts("AppType" + Trow) + "/" + this.pvts("AppType" + Trow)
-				+ "Locators.properties";
+	public String pvNativeApp(String propertyFileKey) {
+		System.out.println("Trow is : " + Trow);
 		String propertyFileValue = "Please check property file key";
 		InputStream is = null;
 		Properties prop = null;
 		try {
 			prop = new Properties();
-			is = new FileInputStream(new File(propertyFilePath));
+			is = new FileInputStream(new File(this.nativeAppPropertyFilePath));
 			prop.load(is);
 			propertyFileValue = prop.getProperty(propertyFileKey);
 
@@ -356,7 +367,23 @@ public class Config {
 		return propertyFileValue;
 	}
 
-	public String pvWeb(String propertyFileKey) {
+	/*
+	 * public String pvl(String propertyFileKey) {
+	 * 
+	 * String propertyFilePath = Dir + "/src/" + this.pvts("AppType" + Trow) + "/" +
+	 * this.pvts("AppType" + Trow) + "Locators.properties"; String propertyFileValue
+	 * = "Please check property file key"; InputStream is = null; Properties prop =
+	 * null; try { prop = new Properties(); is = new FileInputStream(new
+	 * File(propertyFilePath)); prop.load(is); propertyFileValue =
+	 * prop.getProperty(propertyFileKey);
+	 * 
+	 * } catch (FileNotFoundException e) { e.printStackTrace(); } catch (IOException
+	 * e) { e.printStackTrace(); }
+	 * 
+	 * return propertyFileValue; }
+	 */
+
+	/*public String pvWeb(String propertyFileKey) {
 
 		String propertyFilePath = Dir + "/src/webSites/webSitesData.properties";
 		String propertyFileValue = "Please check property file key";
@@ -375,19 +402,29 @@ public class Config {
 		}
 
 		return propertyFileValue;
-	}
+	}*/
 
 	// Get OS name by passing row value in TestSuite excel value
-	public String getOS(AppiumDriver<?> driver) {
-		String s = driver.getPlatformName().toString();
-		return s;
-	}
-	// Get OS Version name by passing row value in TestSuite excel value
-		public String getVersion(AppiumDriver<?> driver) {
-			String s = this.pvts("DeviceName"+Trow);			
-			return s;
+	public String getOS(WebDriver driver) {
+		String s="";
+		String o="";
+		try {
+		 s= ((AppiumDriver<?>) driver).getPlatformName().toString();
+		}catch(Exception e){System.out.println("OS Not found and exception is : "+e);}
+		if(s.equals("Android") || s.equals("iOS")) {
+			o=s;
 		}
+		else {
+			o="Web";
+		}
+		return o;
+	}
 
+	// Get OS Version name by passing row value in TestSuite excel value
+	/*
+	 * public String getVersion(AppiumDriver<?> driver) { String s =
+	 * this.pvts("DeviceName"+Trow); return s; }
+	 */
 	public String locatorByOS(AppiumDriver<?> driver, String locator_Android, String locator_iOS) {
 		String locator = null;
 		if (this.getOS(driver).equals("Android")) {
@@ -481,7 +518,7 @@ public class Config {
 
 	// ============= Web Driver ========================//
 
-	public WebDriver launchBrowser(WebDriver driver,String browserType) throws Exception {
+	public WebDriver launchBrowser(WebDriver driver, String browserType) throws Exception {
 		if (browserType.equals("Windows_Firefox")) {
 			System.setProperty("webdriver.gecko.driver", Dir + "/lib/windows/drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
@@ -495,26 +532,28 @@ public class Config {
 		} else {
 			throw new Exception("Browser is not correct");
 		}
-		
+
 		return driver;
 	}
 
 	public WebDriver launchChromeBrowser(WebDriver driver) throws Exception {
-		
-			System.setProperty("webdriver.chrome.driver", Dir + "/lib/windows/drivers/chromedriver.exe");
-			driver = new ChromeDriver();
-			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+		System.setProperty("webdriver.chrome.driver", Dir + "/lib/windows/drivers/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		return driver;
 	}
 
 	public WebDriver launchBrowser(WebDriver driver) {
 		try {
-			driver=this.launchBrowser(driver, this.pvts("DeviceName"+Trow));
-		} catch (Exception e) {System.out.println("Launch Browser Exception: "+ e);}
+			driver = this.launchBrowser(driver, this.pvts("DeviceName" + Trow));
+		} catch (Exception e) {
+			System.out.println("Launch Browser Exception: " + e);
+		}
 		return driver;
 	}
-	
+
 	public WebElement element(WebDriver driver, String locator, int waitTime) {
 		WebElement Element = null;
 		// System.out.println("locator_key is :" + locator);
@@ -574,7 +613,6 @@ public class Config {
 		return Element;
 	}
 
-	
 	private void waitForElementVisibility(WebDriver driver, String locator, int waitTime) {
 		System.out.println("locator_key is :" + locator);
 		String locatorType = locator.split(locatorSeparator)[0];
@@ -718,8 +756,8 @@ public class Config {
 		}
 
 	}
-	
-	public void waitForElement_Visibility(WebDriver driver,String locator, int waitTime) {
+
+	public void waitForElement_Visibility(WebDriver driver, String locator, int waitTime) {
 		try {
 			waitForElementVisibility(driver, locator, waitTime);
 		} catch (Exception e) {
@@ -728,7 +766,7 @@ public class Config {
 
 	}
 
-	public void waitForElement_InVisibility(WebDriver driver,String locator, int waitTime) {
+	public void waitForElement_InVisibility(WebDriver driver, String locator, int waitTime) {
 		try {
 			waitForElementInVisibility(driver, locator, waitTime);
 		} catch (Exception e) {
@@ -737,7 +775,7 @@ public class Config {
 
 	}
 
-	public void waitForElement_Clickable(WebDriver driver,String locator, int waitTime) {
+	public void waitForElement_Clickable(WebDriver driver, String locator, int waitTime) {
 		try {
 			waitForElementClickable(driver, locator, waitTime);
 		} catch (Exception e) {
@@ -746,7 +784,7 @@ public class Config {
 
 	}
 
-	public void waitForElement_Presence(WebDriver driver,String locator, int waitTime) {
+	public void waitForElement_Presence(WebDriver driver, String locator, int waitTime) {
 		try {
 			waitForElementPresence(driver, locator, waitTime);
 		} catch (Exception e) {
@@ -754,7 +792,6 @@ public class Config {
 		}
 
 	}
-
 
 	public void sleep(int sleepTime) {
 		try {
@@ -837,7 +874,7 @@ public class Config {
 					+ folder_name_fail + failureImageFileName + " alt=" + "Filed Screenshot"
 					+ " width=\"500\" height=\"300\"></body></html>");
 			Reporter.setCurrentTestResult(null);
-		} else if (this.pvd("requireSuccessScreenshot").equals("yes")) {
+		} else if (requireSuccessScreenshot.equals("yes")) {
 
 			scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
@@ -852,7 +889,7 @@ public class Config {
 				e.printStackTrace();
 			}
 			System.setProperty("org.uncommons.reportng.escape-output", "false");
-			if (this.pvd("requireSuccessScreenshotInLogs").equals("yes")) {
+			if (requireSuccessScreenshotInLogs.equals("yes")) {
 				Reporter.log("<a  href=Screenshots_Output/" + folder_name_pass + successImageFileName + ">"
 						+ "<p style=\"background-color:green;\">Failed Screenshot :: " + folder_name_pass
 						+ successImageFileName + "</p>" + "</a>");
@@ -871,7 +908,7 @@ public class Config {
 		String folder_name_pass = this.pvts("AppType" + Trow) + "_" + this.pvts("OS" + Trow) + "_"
 				+ this.pvts("DeviceName" + Trow) + "_Pass_" + dateWithTime + "/" + testName + "/";
 
-		String ImageFileName = fileName + ".jpg";
+		String ImageFileName = fileName +this.getOS(driver)+ ".jpg";
 		try {
 			FileUtils.copyFile(scrFile, new File(screenshotsPath + "/" + folder_name_pass + ImageFileName));
 		} catch (IOException e) {
@@ -907,8 +944,7 @@ public class Config {
 
 	}
 
-
-	public void scrollDown_Web(WebDriver driver,int scrollCount, int scrollSize) {
+	public void scrollDown_Web(WebDriver driver, int scrollCount, int scrollSize) {
 		String scrollTo = "window.scrollBy(0," + scrollSize + ")";
 		for (int i = 1; i <= scrollCount; i++) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -917,27 +953,23 @@ public class Config {
 		this.sleep(2000);
 	}
 
-	public void scrollUp_Web(WebDriver driver,int scrollCount) {
+	public void scrollUp_Web(WebDriver driver, int scrollCount) {
 		for (int i = 1; i <= scrollCount; i++) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(document.body.scrollHeight,0)");
 		}
 	}
-	public void kepad_Enter_Web(WebDriver driver,String locator, int waitTime) {
-		element(driver,locator, waitTime).sendKeys(Keys.RETURN);
-	}
-	
-	
-	public void getPage(WebDriver driver,String pageURL) {
-		driver.get(pvd(pageURL));
+
+	public void kepad_Enter_Web(WebDriver driver, String locator, int waitTime) {
+		element(driver, locator, waitTime).sendKeys(Keys.RETURN);
 	}
 
-	public void getPage_Direct(WebDriver driver,String pageURL) {
+	public void getPage(WebDriver driver, String pageURL) {
 		driver.get(pageURL);
 	}
 
-	public void naavigateToUrl(WebDriver driver,String navigationUrl) {
-		driver.navigate().to( pvd(navigationUrl + pvd("runIn")));
+	public void naavigateToUrl(WebDriver driver, String navigationUrl) {
+		driver.navigate().to(pvWebApp(navigationUrl + pvWebApp("runIn")));
 		sleep(3000);
 	}
 
@@ -950,28 +982,26 @@ public class Config {
 		String url = driver.getCurrentUrl();
 		return url;
 	}
-	
-	//=============== ION Web Driver Reusable Methods ============//
-	
-	public int listCount(WebDriver driver,String listsXpath) {
+
+	// =============== ION Web Driver Reusable Methods ============//
+
+	public int listCount(WebDriver driver, String listsXpath) {
 		List<WebElement> ls = driver.findElements(By.xpath(listsXpath));
 		int count = ls.size();
 		System.out.println("List count of given xpath is :" + count);
 		return count;
 	}
 
-
-
-	public int getDropDownListCount(WebDriver driver,String locator) {
+	public int getDropDownListCount(WebDriver driver, String locator) {
 		int i = 0;
-		Select dropDown = new Select(element(driver,locator, waitTime));
+		Select dropDown = new Select(element(driver, locator, waitTime));
 		List<WebElement> elementCount = dropDown.getOptions();
 		System.out.println("List Count is " + elementCount.size());
 		i = elementCount.size();
 		return i;
-	}	
-	
-	public void scrollDownFullPage_Web(WebDriver driver,int scrollCount) {
+	}
+
+	public void scrollDownFullPage_Web(WebDriver driver, int scrollCount) {
 		for (int i = 1; i <= scrollCount; i++) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
@@ -980,13 +1010,13 @@ public class Config {
 
 	}
 
-	public void clickAndHold_Actions(WebDriver driver,String locator, int waitTime) {
+	public void clickAndHold_Actions(WebDriver driver, String locator, int waitTime) {
 		// Use action class to mouse hover on Text box field
 		Actions action = new Actions(driver);
-		action.clickAndHold(element(driver,locator, waitTime)).perform();
-		action.release(element(driver,locator, waitTime));
+		action.clickAndHold(element(driver, locator, waitTime)).perform();
+		action.release(element(driver, locator, waitTime));
 	}
-	
+
 	// =================== Mobile Driver =========================//
 	// Android App Installation with appium server and delete
 	public void androidAppInstallAndDelete(AppiumDriver<?> driver, String DeviceName, String PlatformVersion,
@@ -1109,9 +1139,9 @@ public class Config {
 	public void keypadClose(AppiumDriver<?> driver) throws IOException {
 		if (getOS(driver).equals("Android")) {
 			((PressesKeyCode) driver).pressKeyCode(AndroidKeyCode.BACK);
-		} else if (getOS(driver).equals("iOS")) {
+		} /*else if (getOS(driver).equals("iOS")) {
 			driver.findElementById(pvd("keypadDone")).click();
-		}
+		}*/
 	}
 
 	public void deviceBackBtn_Android(AppiumDriver<?> driver) {
@@ -1171,9 +1201,9 @@ public class Config {
 	public void keypadNext(AppiumDriver<?> driver) throws IOException {
 		if (getOS(driver).equals("Android")) {
 			((PressesKeyCode) driver).pressKeyCode(AndroidKeyCode.ENTER);
-		} else if (getOS(driver).equals("iOS")) {
+		} /*else if (getOS(driver).equals("iOS")) {
 			driver.findElementById(pvd("keypadNext")).click();
-		}
+		}*/
 	}
 
 }
