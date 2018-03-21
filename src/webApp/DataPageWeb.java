@@ -1,8 +1,8 @@
 package webApp;
 
-import frameworkLibrary.DriverActions;
+import frameworkLibrary.driverActions;
 
-public class DataPageWeb extends DriverActions { // Next Extends : LoginPageWeb
+public class DataPageWeb extends driverActions { // Next Extends : LoginPageWeb
 
 	// ========================= Home Page : Add Lead
 	

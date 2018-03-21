@@ -11,7 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class DriverActions extends Config {
+public class driverActions extends Config {
 	
 	public WebElement element(WebDriver driver,String locator, int waitTime) {
 		this.waitForJStoLoad(driver, waitTime);
