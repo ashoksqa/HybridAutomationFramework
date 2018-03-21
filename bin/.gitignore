@@ -1,5 +1,9 @@
 /AutomationSuites/
 /frameworkLibrary/
+<<<<<<< HEAD
+=======
+/nativeApp/
+>>>>>>> 9767ea0b1ee0ab42a25c2874cbe2de624d581a81
 /sanityTesting/
 /webApp/
 /webSites/

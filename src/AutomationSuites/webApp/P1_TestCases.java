@@ -30,7 +30,7 @@ public class P1_TestCases extends MarketingCalenderPage {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.openSiteUrl();
 		super.login("ramesh", "ramesh");
-		//super.click_NoTahnks_Notification();
+		super.click_NoTahnks_Notification();
 		super.sleep(5000);
 		super.click_SideMenuTabs_HomePage(5);
 		int i=super.listCount("/html/body/app-root/app-leads/div/div/div/div/div/div[2]/table");

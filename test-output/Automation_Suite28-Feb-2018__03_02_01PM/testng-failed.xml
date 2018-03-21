@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Automation_Suite28-Feb-2018__03_02_01PM]" parallel="tests">
+  <listeners>
+    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    <listener class-name="frameworkLibrary.reporting.TestNGCustomReportListener"/>
+  </listeners>
+  <test thread-count="5" name="Web_Windows_Chrome_1.2_2(failed)" parallel="tests">
+    <parameter name="Trow" value="2"/>
+    <classes>
+      <class name="AutomationSuites.webApp.P1_TestCases">
+        <methods>
+          <include name="Quit"/>
+          <include name="testt"/>
+          <include name="results"/>
+          <include name="beforeTest"/>
+        </methods>
+      </class> <!-- AutomationSuites.webApp.P1_TestCases -->
+    </classes>
+  </test> <!-- Web_Windows_Chrome_1.2_2(failed) -->
+</suite> <!-- Failed suite [Automation_Suite28-Feb-2018__03_02_01PM] -->
