@@ -240,162 +240,36 @@ public class P0_TestCases extends EndPage {
 
 	}
 
-	// @Test(priority = 15)
+	@Test(priority = 15)
 	public void addUser_SrDoctor_AccessAllQueries_WebSiteAskQuestion_Opt3_UsersPageWeb() throws IOException {
-		String firstName = "AfnADUW_" + super.randomString(3);
-		String lastName = "SrDoctor";
-		String emailId = "SrDoctor_AllAccess@" + super.randomString(3) + "." + super.randomString(3);
-		String userName = "SrDoctor" + super.randomString(3);
-		String password = super.randomString(6);
-		// Ask Question Website Data
-		String subject = "SubjectAskQuestionOpt3 S" + super.randomString(5);
-		String message = "MessageAskQuestionOpt3 M" + super.randomString(5);
-		String name = "AskQuestionNameOpt3 A" + super.randomString(5);
-		String email = "AskQuestionEmailOpt3_" + super.randomString(3) + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String age = super.randomNumString(2);
-		String mobileNumber = "5" + super.randomNumString(9);
-
-		// Testcase :
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver);
-		super.adduser_UsersPageWeb(driver,testName, firstName, lastName, userName, emailId, password, password, 1, 1);
-		super.verifyUserInUsersList_UsersPageWeb(driver, testName, firstName, 1, emailId);
-		super.verifyUserProfile_UsersPageWeb(driver,6, testName, userName, password, firstName, lastName, emailId);
-		super.openWebsiteUrl(driver);
-		super.navigateToAskQuestionPage_WebPage_QueriesPage(driver);
-		super.askQuestion_Website_QueriesPage(driver, testName, 4, subject, message, name, email, age, mobileNumber, 3);
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver, userName, password);
-		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 3, subject, message, name, age, "F", mobileNumber, email);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 1, 4, 6, 3);
+
 	}
 
-	// @Test(priority = 16)
+	@Test(priority = 16)
 	public void addUser_FrontDesk_AccessOpt1_WebSiteAskQuery_UsersPageWeb() throws IOException {
-		String firstName = "AfnADUW_" + super.randomString(3);
-		String lastName = "FrontDesk";
-		String emailId = "FrontDesk_AllAccess@" + super.randomString(3) + "." + super.randomString(3);
-		String userName = "FrontDesk" + super.randomString(3);
-		String password = super.randomString(6);
-		// Ask Query in web site
-		String name = "AskQueryNameAUW A" + super.randomString(5);
-		String email = "AskQueryEmailAUW_" + super.randomString(3) + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String mobileNumber = "5" + super.randomNumString(9);
-
-		String queryText = "AskQueryTextAUW A" + super.randomString(9);
-
-		// Testcase :
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver);
-		super.adduser_UsersPageWeb(driver, testName, firstName, lastName, userName, emailId, password, password, 2, 4);
-		super.verifyUserInUsersList_UsersPageWeb(driver, testName, firstName, 2, emailId);
-		super.verifyUserProfile_UsersPageWeb(driver, 6,testName, userName, password, firstName, lastName, emailId);
-		super.openWebsiteUrl(driver);
-		super.askQuery_Website_QueriesPage(driver, testName, name, email, mobileNumber, queryText);
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver,userName,password);
-		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 1, queryText + "...", queryText, name, "", "", mobileNumber,
-				email);
+
+		super.addUser_AccessQueries_Website_askQuery_UsersPageWeb(driver, testName, 2, 1, 6);
 	}
 
-	// @Test(priority = 17)
+	@Test(priority = 17)
 	public void addUser_JuniorDoctor_AccessOpt2_WebSiteAskQuestion_Opt2_UsersPageWeb() throws IOException {
-		String firstName = "AfnADUW_" + super.randomString(3);
-		String lastName = "JrDoctor";
-		String emailId = "JrDoctor_Opt2@" + super.randomString(3) + "." + super.randomString(3);
-		String userName = "JrDoctor" + super.randomString(3);
-		String password = super.randomString(6);
-		// Ask Question Website Data
-		String subject = "SubjectAskQuestionOpt2 S" + super.randomString(5);
-		String message = "MessageAskQuestionOpt2 M" + super.randomString(5);
-		String name = "AskQuestionNameOpt2 A" + super.randomString(5);
-		String email = "AskQuestionEmailOpt2_" + super.randomString(3) + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String age = super.randomNumString(2);
-		String mobileNumber = "5" + super.randomNumString(9);
-
-		// Testcase :
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver);
-		super.adduser_UsersPageWeb(driver, testName, firstName, lastName, userName, emailId, password, password, 3, 2);
-		super.verifyUserInUsersList_UsersPageWeb(driver, testName, firstName, 3, emailId);
-		super.verifyUserProfile_UsersPageWeb(driver,6, testName, userName, password, firstName, lastName, emailId);
-		super.openWebsiteUrl(driver);
-		super.navigateToAskQuestionPage_WebPage_QueriesPage(driver);
-		super.askQuestion_Website_QueriesPage(driver, testName, 3, subject, message, name, email, age, mobileNumber, 3);
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver, userName, password);
-		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 2, subject, message, name, age, "F", mobileNumber, email);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 3, 3, 6, 3);
 	}
 
-	// @Test(priority = 18)
+	@Test(priority = 18)
 	public void addUser_JuniorDoctor_AccessOpt1_WebSiteAskQuestion_Opt1_UsersPageWeb() throws IOException {
-		String firstName = "AfnADUW_" + super.randomString(3);
-		String lastName = "JrDoctor";
-		String emailId = "JrDoctor_Opt1@" + super.randomString(3) + "." + super.randomString(3);
-		String userName = "JrDoctor" + super.randomString(3);
-		String password = super.randomString(6);
-		// Ask Question Website Data
-		String subject = "SubjectAskQuestionOpt1 S" + super.randomString(5);
-		String message = "MessageAskQuestionOpt1 M" + super.randomString(5);
-		String name = "AskQuestionNameOpt1 A" + super.randomString(5);
-		String email = "AskQuestionEmailOpt1_" + super.randomString(3) + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String age = super.randomNumString(2);
-		String mobileNumber = "5" + super.randomNumString(9);
-
-		// Testcase :
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver);
-		super.adduser_UsersPageWeb(driver, testName, firstName, lastName, userName, emailId, password, password, 3, 4);
-		super.verifyUserInUsersList_UsersPageWeb(driver, testName, firstName, 3, emailId);
-		super.verifyUserProfile_UsersPageWeb(driver,6, testName, userName, password, firstName, lastName, emailId);
-		super.openWebsiteUrl(driver);
-		super.navigateToAskQuestionPage_WebPage_QueriesPage(driver);
-		super.askQuestion_Website_QueriesPage(driver, testName, 2, subject, message, name, email, age, mobileNumber, 3);
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver, userName, password);
-		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 1, subject, message, name, age, "F", mobileNumber, email);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 3, 1, 6, 1);
 	}
 
-	// @Test(priority = 19)
+	@Test(priority = 19)
 	public void addUser_BusinessHead_AccessSelectAllQueries_WebSiteAskQuestion_Opt2_UsersPageWeb() throws IOException {
-		String firstName = "AfnADUW_" + super.randomString(3);
-		String lastName = "BhDoctor";
-		String emailId = "BhDoctor_Opt1@" + super.randomString(3) + "." + super.randomString(3);
-		String userName = "BhDoctor" + super.randomString(3);
-		String password = super.randomString(6);
-		// Ask Question Website Data
-		String subject = "SubjectAskQuestionOpt1 S" + super.randomString(5);
-		String message = "MessageAskQuestionOpt1 M" + super.randomString(5);
-		String name = "AskQuestionNameOpt1 A" + super.randomString(5);
-		String email = "AskQuestionEmailOpt1_" + super.randomString(3) + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String age = super.randomNumString(2);
-		String mobileNumber = "5" + super.randomNumString(9);
-
-		// Testcase :
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver);
-		super.adduser_UsersPageWeb(driver, testName, firstName, lastName, userName, emailId, password, password, 4, 1);
-		super.verifyUserInUsersList_UsersPageWeb(driver, testName, firstName, 4, emailId);
-		super.verifyUserProfile_UsersPageWeb(driver,8, testName, userName, password, firstName, lastName, emailId);
-		super.openWebsiteUrl(driver);
-		super.askQuestion_Website_QueriesPage(driver, testName, 3, subject, message, name, email, age, mobileNumber, 3);
-		super.openWebAppUrl(driver);
-		super.loginWebApp(driver, userName, password);
-		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 2, subject, message, name, age, "F", mobileNumber, email);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 6, 2);
 	}
 
 	@AfterMethod
