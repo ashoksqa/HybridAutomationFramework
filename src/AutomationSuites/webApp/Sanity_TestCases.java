@@ -8,17 +8,19 @@ import java.util.Date;
 
 import org.testng.annotations.Test;
 
-public class Sanity_TestCases {
+import frameworkLibrary.Config;
+
+public class Sanity_TestCases extends Config{
 	protected DateFormat dateFormat2 = new SimpleDateFormat("dd MMM,yyyy");
 	protected String dateWithTime = dateFormat.format(new Date());
 
 	
 	@Test
 	public void tt() {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("d");
-		LocalDateTime now = LocalDateTime.now();
-		System.out.println(dateFormat.format(new Date()));
 		
+		System.out.println(super.date_02SpaceFebraurySpace2018);
+		//System.out.println(super.date_02SpaceFebSpace2018);
+
 	}
 	
 }

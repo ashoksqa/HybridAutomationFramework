@@ -7,7 +7,8 @@ import org.openqa.selenium.WebDriver;
 public class VisitsPageWeb extends PublishPageWeb { // Next Extends : QueriesPageWeb
 
 	private String addVisitBtn_loc = xpath
-			+ "/html/body/app-root/app-visits/div/div/div/div/div/div[1]/div[2]/button[2]";
+			+ "/html/body/app-root/app-visits/div/div/div/div/div/div[1]/div[2]/button";
+	           
 	private String okBtn_Popup_VisitsPage_loc = xpath + "/html/body/app-root/app-visits/div[1]/div[2]/div/div/div";
 	private String successMsg_Popup_VisitsPage_loc = xpath + "/html/body/app-root/app-visits/div[1]/div[2]/div/p";
 
@@ -119,7 +120,7 @@ public class VisitsPageWeb extends PublishPageWeb { // Next Extends : QueriesPag
 		super.selectDateFromCalender(driver,DOB_loc, DOB_XpathStartValue_loc, super.getTodayDate(), "owl-calendar-invalid");
 		super.setText_ByActions(driver,remarks_loc, remarks_addVisit_VisitsPage, waitTime);
 		super.setText_ByActions(driver,tag_loc, tagName_addVisit_VisitsPage, waitTime);
-		super.kepad_Enter_Web(driver,tag_loc, waitTime);
+		super.kepad_Enter_ByActions_Web(driver,tag_loc, waitTime);
 		super.click(driver,submitBtn_loc, waitTime);
 		super.sleep(1000);
 		String slotError = super.getTextOptional(driver,slotError_loc, 0).toLowerCase().replaceAll("\\s+", "");
@@ -219,6 +220,7 @@ public class VisitsPageWeb extends PublishPageWeb { // Next Extends : QueriesPag
 		String month = visit_Month_Date_Time.split(locatorSeparator)[0];
 		String vDate = visit_Month_Date_Time.split(locatorSeparator)[1];
 		String slotTime = visit_Month_Date_Time.split(locatorSeparator)[2];
+		super.sleep(3000);
 		if (month.equals("NextMonth")) {
 			this.selectDateFromVisitsCalender(driver,"Y", vDate, "owl-calendar-outFocus");
 		} else {
@@ -254,7 +256,7 @@ public class VisitsPageWeb extends PublishPageWeb { // Next Extends : QueriesPag
 			String locator = xpath + "/html/body/app-root/app-visits/div/div/div/div/div/div[2]/table[2]/tbody/tr/td[";
 			super.assertEquals_Text(driver,methodName, "Name", super.getTextOptional(driver,locator + 2 + "]", waitTime), Name);
 			super.assertEquals_Text(driver,methodName, "PhoneNumber", super.getTextOptional(driver,locator + 3 + "]", waitTime),
-					phoneNumber_addVisit_HomePage);
+					phoneNumber_AVHW);
 			super.assertEquals_Text(driver,methodName, "DoctorName", super.getTextOptional(driver,locator + 4 + "]", waitTime),
 					doctorName);
 			super.assertEquals_Text(driver,methodName, "SlotTime", super.getText(driver,locator + 5 + "]", waitTime),

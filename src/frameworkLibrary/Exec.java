@@ -29,6 +29,6 @@ Config cg = new Config();
 
 	@AfterTest
 	public void sendMail() throws Exception {
-		//mail.htmlMail();
+		// mail.htmlMail();
 	}
 }

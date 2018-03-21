@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 
-	// =======================HomePage
-	// Locators=================================================================================
+	// =======================HomePage Locators
 
 	private String notification_NothanksBtn_loc = xpath + "//*[@id=\"onesignal-popover-cancel-button\"]";
 	private String notification_AllowBtn_loc = xpath + "//*[@id=\"onesignal-popover-allow-button\"]";
@@ -19,7 +18,7 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 	private String tabsListXpathStart_loc = xpath
 			+ "/html/body/app-root/app-home/div/div/app-dashboard/div/div[2]/ul/li[";
 
-	// -------------Leads_HomePage
+	// -------------Leads_HomePage Locators
 
 	private String firstName_loc = xpath
 			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[1]/ul[1]/li[1]";
@@ -44,38 +43,38 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 	private String submitBtn_loc = xpath
 			+ "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div/div[2]/div/form/div[3]/button[1]";
 
-	public void click_CalendarIcon_HomePage(WebDriver driver) {
+	public void click_CalendarIcon_HomePageWeb(WebDriver driver) {
 		super.click(driver,calendarIcon_loc, waitTime);
 		super.sleep(5000);
 	}
 
-	public void click_AddNew_HomePage(WebDriver driver) {
+	public void click_AddNew_HomePageWeb(WebDriver driver) {
 		super.click(driver,addNewBtn_loc, waitTime);
 	}
 
-	public void click_SideMenuTabs_HomePage(WebDriver driver,int tabNumber) {
+	public void click_SideMenuTabs_HomePageWeb(WebDriver driver,int tabNumber) {
 		super.sleep(2000);
 		String tab = tabsListXpathStart_loc + tabNumber + "]";
 		super.click(driver,tab, waitTime);
 		super.sleep(7000);
 	}
 
-	public void clickOptions_QuickStartPopup_HomePage(WebDriver driver,int option) {
+	public void clickOptions_QuickStartPopup_HomePageWeb(WebDriver driver,int option) {
 		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/a[" + option + "]";
-		click_AddNew_HomePage(driver);
+		click_AddNew_HomePageWeb(driver);
 		super.click(driver,opt, waitTime);
 		super.sleep(1000);
 	}
 
-	public void click_QuickStartPopup_StartBlogOptions_HomePage(WebDriver driver,int option) {
+	public void click_QuickStartPopup_StartBlogOptions_HomePageWeb(WebDriver driver,int option) {
 		String opt = xpath + "/html/body/app-root/app-home/div/div/div/app-header/div[2]/div[2]/div/div[2]/div/button["
 				+ option + "]";
-		this.clickOptions_QuickStartPopup_HomePage(driver,4);
+		this.clickOptions_QuickStartPopup_HomePageWeb(driver,4);
 		super.click(driver,opt, waitTime);
 		super.sleep(3000);
 	}
 
-	public void click_NoTahnks_Notification(WebDriver driver) {
+	public void click_NoTahnks_NotificationWeb(WebDriver driver) {
 		try {
 			super.click(driver,notification_NothanksBtn_loc, waitTime);
 		} catch (Exception e) {
@@ -84,7 +83,7 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 		super.sleep(3000);
 	}
 
-	public void click_Allow_Notification(WebDriver driver) {
+	public void click_Allow_NotificationWeb(WebDriver driver) {
 		try {
 			super.click(driver,notification_AllowBtn_loc, waitTime);
 			super.waitForElement_InVisibility(driver,notification_AllowBtn_loc, waitTime);
@@ -94,11 +93,11 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 
 	}
 
-	public void okBtn_Popup_HomePage(WebDriver driver) {
+	public void okBtn_Popup_HomePageWeb(WebDriver driver) {
 		super.click(driver,OkBtn_Popup_loc, waitTime);
 	}
 
-	public String getSuccessMsg_Popup_HomePage(WebDriver driver) {
+	public String getSuccessMsg_Popup_HomePageWeb(WebDriver driver) {
 		String successMsg = super.getTextOptional(driver,successMsg_Popup_loc, waitTime);
 		return successMsg;
 	}
@@ -108,7 +107,7 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 		super.click(driver,logout, waitTime);
 	}
 
-	public void addLead_HomePage(WebDriver driver,String testName,String firstName_addLead_HomePage, String lastName_addLead_HomePage,
+	public void addLead_HomePageWeb(WebDriver driver,String testName,String firstName_addLead_HomePage, String lastName_addLead_HomePage,
 			String emailId_addLead_HomePage, String phoneNumber_addLead_HomePage, String city_addLead_HomePage,
 			String area_addLead_HomePage, String remarks_addLead_HomePage, String tagName_addLead_HomePage) throws IOException {
 
@@ -121,11 +120,11 @@ public class HomePageWeb extends LoginPageWeb { // Next Extends : PublishPageWeb
 		super.setText_ByActions(driver,area_loc, area_addLead_HomePage, waitTime);
 		super.setText_ByActions(driver,remarks_loc, remarks_addLead_HomePage, waitTime);
 		super.setText_ByActions(driver,tag_loc, tagName_addLead_HomePage, waitTime);
-		super.kepad_Enter_Web(driver,tag_loc, waitTime);
+		super.kepad_Enter_ByActions_Web(driver,tag_loc, waitTime);
 		super.click(driver,submitBtn_loc, waitTime);
-		super.assertEquals_Text(driver,testName, "SuccessMsg_Popup", this.getSuccessMsg_Popup_HomePage(driver),
+		super.assertEquals_Text(driver,testName, "SuccessMsg_Popup", this.getSuccessMsg_Popup_HomePageWeb(driver),
 				"Lead added successfully.");
-		this.okBtn_Popup_HomePage(driver);
+		this.okBtn_Popup_HomePageWeb(driver);
 
 	}
 

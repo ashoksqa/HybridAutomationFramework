@@ -2,266 +2,139 @@ package nativeApp;
 
 import java.io.IOException;
 
+import io.appium.java_client.AppiumDriver;
+
 public class VisitsPageApp extends PublishPageApp { // Next Extends : QueriesPageApp
 
-	private String addVisitBtn_loc = xpath
-			+ "/html/body/app-root/app-visits/div/div/div/div/div/div[1]/div[2]/button[2]";
-	private String okBtn_Popup_VisitsPage_loc = xpath + "/html/body/app-root/app-visits/div[1]/div[2]/div/div/div";
-	private String successMsg_Popup_VisitsPage_loc = xpath + "/html/body/app-root/app-visits/div[1]/div[2]/div/p";
-
-	private String selectSlot_AddVisit_ViitsPage_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[2]/li[2]/select";
-
-	private String speciality_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[1]/li[1]";
-
-	private String selectDoctor_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[2]/li[1]";
-
-	private String selectDate_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[1]/li[2]/owl-date-time/div/div[1]/input";
-	private String selectDateXpathStartValue_loc = "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[1]/li[2]/owl-date-time/div/div[3]/div/div[2]/table/tbody/tr[";
-
-	private String selectStatus_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[1]/li[3]";
-
-	private String amount_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[2]/li[3]";
-
-	private String firstName_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[1]/li[1]";
-	private String lastName_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[2]/li[1]";
-	private String email_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[2]/li[3]";
-	private String phoneNumber_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[1]/li[3]";
-	private String DOB_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[2]/li[2]/owl-date-time/div/div[1]";
-	private String DOB_XpathStartValue_loc = "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[1]/ul[2]/li[2]/owl-date-time/div/div[3]/div/div[2]/table/tbody/tr[";
-	private String remarks_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[2]/ul/li";
-	private String tag_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[3]/ul/li/tag-input/div/div/tag-input-form/form/input";
-	private String submitBtn_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[2]/div[4]/button[1]";
-
-	private String slotError_loc = xpath
-			+ "/html/body/app-root/app-visits/div[1]/div[2]/div/div[2]/form/div[1]/div[2]/div/ul[2]/li[2]/span";
-
-	private String visitsCalendarStartXpath_VisitsPage_loc = "/html/body/app-root/app-visits/div/div/app-dashboard/div/div[4]/owl-date-time/div/div[2]/div/div[2]/table/tbody/tr[";
-
-	String listXpath_VisitsPage_loc = "/html/body/app-root/app-visits/div/div/div/div/div/div[2]/table[2]/tbody/tr";
-	private String nameStartXpath_VisitsPage = xpath
-			+ "/html/body/app-root/app-visits/div/div/div/div/div/div[2]/table[2]/tbody/tr[";
-
-	public void click_AddVisit_VisitsPage() {
-		super.click(addVisitBtn_loc, waitTime);
-	}
-
-	public void okBtn_Popup_VisitsPage() {
-		super.click(okBtn_Popup_VisitsPage_loc, waitTime);
-		super.sleep(3000);
-	}
-
-	public String getSuccessMsg_Popup_VisitsPage() {
-		String successMsg = super.getTextOptional(successMsg_Popup_VisitsPage_loc, waitTime);
-		return successMsg;
-	}
-
-	public String slotSelection_Visits_VisitsPage() {
-		super.sleep(1000);
-		String slotTime = "Empty";
-
-		super.click(selectSlot_AddVisit_ViitsPage_loc, waitTime);
-
-		int count = super.getDropDownListCount(selectSlot_AddVisit_ViitsPage_loc);
-		for (int slotOption = Trow + 1; slotOption <= count; slotOption++) {
-			String slotOption_locator = selectSlot_AddVisit_ViitsPage_loc + "/option[" + slotOption + "]";
-			boolean a = super.getAttributeValue_Boolean(slotOption_locator, "disabled", waitTime);
-			if (a) {
-				System.out.println("Disable status is :" + a);
-			} else {
-				System.out.println("disable is null now - clicking now");
-				slotTime = super.getAttributeValue_String(slotOption_locator, "text", waitTime);
-				System.out.println("Slot Time is : " + slotTime);
-				super.click(slotOption_locator, waitTime);
-				break;
-			}
-		}
-		return slotTime;
-	}
-
-	public String addVisit_VisitsPage(int specialityOption, int doctorOption, int statusOption,
-			String amount_addVisit_VisitsPage, String firstName_addVisit_VisitsPage,
-			String lastName_addVisit_VisitsPage, String emailId_addVisit_VisitsPage,
-			String phoneNumber_addVisit_VisitsPage, String remarks_addVisit_VisitsPage,
-			String tagName_addVisit_VisitsPage) {
-		String visitDate = "";
-		String slotTime = "Empty";
-		int NextDate = 0;
-		String NDate = "Empty";
+		protected String firstName_AVHA = "AfnAVHA_" + super.randomString(3);
+		protected String lastName_AVHA = "LnAVHA_" + super.randomString(3);
+		protected String emailId_AVHA = "EmailAVHA_" + super.randomString(3) + "@" + super.randomString(3)
+				+ super.randomString(3);
+		protected String amount_AVHA = super.randomNumString(3);
+		protected String phoneNumber_AVHA = "4" + super.randomNumString(8);
+		protected String city_AVHA = "CityAVHA_" + super.randomString(6);
+		protected String area_AVHA = "AreaAVHA_" + super.randomString(6);
+		protected String remarks_AVHA = "RemarksAVHA_" + super.randomString(4);
+		protected String tagName_AVHA = "TagAVHA_" + super.randomString(4);
+	
+	
+	public String addVisit_LeadsPageApp(AppiumDriver<?> driver, String testName, int specialityOption, int doctorOption,
+			int statusOption, String amount_addVisit, String firstName_addVisit, String lastName_addVisit,
+			String gender_M_F, String phoneNumber_addVisit, String emailId_addVisit, String remarks_addVisit)
+			throws IOException {
 		String NMonth = "Empty";
+		String slotTime = "Empty";
+		String slotDate = "Empty";
+		this.click_AddVisitFromFooter_HomePageApp(driver);
+		super.sleep(2000);
+		super.selectDropDownValueApp(driver, id + "doctor_speciality", locator_iOS, specialityOption);
+		super.selectDropDownValueApp(driver, id + "select_doctor", locator_iOS, doctorOption);
 
-		super.selectDropDownValue(speciality_loc, specialityOption);
-		super.selectDropDownValue(selectDoctor_loc, doctorOption);
-		super.selectDateFromCalender(selectDate_loc, selectDateXpathStartValue_loc, super.getTodayDate(),
-				"owl-calendar-invalid");
-		super.selectDropDownValue(selectStatus_loc, statusOption);
-		slotTime = this.slotSelection_Visits_VisitsPage();
-		super.setText_ByActions(amount_loc, amount_addVisit_VisitsPage, waitTime);
-		super.setText_ByActions(firstName_loc, firstName_addVisit_VisitsPage, waitTime);
-		super.setText_ByActions(lastName_loc, lastName_addVisit_VisitsPage, waitTime);
-		super.setText_ByActions(email_loc, emailId_addVisit_VisitsPage, waitTime);
-		super.setText_ByActions(phoneNumber_loc, phoneNumber_addVisit_VisitsPage, waitTime);
-		super.selectDateFromCalender(DOB_loc, DOB_XpathStartValue_loc, super.getTodayDate(), "owl-calendar-invalid");
-		super.setText_ByActions(remarks_loc, remarks_addVisit_VisitsPage, waitTime);
-		super.setText_ByActions(tag_loc, tagName_addVisit_VisitsPage, waitTime);
-		super.kepad_Enter(tag_loc, waitTime);
-		super.click(submitBtn_loc, waitTime);
-		super.sleep(1000);
-		String slotError = super.getTextOptional(slotError_loc, 0).toLowerCase().replaceAll("\\s+", "");
-		System.out.println("Slot error 1 is : " + slotError);
-		String expectedSlotError = super.pvd("slotValidationMsg_VisitsPage").toLowerCase().replaceAll("\\s+", "");
-		if (slotError.equals(expectedSlotError)) {
-			super.sleep(1000);
-			slotTime = this.slotSelection_Visits_VisitsPage();
-			super.click(submitBtn_loc, waitTime);
-		}
-		visitDate = NMonth + super.locatorSeparator + super.getTodayDate() + super.locatorSeparator + slotTime;
-
-		slotError = super.getTextOptional(slotError_loc, 0).toLowerCase().replaceAll("\\s+", "");
-		System.out.println("Slot error 2 is : " + slotError);
-		if (slotError.equals(expectedSlotError)) {
-			for (int i = 1; i <= 15; i++) {
-				System.out.println("loop i is " + i);
-				int d = super.convertStrToInt(super.getTodayDate());
-				NextDate = d + i;
-
-				if (NextDate > super.currentMonthDays()) {
-					NextDate = NextDate - super.currentMonthDays();
+		super.selectDateFromCalendarApp(driver, id + "appointment_date", locator_iOS, "",
+				super.convertStrToInt(super.getTodayDate()));
+		for (int i = 1; i <= 15; i++) {
+			slotTime = slotSelection_VisitsPageApp(driver);
+			if (slotTime.length() <= 0) {
+				int d = super.convertStrToInt(super.getTodayDate()) + i;
+				if (d > super.currentMonthDays()) {
 					NMonth = "NextMonth";
-					NDate = super.convertIntToStr(NextDate);
-					System.out.println("NDate" + NDate);
+					super.selectDateFromCalendarApp(driver, id + "appointment_date", locator_iOS, "N", d);
 				} else {
-					NDate = super.convertIntToStr(NextDate);
-					System.out.println("NDate" + NDate);
+					super.selectDateFromCalendarApp(driver, id + "appointment_date", locator_iOS, "", d);
 				}
-				super.selectDateFromCalender(selectDate_loc, selectDateXpathStartValue_loc, NDate,
-						"owl-calendar-invalid");
-				super.sleep(1000);
-				slotTime = this.slotSelection_Visits_VisitsPage();
-				super.click(submitBtn_loc, waitTime);
-				slotError = super.getTextOptional(slotError_loc, 0).toLowerCase().replaceAll("\\s+", "");
-				System.out.println("Slot error 3 is : " + slotError);
-				if (slotError.equals(expectedSlotError)) {
-					System.out.println("Invalid Slot Selected");
-				} else {
-					visitDate = NMonth + super.locatorSeparator + NDate + super.locatorSeparator + slotTime;
-					break;
-				}
+
+			} else {
+				slotDate = super.getTextOptional(driver, id + "appointment_date", locator_iOS, waitTime);
+				break;
+
 			}
+
 		}
-		System.out.println("visitDate is :" + visitDate);
+
+		super.selectDropDownValueApp(driver, id + "appointment_status", locator_iOS, statusOption);
+		super.setText(driver, id + "amount_paid", locator_iOS, amount_addVisit, waitTime);
+		super.keypadNext(driver);
+		// super.scrollDown_Mobile(driver, 4);
+		super.setText(driver, id + "appointment_firstname", locator_iOS, firstName_addVisit, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "appointment_lastname", locator_iOS, lastName_addVisit, waitTime);
+		super.keypadClose(driver);
+		super.scrollDown_Mobile(driver, 4);
+		super.setText(driver, id + "appointment_phone", locator_iOS, phoneNumber_addVisit, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "appointment_email", locator_iOS, emailId_addVisit, waitTime);
+		super.keypadNext(driver);
+		super.setText(driver, id + "appointment_add_remarks", locator_iOS, remarks_addVisit, waitTime);
+		super.keypadClose(driver);
+		if (gender_M_F.equals("M") || gender_M_F.equals("Male")) {
+			super.click(driver, id + "appointmentMale", locator_iOS, waitTime);
+		} else if (gender_M_F.equals("F") || gender_M_F.equals("Female")) {
+			super.click(driver, id + "appointmentFemale", locator_iOS, waitTime);
+		}
+		super.selectDateFromCalendarApp(driver, id + "appointment_dob", locator_iOS, " ",
+				super.convertStrToInt(super.getTodayDate()));
+		super.click(driver, id + "add_appointment", locator_iOS, waitTime);
+		super.assertEquals_Text(driver, testName, "Appoint Booked Succesfully",
+				super.getTextOptional(driver, id + "snackbar_text", locator_iOS, waitTime), "Appointment Booked..!");
+
+		String visitDate = NMonth + super.locatorSeparator
+				+ super.convertIntToStr(super.convertStrToInt(slotDate.substring(0, 2))) + super.locatorSeparator
+				+ slotTime;
+		System.out.println("slotDateAndTime : " + visitDate);
 		return visitDate;
 	}
 
-	public void selectDateFromVisitsCalender(String NextMonth_Y_N, String dateToBeSeected,
-			String invalidDate_OR_Outfocused_ClassNameContains) {
-		String outputDateValue = null;
-		String clsName = null;
-		if (NextMonth_Y_N.equals("N")) {
-			outerloop: for (int i = 1; i <= 6; i++) {
-				for (int j = 1; j <= 7; j++) {
-					String loc = xpath + visitsCalendarStartXpath_VisitsPage_loc + i + "]/td[" + j + "]";
-					try {
-						outputDateValue = this.getAttributeValue_String(loc, "innerText", waitTime).split("\n")[0];
-						clsName = this.getAttributeValue_String(loc, "className", waitTime);
-					} catch (Exception e) {
-						System.out.println(e);
-					}
-					if (clsName.contains(invalidDate_OR_Outfocused_ClassNameContains)) {
-						System.out.println("Invalid Date");
-					} else if (outputDateValue.equals(dateToBeSeected)) {
-						this.click(loc, waitTime);
-						break outerloop;
-					}
-				}
+	public String slotSelection_VisitsPageApp(AppiumDriver<?> driver) throws IOException {
+		super.sleep(1000);
+		String slotTime = "Empty";
+		String AndLoc = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.LinearLayout[1]/android.widget.TextView";
+
+		super.click(driver, id + "appointment_time", locator_iOS, waitTime);
+		int size = super.getTextOptional(driver, AndLoc, locator_iOS, 4).length();
+		if (super.getTextOptional(driver, id + "title_txt", locator_iOS, 4).equals("SELECT TIME")) {
+			if (size <= 0) {
+				super.click(driver, id + "back_button", locator_iOS, waitTime);
 			}
-		} else {
+		}
+		if (super.getTextOptional(driver, id + "title_txt", locator_iOS, 4).equals("SELECT TIME") && size > 0) {
+			for (int i = 1; i <= 10; i++) {
+				String AndroidSlot_loc = xpath
+						+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.ListView/android.widget.LinearLayout["
+						+ i + "]/android.widget.TextView";
+				String slotName = super.getTextOptional(driver, AndroidSlot_loc, locator_iOS, waitTime);
+				System.out.println("Slot Name is : " + slotName);
 
-			outerloop: for (int i = 1; i <= 6; i++) {
-				for (int j = 1; j <= 7; j++) {
-					String loc = xpath + visitsCalendarStartXpath_VisitsPage_loc + i + "]/td[" + j + "]";
-					try {
-						outputDateValue = this.getAttributeValue_String(loc, "innerText", waitTime).split("\n")[0];
-						clsName = this.getAttributeValue_String(loc, "className", waitTime);
-					} catch (Exception e) {
-						System.out.println(e);
-					}
-					if (outputDateValue.equals(dateToBeSeected)
-							&& clsName.contains(invalidDate_OR_Outfocused_ClassNameContains)) {
-						this.click(loc, waitTime);
-						break outerloop;
-					}
+				String t = "";
+				int tm = super.convertStrToInt(slotName.split(":")[0]);
+				int mt = super.convertStrToInt(slotName.split(":")[1].substring(0, 2));
+				String amPM = slotName.split(":")[1].substring(2, 4);
+
+				if (amPM.equals("PM") && tm == 10 && mt >= 45) {
+					t = "OutOfTime";
 				}
-			}
 
-		}
-		super.sleep(3000);
-	}
-
-	public void verifyData_BySelectingDateInCalender_VisitsPage(String methodName, String visit_Month_Date_Time,
-			String Name, String phoneNumber, String doctorName, String visitStatus, String amount) throws IOException {
-
-		String month = visit_Month_Date_Time.split(locatorSeparator)[0];
-		String vDate = visit_Month_Date_Time.split(locatorSeparator)[1];
-		String slotTime = visit_Month_Date_Time.split(locatorSeparator)[2];
-		if (month.equals("NextMonth")) {
-			this.selectDateFromVisitsCalender("Y", vDate, "owl-calendar-outFocus");
-		} else {
-			this.selectDateFromVisitsCalender("N", vDate, "owl-calendar-outFocus");
-		}
-		if (super.listCount(listXpath_VisitsPage_loc) > 1) {
-
-			for (int i = 1; i <= 50; i++) {
-				String nameXpath = nameStartXpath_VisitsPage + i + "]/td[2]";
-
-				if (super.getText(nameXpath, waitTime).equals(Name)) {
-					String locator = xpath
-							+ "/html/body/app-root/app-visits/div/div/div/div/div/div[2]/table[2]/tbody/tr[" + i
-							+ "]/td[";
-					super.assertEquals_Text(methodName, "Name", super.getTextOptional(locator + 2 + "]", waitTime),
-							Name);
-					super.assertEquals_Text(methodName, "PhoneNumber",
-							super.getTextOptional(locator + 3 + "]", waitTime), phoneNumber);
-					super.assertEquals_Text(methodName, "DoctorName",
-							super.getTextOptional(locator + 4 + "]", waitTime), doctorName);
-					super.assertEquals_Text(methodName, "SlotTime", super.getText(locator + 5 + "]", waitTime),
-							slotTime.replaceAll("\\s+", ""));
-					super.assertEquals_Text(methodName, "VisitStatus", super.getText(locator + 6 + "]", waitTime),
-							visitStatus);
-					super.assertEquals_Text(methodName, "Amount", super.getText(locator + 7 + "]", waitTime),
-							"Rs." + amount + ".00");
+				if (slotName.contains("Available")) {
+					super.click(driver, AndroidSlot_loc, locator_iOS, waitTime);
 					break;
 
+				} else if (slotName.isEmpty() || t.equals("OutOfTime")) {
+					super.click(driver, id + "back_button", locator_iOS, waitTime);
+					break;
+				} else {
+					System.out.println("Slot Already Booked OR Not Available : " + slotName);
 				}
-			}
 
-		} else {
-			String locator = xpath + "/html/body/app-root/app-visits/div/div/div/div/div/div[2]/table[2]/tbody/tr/td[";
-			super.assertEquals_Text(methodName, "Name", super.getTextOptional(locator + 2 + "]", waitTime), Name);
-			super.assertEquals_Text(methodName, "PhoneNumber", super.getTextOptional(locator + 3 + "]", waitTime),
-					phoneNumber_addVisit_HomePage);
-			super.assertEquals_Text(methodName, "DoctorName", super.getTextOptional(locator + 4 + "]", waitTime),
-					doctorName);
-			super.assertEquals_Text(methodName, "SlotTime", super.getText(locator + 5 + "]", waitTime),
-					slotTime.replaceAll("\\s+", ""));
-			super.assertEquals_Text(methodName, "VisitStatus", super.getText(locator + 6 + "]", waitTime), visitStatus);
-			super.assertEquals_Text(methodName, "Amount", super.getText(locator + 7 + "]", waitTime),
-					"Rs." + amount + ".00");
+				if (i % 7 == 0) {
+					i = 1;
+					super.scrollDown_Mobile(driver, 2);
+				}
+
+			}
 		}
 
-	}
+		slotTime = super.getTextOptional(driver, id + "appointment_time", locator_iOS, waitTime);
 
+		return slotTime;
+	}
 }

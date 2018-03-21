@@ -21,174 +21,218 @@ public class P0_TestCases extends EndPage {
 	AndroidDriver<AndroidElement> adriver;
 	AppiumDriver<?> driver;
 	WebDriver wdriver;
+
 	@Parameters({ "Trow" })
 	@BeforeTest
 	public void beforeTest(int Trow) throws Exception {
 		System.out.println("BeforeTest Executing");
-		Trow=super.updateTrow(Trow);
-		if (super.pvts("OS"+Trow).equals("Android")) {
+		Trow = super.updateTrow(Trow);
+		if (super.pvts("OS" + Trow).equals("Android")) {
 			driver=super.installAndroidApp(adriver);
-			} /*
-		 else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }*/
-		wdriver=super.launchChromeBrowser(wdriver);	
-		super.login(wdriver,"uid", "pwd");
-		super.click_NoTahnks_Notification(wdriver);
+			//driver = super.launchIonApp(adriver);
+
+		} /*
+			 * else if (super.getOS().equals("iOS")) { driver = super.iOSAppiumSetup(); }
+			 */
+		
+		  wdriver = super.launchChromeBrowser(wdriver); super.openWebAppUrl(wdriver);
+		  super.loginWebApp(wdriver);
+		  super.click_NoTahnks_NotificationWeb(wdriver);
+		 
+
 	}
 
 	 @Test(priority = 0)
-	public void addLead() throws Exception {
+	public void addLeadApp() throws Exception {
+		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		super.addLead_LeadsPageApp(driver, firstName_addLead, lastName_addLead, emailId_addLead, phoneNumber_addLead,
+				city_addLead, area_addLead, remarks_addLead, tagName_addLead, "Female");
+		super.click_MenuApp(driver);
+		super.click_LeadsTab_MenuPageApp(driver);
+		super.verifyData_LeadsPageApp(driver, testName, firstName_addLead, lastName_addLead, "Female",
+				super.date_02SpaceFebComma2018, phoneNumber_addLead, emailId_addLead, city_addLead, area_addLead,
+				"Lead", tagName_addLead + ", ", remarks_addLead);
+		// Verifying the Leads data in WebApp
+
+		super.openWebAppUrl(driver);
+		super.login(wdriver, "uid", "pwd");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_LeadsPage(wdriver, testName, firstName_addLead, "Female", "0", phoneNumber_addLead,
+				emailId_addLead, "Lead", tagName_addLead);
+		super.quitDriver(wdriver);
+	}
+
+	 @Test(priority = 1)
+	public void addVisitFromHomePage_Ramesh_NewApp() throws Exception {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.resetApp(driver);
 		super.loginAfterResetApp(driver,"uid", "pwd");
-		super.addLead_HomePage(driver,firstName_addLead, lastName_addLead,
-				emailId_addLead, phoneNumber_addLead, city_addLead, area_addLead,
-				remarks_addLead, tagName_addLead, "Female");
-		super.click_Menu(driver);
-		super.click_LeadsTab_MenuPage(driver);
-		super.verifyData_LeadsPage(driver,testName, firstName_addLead, lastName_addLead, "Female", dateWithYear,
-				phoneNumber_addLead, emailId_addLead, city_addLead, area_addLead,
-				"Lead", tagName_addLead+", ", remarks_addLead);
-		 System.out.println(super.pvts("AppType" + Trow));
-		// Verifying the Leads data in WebApp 
+		String visitDate = super.addVisit_LeadsPageApp(driver, testName, 1, 1, 1, amount_addVisit, firstName_addVisit,
+				lastName_addVisit, "Female", phoneNumber_addVisit, emailId_addVisit, remarks_addVisit);
+		super.click_MenuApp(driver);
+		super.click_LeadsTab_MenuPageApp(driver);
+		super.verifyData_LeadsPageApp(driver, testName, firstName_addVisit, lastName_addVisit, "Female",
+				super.date_02SpaceFebComma2018, phoneNumber_addVisit, emailId_addVisit, "", "", "Visit", "",
+				remarks_addVisit);
+		// WebApp : Verifying the data in Leads And Visits Data
+
 		super.openWebAppUrl(wdriver);
-		super.login(wdriver, "ramesh", "ramesh");
-		super.click_NoTahnks_Notification(wdriver);
-		super.click_SideMenuTabs_HomePage(wdriver,5);
-		super.verifyData_LeadsPage(wdriver,testName, firstName_addLead, "Female", "0", phoneNumber_addLead, emailId_addLead, "Lead", tagName_addLead);
+		super.login(wdriver, "uid", "pwd");
+		super.click_SideMenuTabs_HomePage(wdriver, 3);
+		System.out.println("Visit date Is : " + visitDate);
+		super.verifyData_BySelectingDateInCalender_VisitsPage(wdriver, testName, visitDate,
+				firstName_addVisit + " " + lastName_addVisit, phoneNumber_addVisit, "Dr Ramesh", "New",
+				amount_addVisit);
+
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_LeadsPage(wdriver, testName, firstName_addVisit, "Female", "0", phoneNumber_addVisit,
+				emailId_addVisit, "Visit", "");
 		super.quitDriver(wdriver);
-	 }
-
-	// @Test(priority = 1)
-	public void addVisitFromHomePage_Ramesh_New() throws Exception {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.clickOptions_QuickStartPopup_HomePage(1);
-		String visit_Month_Date_Time = super.addVisit_VisitsPage(1, 1, 1, amount_addVisit_HomePage,
-				firstName_addVisit_HomePage, lastName_addVisit_HomePage, emailId_addVisit_HomePage,
-				phoneNumber_addVisit_HomePage, remarks_addVisit_HomePage, tagName_addVisit_HomePage);
-
-		super.verifyData_BySelectingDateInCalender_VisitsPage(testName, visit_Month_Date_Time,
-				firstName_addVisit_HomePage + " " + lastName_addVisit_HomePage, phoneNumber_addVisit_HomePage,
-				"Dr Ramesh", "New", amount_addVisit_HomePage);
-		super.naavigateToUrl("leadsUrl");
-		super.verifyData_LeadsPage("addVisitFromHomePage_Ramesh_New", firstName_addVisit_HomePage, "Male", "0",
-				phoneNumber_addVisit_HomePage, emailId_addVisit_HomePage, "Visit", tagName_addVisit_HomePage);
 	}
 
-	// @Test(priority = 2)
-	public void addVisitFromVisitsPage_Manoj_Accepted() throws Exception {
+	@Test(priority = 2)
+	public void newTopicAdd_MarketingCalendarPageApp() throws IOException, InterruptedException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
+		super.resetApp(driver);
+		String doctorName = super.loginAfterResetApp(driver);
 
-		super.click_SideMenuTabs_HomePage(3);
-		super.click_AddVisit_VisitsPage();
+		String topic = super.addTopicToCalendar_MarketingCalenderPageApp(driver, testName,
+				newTopic_MarketingCalendarPageApp);
+		super.verifyData_MarketingCalendarPageApp(driver, testName, topic, "Draft", "Disha Clinic", doctorName);
 
-		String visit_Month_Date_Time = super.addVisit_VisitsPage(1, 3, 2, amount_addVisit_VisitsPage,
-				firstName_addVisit_VisitsPage, lastName_addVisit_VisitsPage, emailId_addVisit_VisitsPage,
-				phoneNumber_addVisit_VisitsPage, remarks_addVisit_VisitsPage, tagName_addVisit_VisitsPage);
-		super.assertEquals_Text(testName, "SuccessMsg_Popup", super.getSuccessMsg_Popup_VisitsPage(),
-				"Visit added successfully.");
-		super.okBtn_Popup_VisitsPage();
-		super.verifyData_BySelectingDateInCalender_VisitsPage(testName, visit_Month_Date_Time,
-				firstName_addVisit_VisitsPage + " " + lastName_addVisit_VisitsPage, phoneNumber_addVisit_VisitsPage,
-				"Dr Manoj", "Accepted", amount_addVisit_VisitsPage);
-		super.naavigateToUrl("leadsUrl");
-		super.verifyData_LeadsPage("addVisitFromVisitsPage_Manoj_Accepted", firstName_addVisit_VisitsPage, "Male", "0",
-				phoneNumber_addVisit_VisitsPage, emailId_addVisit_VisitsPage, "Visit", tagName_addVisit_VisitsPage);
+	}
+	
+	@Test(priority = 3)
+	public void addBlog_SelectTopic_Draft_News_PublishPageApp() throws IOException, InterruptedException {
+		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 1, 1, 1);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
 	}
 
-	// @Test(priority = 4)
-	public void newTopicAdd_MarketingCalendarPage() throws IOException {
+	@Test(priority = 4)
+	public void addBlog_SelectTopic_Ionize_Blog_PublishPageApp() throws IOException, InterruptedException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addTopicToCalendar_MarketingCalenderPage(testName, newTopic_MarketingCalendarPage, 2,
-				super.getTodayDate());
-		super.verifyData_MarketingCalendarPage(testName, super.getTodayDate(), newTopic_MarketingCalendarPage, "Draft",
-				"Disha Clinic", "Ramesh");
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 1, 2, 2);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
 	}
 
-	// @Test(priority = 5)
-	public void newBlog_SelectTopic_Draft_Blog_HomePage() throws IOException {
+	 @Test(priority = 5)
+	public void addBlog_SelectTopic_PublishNow_Event_PublishPageApp() throws IOException, InterruptedException {
+			String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
+			super.resetApp(driver);
+			super.loginAfterResetApp(driver);
+			String date = super.addNewBlog_PublishPageApp(driver, testName, 1, 3, 3);
+			System.out.println("Blog date is :" + date);
+			super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+					super.description_AddNewBlogApp, date, " ");
+			super.naavigateToUrl(wdriver, "homeUrl");
+			super.click_SideMenuTabs_HomePage(wdriver,2);
+			super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+					super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
+		}
+
+	@Test(priority = 6)
+	public void addBlog_SelectTopic_Schedule_News_PublishPageApp() throws IOException, InterruptedException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 1, 1, 1, 2);
-		super.verifyData_PublishPage(testName, 1, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 1, 4, 1);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
+	}
+	
+	
+
+	@Test(priority = 9)
+	public void addBlog_NewTopic_Draft_Blog_PublishPageApp() throws IOException, InterruptedException {
+		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 2, 1, 2);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
 	}
 
-	// @Test(priority = 6)
-	public void newBlog_SelectTopic_Ionize_Event_HomePage() throws IOException {
+	@Test(priority = 10)
+	public void addBlog_NewTopic_Ionize_Event_PublishPageApp() throws IOException, InterruptedException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 1, 1, 2, 3);
-		super.verifyData_PublishPage(testName, 2, 3, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 2, 2, 3);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
+
 	}
 
-	// @Test(priority = 7)
-	public void newBlog_SelectTopic_PublishNow_News_HomePage() throws IOException {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 1, 1, 3, 1);
-		super.verifyData_PublishPage(testName, 3, 1, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
-	}
+	 @Test(priority = 11)
+	public void addBlog_NewTopic_PublishNow_News_PublishPageApp() throws IOException, InterruptedException {
+			String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
+			super.resetApp(driver);
+			super.loginAfterResetApp(driver);
+			String date = super.addNewBlog_PublishPageApp(driver, testName, 2, 3, 1);
+			System.out.println("Blog date is :" + date);
+			super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+					super.description_AddNewBlogApp, date, " ");
+			super.naavigateToUrl(wdriver, "homeUrl");
+			super.click_SideMenuTabs_HomePage(wdriver,2);
+			super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+					super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
 
-	// @Test(priority = 8)
-	public void newBlog_SelectTopic_Schedule_Blog_HomePage() throws IOException {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 1, 1, 4, 2);
-		super.verifyData_PublishPage(testName, 4, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
-	}
+		}
 
-	// @Test(priority = 9)
-	public void newBlog_NewTopic_Draft_News_PublishPage() throws IOException {
+	@Test(priority = 12)
+	public void addBlog_NewTopic_Schedule_Blog_PublishPageApp() throws IOException, InterruptedException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		System.out.println("testName is :" + testName);
-		super.addNewBlog_PublishPage(testName, 2, 2, 1, 1);
-		super.verifyData_PublishPage(testName, 1, 1, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
-	}
+		super.resetApp(driver);
+		super.loginAfterResetApp(driver);
+		String date = super.addNewBlog_PublishPageApp(driver, testName, 2, 4, 2);
+		System.out.println("Blog date is :" + date);
+		super.verifyData_PublishPageApp(driver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, date, " ");
+		super.naavigateToUrl(wdriver, "homeUrl");
+		super.click_SideMenuTabs_HomePage(wdriver,2);
+		super.verifyData_PublishPageWeb(wdriver, testName, 1, 1, super.blogTitle_AddNewBlogApp,
+				super.description_AddNewBlogApp, super.doctorFullName, " ", " ");
 
-	// @Test(priority = 10)
-	public void newBlog_NewTopic_Ionize_Blog_PublishPage() throws IOException {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 2, 2, 2, 2);
-		super.verifyData_PublishPage(testName, 2, 2, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
-	}
-
-	// @Test(priority = 11)
-	public void newBlog_NewTopic_PublishNow_Event_PublishPage() throws IOException {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 2, 2, 3, 3);
-		super.verifyData_PublishPage(testName, 3, 3, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
-	}
-
-	// @Test(priority = 12)
-	public void newBlog_NewTopic_Schedule_News_PublishPage() throws IOException {
-		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.openWebAppUrl();
-		super.login("ramesh", "ramesh");
-		super.addNewBlog_PublishPage(testName, 2, 2, 4, 1);
-		super.verifyData_PublishPage(testName, 4, 1, super.blogTitle_AddNewBlog, super.description_AddNewBlog, "Ramesh",
-				"11", "12");
 	}
 
 	// @Test(priority = 13)
@@ -229,7 +273,7 @@ public class P0_TestCases extends EndPage {
 
 	@AfterMethod
 	public void results(ITestResult testResult) throws IOException {
-		super.testResult(driver,testResult);
+		super.testResult(driver, testResult);
 		// super.closeDriver();
 	}
 

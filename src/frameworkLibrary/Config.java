@@ -72,18 +72,23 @@ public class Config {
 	// protected AndroidDriver<AndroidElement> aDriver;
 	protected int Trow;
 	protected String Dir = System.getProperty("user.dir");
-	protected String prop_TestSuite = "../HybridAutomationFramework/src/frameworkLibrary/TestSuite.properties";
-	String excelPath = Dir + "/TestSuite.xlsx";
+	protected String prop_TestSuite = pvConfig("prop_TestSuite");
+	String excelPath = pvConfig("excelPath");
 	String sheetName = "MainSheet";
 	protected DateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy__hh_mm_ssaa");
 	protected DateFormat dateFormat2 = new SimpleDateFormat("dd MMM,yyyy");
-	protected String dateWithTime = dateFormat.format(new Date());
-	protected String dateWithYear = dateFormat2.format(new Date());
+	protected DateFormat dateFormat3 = new SimpleDateFormat("dd MMMMMMMMMMMMMMMMM yyyy");
+	protected DateFormat dateFormat4 = new SimpleDateFormat("dd MMMMMMMMMMMMMMMMM,yyyy");
 
-	protected String ION_App_Version = "1.2";
-	protected String gmailUserId = "ionqa1@gmail.com";
-	protected String gmailPassword = "ion12345";
-	protected String gmailUsersInCC = "ashok.g@medicodesk.com";
+	protected String dateWithTime = dateFormat.format(new Date());
+	protected String date_02SpaceFebComma2018 = dateFormat2.format(new Date());
+	protected String date_02SpaceFebraurySpace2018 = dateFormat3.format(new Date());
+	protected String date_02SpaceFebrauryComma2018 = dateFormat4.format(new Date());
+
+	protected String ION_App_Version = pvConfig("ION_App_Version");
+	protected String gmailUserId = pvConfig("gmailUserId");
+	protected String gmailPassword = pvConfig("gmailPassword");
+	protected String gmailUsersInCC = pvConfig("gmailUsersInCC");
 	protected String customReportFilename = Dir + "/test-output/custom-report.html";
 	protected int waitTime = 60;
 	protected int waitTimeMin = 10;
@@ -93,18 +98,16 @@ public class Config {
 	protected String name = "name" + locatorSeparator;
 	protected String css = "css" + locatorSeparator;
 	protected String cls = "cls" + locatorSeparator;
-	protected String AppsPath = Dir + "/lib/apps/";
+	protected String AppsPath = pvConfig("AppsPath");      //Dir + "/lib/apps/";
 	protected File appDir = new File(AppsPath);
-	protected String nodeExecutablePath = "C:\\Program Files\\nodejs\\node.exe";
-	protected String appiumJS_Path = "C:\\Users\\Ashok\\AppData\\Local\\Programs\\appium-desktop\\resources\\app\\node_modules\\appium\\build\\lib\\main.js";
-	protected String screenshotsPath = Dir + "/test-output/html/Screenshots_Output/";
+	protected String nodeExecutablePath = pvConfig("nodeExecutablePath");
+	protected String appiumJS_Path = pvConfig("appiumJS_Path");
+	protected String screenshotsPath = pvConfig("screenshotsPath");
 	protected String locator_iOS = "";
-	protected String nativeAppPropertyFilePath = "../HybridAutomationFramework/src/nativeApp/nativeAppData.properties";
-	protected String webAppPropertyFilePath = "../HybridAutomationFramework/src/webApp/webAppData.properties";
 
 	protected String requireSuccessScreenshot="no";
 	protected String requireSuccessScreenshotInLogs="no";
-
+	protected String crossPlatofrmVerification = pvConfig("crossPlatofrmVerification");
 	
 	public int updateTrow(int Trow1) throws IOException {
 		Trow = Trow1;
@@ -328,13 +331,31 @@ public class Config {
 	}
 
 	public String pvWebApp(String propertyFileKey) {
-		System.out.println("Trow is : " + Trow);
 		String propertyFileValue = "Please check property file key";
 		InputStream is = null;
 		Properties prop = null;
 		try {
 			prop = new Properties();
-			is = new FileInputStream(new File(this.webAppPropertyFilePath));
+			is = new FileInputStream(new File(pvConfig("webAppPropertyFilePath")));
+			prop.load(is);
+			propertyFileValue = prop.getProperty(propertyFileKey);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return propertyFileValue;
+	}
+	
+	public String pvConfig(String propertyFileKey) {
+		String propertyFileValue = "Please check property file key";
+		InputStream is = null;
+		Properties prop = null;
+		try {
+			prop = new Properties();
+			is = new FileInputStream(new File("../HybridAutomationFramework/src/frameworkLibrary/config.properties"));
 			prop.load(is);
 			propertyFileValue = prop.getProperty(propertyFileKey);
 
@@ -348,13 +369,12 @@ public class Config {
 	}
 
 	public String pvNativeApp(String propertyFileKey) {
-		System.out.println("Trow is : " + Trow);
 		String propertyFileValue = "Please check property file key";
 		InputStream is = null;
 		Properties prop = null;
 		try {
 			prop = new Properties();
-			is = new FileInputStream(new File(this.nativeAppPropertyFilePath));
+			is = new FileInputStream(new File(pvConfig("nativeAppPropertyFilePath")));
 			prop.load(is);
 			propertyFileValue = prop.getProperty(propertyFileKey);
 
@@ -953,16 +973,21 @@ public class Config {
 		this.sleep(2000);
 	}
 
-	public void scrollUp_Web(WebDriver driver, int scrollCount) {
+	public void scrollUpFullPage_Web(WebDriver driver, int scrollCount) {
 		for (int i = 1; i <= scrollCount; i++) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(document.body.scrollHeight,0)");
 		}
 	}
-
-	public void kepad_Enter_Web(WebDriver driver, String locator, int waitTime) {
-		element(driver, locator, waitTime).sendKeys(Keys.RETURN);
+	public void scrollUp_Web(WebDriver driver, int scrollCount, int scrollSize) {
+		String scrollTo = "window.scrollBy(0," + "-"+scrollSize + ")";
+		for (int i = 1; i <= scrollCount; i++) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript(scrollTo);
+		}
+		this.sleep(2000);
 	}
+	
 
 	public void getPage(WebDriver driver, String pageURL) {
 		driver.get(pageURL);
@@ -1005,6 +1030,7 @@ public class Config {
 		for (int i = 1; i <= scrollCount; i++) {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+			this.sleep(1500);
 		}
 		this.sleep(3000);
 
@@ -1035,6 +1061,7 @@ public class Config {
 		cap.setCapability(AndroidMobileCapabilityType.PLATFORM, "Android");
 		cap.setCapability("automationName", "uiautomator2");
 		cap.setCapability("udid", Udid);
+		cap.setCapability("newCommandTimeout", "300000");
 		cap.setCapability("appPackage", "com.medico.ionAndroid");
 		cap.setCapability("appActivity", "com.medico.ionAndroid.Splash.SplashActivity");
 		// cap.setCapability("clearSystemFiles", true);("systemPort",XXXX)
@@ -1064,6 +1091,7 @@ public class Config {
 		cap.setCapability(AndroidMobileCapabilityType.PLATFORM, "Android");
 		cap.setCapability("automationName", "uiautomator2");
 		cap.setCapability("udid", Udid);
+		cap.setCapability("newCommandTimeout", "300000");
 		cap.setCapability("appPackage", "com.medico.ionAndroid");
 		cap.setCapability("appActivity", "com.medico.ionAndroid.Splash.SplashActivity");
 		// cap.setCapability("clearSystemFiles", true);
@@ -1077,6 +1105,38 @@ public class Config {
 		driver = new AndroidDriver<AndroidElement>(service, cap);
 		return driver;
 	}
+
+	
+	// Android App Installation with appium server -- Overriding the existing app
+		public AndroidDriver<AndroidElement> launchIonApp(AndroidDriver<AndroidElement> driver,
+				String DeviceName, String PlatformVersion, String Udid) {
+			cap = new DesiredCapabilities();
+			cap.setCapability("clearSystemFiles", true);
+
+			service = AppiumDriverLocalService.buildService(new AppiumServiceBuilder()
+					.usingDriverExecutable(new File(nodeExecutablePath)).withAppiumJS(new File(appiumJS_Path))
+					.withCapabilities(cap).withIPAddress("127.0.0.1").usingAnyFreePort());
+		 //	File apk = new File(appDir, "ION.apk");
+
+			DesiredCapabilities cap = new DesiredCapabilities();
+			cap.setCapability(MobileCapabilityType.DEVICE_NAME, DeviceName);
+			cap.setCapability(AndroidMobileCapabilityType.PLATFORM, "Android");
+			cap.setCapability("automationName", "uiautomator2");
+			cap.setCapability("udid", Udid);
+			cap.setCapability("newCommandTimeout", "300000");
+			cap.setCapability("appPackage", "com.medico.ionAndroid");
+			cap.setCapability("appActivity", "com.medico.ionAndroid.Splash.SplashActivity");
+			// cap.setCapability("clearSystemFiles", true);
+			cap.setCapability(MobileCapabilityType.FULL_RESET, false);
+			cap.setCapability(MobileCapabilityType.NO_RESET, true);
+			cap.setCapability("PlatformVersion", PlatformVersion);
+			String systemPort = randomNumString(3);
+			String systemPort1 = Trow + systemPort;
+			cap.setCapability("systemPort", systemPort1);
+			//cap.setCapability("app", apk.getAbsolutePath());
+			driver = new AndroidDriver<AndroidElement>(service, cap);
+			return driver;
+		}
 
 	// Complete unInstall and install the app
 	public AndroidDriver<AndroidElement> installAndroidApp(AndroidDriver<AndroidElement> driver) {
@@ -1093,6 +1153,12 @@ public class Config {
 		this.androidAppInstallAndDelete(driver, DeviceName, PlatformVersion, Udid);
 		return this.androidAppInstall_Override(driver, DeviceName, PlatformVersion, Udid);
 	}
+	
+	// Launch Existing App
+		public AndroidDriver<AndroidElement> launchIonApp(AndroidDriver<AndroidElement> driver) {
+			return this.launchIonApp(driver, this.pvts("DeviceName" + Trow), this.pvts("PlatformVersion" + Trow),
+					this.pvts("Udid" + Trow));
+		}
 
 	/*
 	 * // iOS App Installation with appium server public AppiumDriver<?>
@@ -1107,6 +1173,7 @@ public class Config {
 	 * cap.setCapability("platformName", this.pvts("OS" + Trow)); //
 	 * cap.setCapability(CapabilityType.PLATFORM, "Mac");
 	 * cap.setCapability("automationName", "XCUITest");
+	 * cap.setCapability("newCommandTimeout", "300000");
 	 * cap.setCapability("xcodeOrgId", super.pvData("xcodeOrgId"));
 	 * cap.setCapability("xcodeSigningId", super.pvData("xcodeSigningId"));
 	 * cap.setCapability("deviceName", this.pvts("DeviceName" + Trow));

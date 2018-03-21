@@ -1,6 +1,9 @@
 package frameworkLibrary;
 
+import java.io.IOException;
+
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -28,17 +31,6 @@ public class DriverActions extends Config {
 		element(driver,locator, waitTime).click();
 	}
 
-	public void click(WebDriver driver,String locator1, String locator2) {
-		element(driver,locator1, waitTime).click();
-		element(driver,locator2, waitTime).click();
-	}
-
-	public void click(WebDriver driver,String locator1, String locator2, String locator3) {
-		element(driver,locator1, waitTime).click();
-		element(driver,locator2, waitTime).click();
-		element(driver,locator3, waitTime).click();
-
-	}
 
 	public void setText(WebDriver driver,String locator, String value, int waitTime) {
 		try {
@@ -51,12 +43,17 @@ public class DriverActions extends Config {
 	}
 
 	public void setText_ByActions(WebDriver driver,String locator, String value, int waitTime) {
-
+		try {
+		element(driver,locator, waitTime).clear();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element(driver,locator, waitTime));
 		actions.click();
 		actions.sendKeys(value);
 		actions.build().perform();
+		
 	}
 
 	public String getText(WebDriver driver,String locator, int waitTime) {
@@ -85,12 +82,12 @@ public class DriverActions extends Config {
 		return f;
 	}
 	
-	// ---------------------ION Reusable Methods------------------------//
+	// ---------------------ION WebApp Reusable Methods------------------------//
 	
 
 	public void selectDropDownValue(WebDriver driver,String locator, int dropDownValueNumber) {
 		this.click(driver,locator, waitTime);
-		this.sleep(1000);
+		this.sleep(2000);
 		this.click(driver,locator + "/select/option[" + dropDownValueNumber + "]", waitTime);
 		this.sleep(2000);
 	}
@@ -188,6 +185,68 @@ public class DriverActions extends Config {
 		f = elementMobile(driver,locator_Android, locator_iOS, waitTime).getAttribute(attributeName) != null;
 		return f;
 	}
+	/*public void kepad_Enter_Web(WebDriver driver, String locator, int waitTime) {
+		element(driver, locator, waitTime).sendKeys(Keys.RETURN);
+	}*/
+	public void kepad_Enter_ByActions_Web(WebDriver driver, String locator, int waitTime) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element(driver,locator, waitTime));
+		actions.click();
+		actions.sendKeys(Keys.RETURN);
+		actions.build().perform();
+	}
+	
+	// ---------------------ION NativeApp Reusable Methods------------------------//
 	
 
+		public void selectDropDownValueApp(AppiumDriver<?> driver,String locator_Android, String locator_iOS,int dropDownValueNumber) {
+			
+			this.click(driver, locator_Android, locator_iOS, dropDownValueNumber);
+			this.sleep(1000);
+			String AndroidLocator_Selection=xpath + "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.CheckedTextView[" + dropDownValueNumber + "]";
+			String iOSLocator_Selection=xpath + "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ListView/android.widget.CheckedTextView[" + dropDownValueNumber + "]";
+			this.click(driver,AndroidLocator_Selection,iOSLocator_Selection, waitTime);
+			this.sleep(2000);
+		}
+		public void selectDateFromCalendarApp(AppiumDriver<?> driver,String dateLocator_Android, String locator_iOS,String current_NextMonths_C_N,int dateToBeSelected) {
+
+			this.click(driver,dateLocator_Android,locator_iOS, waitTime);
+			if(current_NextMonths_C_N.equals("N")) {
+				this.click(driver, id+"Next mont",locator_iOS, waitTime);
+				String AndroidDateStartXpath_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.DatePicker/android.widget.LinearLayout/android.widget.ViewAnimator/android.view.ViewGroup/com.android.internal.widget.ViewPager/android.view.View/android.view.View[";
+				this.click(driver,AndroidDateStartXpath_loc+dateToBeSelected+"]",locator_iOS, waitTime);
+				this.click(driver,id+"android:id/button1", locator_iOS, waitTime);
+			}
+			else{
+			String AndroidDateStartXpath_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.DatePicker/android.widget.LinearLayout/android.widget.ViewAnimator/android.view.ViewGroup/com.android.internal.widget.ViewPager/android.view.View/android.view.View[";
+			this.click(driver,AndroidDateStartXpath_loc+dateToBeSelected+"]",locator_iOS, waitTime);
+			this.click(driver, id+"android:id/button1", locator_iOS, waitTime);
+			}
+		}
+		
+		public void switchToWebViewContext(AppiumDriver<?> driver) {
+			driver.context("WEBVIEW_com.medico.ionAndroid");
+		}
+		
+		public void switchToNativeAppContext(AppiumDriver<?> driver) {
+			driver.context("NATIVE_APP");
+		}
+		
+		public boolean scrollDownUntilTextEquals(AppiumDriver<?> driver,String locator_Android, String locator_iOS,String expectedText,int waitTime) throws IOException {
+			String acText = this.getTextOptional(driver, locator_Android, locator_iOS, waitTime);
+			boolean f=false;
+			
+			for(int i=1;i<=500;i++) {
+				System.out.println("AT:ET   "+acText+" : "+expectedText);
+			if(acText.equals(expectedText)) {
+				System.out.println(acText+" : "+expectedText);
+				f=true;
+				break;
+			}
+			else {
+				super.scrollDown_Mobile(driver, 1);
+			}
+			}
+			return f;
+		}
 }

@@ -43,9 +43,9 @@ public class LeadsPageWeb extends QueriesPageWeb {// Next Extends : DesignPoster
 		super.click(driver,addLeadBtn_loc, waitTime);
 	}
 
-	public void addLead_LeadsPage(WebDriver driver,String firstName_addLead_LeadsPage, String lastName_addLead_LeadsPage,
+	public void addLead_LeadsPageWeb(WebDriver driver,String firstName_addLead_LeadsPage, String lastName_addLead_LeadsPage,
 			String emailId_addLead_LeadsPage, String phoneNumber_addLead_LeadsPage, String city_addLead_LeadsPage,
-			String area_addLead_LeadsPage, String remarks_addLead_LeadsPage, String tagName_addLead_LeadsPage) {
+			String area_addLead_LeadsPage, String remarks_addLead_LeadsPage, String tagName_addLead_LeadsPage) throws IOException {
 
 		super.setText_ByActions(driver,firstName_loc, firstName_addLead_LeadsPage, waitTime);
 		super.setText_ByActions(driver,lastName_loc, lastName_addLead_LeadsPage, waitTime);
@@ -57,21 +57,24 @@ public class LeadsPageWeb extends QueriesPageWeb {// Next Extends : DesignPoster
 		super.setText_ByActions(driver,area_loc, area_addLead_LeadsPage, waitTime);
 		super.setText_ByActions(driver,remarks_loc, remarks_addLead_LeadsPage, waitTime);
 		super.setText_ByActions(driver,tag_loc, tagName_addLead_LeadsPage, waitTime);
-		super.kepad_Enter_Web(driver,tag_loc, waitTime);
+		super.kepad_Enter_ByActions_Web(driver,tag_loc, waitTime);
 		super.click(driver,submitBtn_loc, waitTime);
+		super.assertEquals_Text(driver,"addLeadFromLeadsPage", "SuccessMsg_Popup", this.getSuccessMsg_Popup_LeadsPageWeb(driver),
+				"Lead added successfully.");
+		this.okBtn_Popup_LeadsPageWeb(driver);
 	}
 
-	public void okBtn_Popup_LeadsPage(WebDriver driver) {
+	public void okBtn_Popup_LeadsPageWeb(WebDriver driver) {
 		super.click(driver,OkBtn_loc, waitTime);
 		super.sleep(3000);
 	}
 
-	public String getSuccessMsg_Popup_LeadsPage(WebDriver driver) {
+	public String getSuccessMsg_Popup_LeadsPageWeb(WebDriver driver) {
 		String successMsg = super.getTextOptional(driver,successMsg_loc, waitTime);
 		return successMsg;
 	}
 
-	public int verifyData_LeadsPage(WebDriver driver,String testName, String firstName, String gender_Male_Female, String age,
+	public int verifyData_LeadsPageWeb(WebDriver driver,String testName, String firstName, String gender_Male_Female, String age,
 			String phoneNumber, String emailId, String source, String tagName) throws IOException {
 		int row = 0;
 		String mailID = "";

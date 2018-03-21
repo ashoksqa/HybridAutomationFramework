@@ -37,9 +37,9 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 	private String plusMoreStartXpath_loc = "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[2]/div/a";
 	private String plusMorePopuCloseIcon_loc=xpath+ "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/ng-fullcalendar/div[2]/div/div/div[1]/span[1]";
 	
-	public void createTopic_MarketingCalenderPage(WebDriver driver,String testName, String topicName, int topicDropDownValue)
+	public String createTopic_MarketingCalenderPageWeb(WebDriver driver,String testName, String topicName, int topicDropDownValue)
 			throws IOException {
-		super.click_CalendarIcon_HomePage(driver);
+		super.click_CalendarIcon_HomePageWeb(driver);
 		super.sleep(5000);
 		super.click(driver,addNewTopicBtn_MarketingCalenderPage_loc, waitTime);
 		super.sleep(3000);
@@ -54,16 +54,18 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 			super.assertEquals_Text(driver,testName, "createtedNewTopicVerification", topic, topicName);
 		}
 
+return topic;
 	}
 
-	public void addTopicToCalendar_MarketingCalenderPage(WebDriver driver,String testName, String topicName, int topicDropDownValue,
+	public String addTopicToCalendar_MarketingCalenderPage(WebDriver driver,String testName, String topicName, int topicDropDownValue,
 			String dateValue) throws IOException {
-		this.createTopic_MarketingCalenderPage(driver,testName, topicName, topicDropDownValue);
+		String topic = this.createTopic_MarketingCalenderPageWeb(driver,testName, topicName, topicDropDownValue);
 		super.click(driver,firstTopicRadioBtn_PlanYourCalendar_MarketingCalenderPage_loc, 3);
 		super.selectDateFromCalender(driver,firstTopicDateField_PlanYourCalendar_MarketingCalenderPage_loc,
 				firstTopicDateStartXpath_PlanYourCalendar_MarketingCalenderPage_loc, dateValue, "owl-calendar-invalid");
 		super.click(driver,addToCalendarBtn_PlanYourCalendar_MarketingCalenderPage_loc, waitTime);
 		super.sleep(7000);
+		return topic;
 	}
 
 	public void verifyToolTipData_MarketingCalendarPage(WebDriver driver,String testName, String expectedBlogTitle_Topic,
@@ -73,11 +75,11 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 						xpath + "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/div/div[2]/p[1]",
 						waitTime),
 				expectedBlogTitle_Topic);
-		super.assertEquals_Text(driver,testName, "",
+		super.assertEquals_Text(driver,testName, "BlogStatus",
 				super.getText(driver,xpath + "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/div/div[1]/a",
 						waitTime),
 				expectedBlogStatus);
-		super.assertEquals_Text(driver,testName, "",
+		super.assertEquals_Text(driver,testName, "doctorFirstNameANDblogType",
 				super.getText(driver,
 						xpath + "/html/body/app-root/app-publish/div/div/div/div/div/div/div[2]/div/div/div[2]/p[2]",
 						waitTime),
@@ -95,9 +97,9 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 
 	}
 
-	public void verifyData_MarketingCalendarPage(WebDriver driver,String testName, String dateValue, String blotTitle_Topic,
+	public void verifyData_MarketingCalendarPage(WebDriver driver,String testName, String dateValue, String blogTitle_Topic,
 			String blogStatus, String blogType, String doctorFirstName) throws IOException {
-		super.click_CalendarIcon_HomePage(driver);
+		super.click_CalendarIcon_HomePageWeb(driver);
 		super.scrollDown_Web(driver,1, 150);
 		outerloop: for (int i = 1; i <= 6; i++) {
 			for (int j = 1; j <= 7; j++) {
@@ -111,25 +113,25 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 					String firstRowText = super.getTextOptional(driver,
 							dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]", waitTime);
 					System.out.println("firstRowText : " + firstRowText);
-					if (firstRowText.equals(blotTitle_Topic)) {
+					if (firstRowText.equals(blogTitle_Topic)) {
 						super.clickAndHold_Actions(driver,
 								dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[1]/td[" + j + "]/a/div/span[2]",
 								waitTime);
-						this.verifyToolTipData_MarketingCalendarPage(driver,testName, blotTitle_Topic, blogStatus,
+						this.verifyToolTipData_MarketingCalendarPage(driver,testName, blogTitle_Topic, blogStatus,
 								doctorFirstName, blogType);
 						break outerloop;
 					} else {
 						for (int m = 1; m < 14; m++) {
 							String secondRowText = super.getTextOptional(driver,
-									dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]", 1);
+									dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]", 0);
 							System.out.println(
-									"secondRowText : " + secondRowText + " date is : " + dateFormat.format(new Date()));
+									"secondRowText : " + secondRowText + " date is : " + dateFormat.format(new Date()) +"  M loop is : "+m);
 
-							if (secondRowText.equals(blotTitle_Topic)) {
+							if (secondRowText.equals(blogTitle_Topic)) {
 								super.clickAndHold_Actions(driver,
 										dateStartXpath_loc + i + "]/div[2]/table/tbody/tr[2]/td[" + m + "]/a/div/span[2]",
 										waitTime);
-								this.verifyToolTipData_MarketingCalendarPage(driver,testName, blotTitle_Topic, blogStatus,
+								this.verifyToolTipData_MarketingCalendarPage(driver,testName, blogTitle_Topic, blogStatus,
 										doctorFirstName, blogType);
 								break outerloop;
 							}
@@ -153,10 +155,10 @@ public class MarketingCalendarPageWeb extends SearchPageWeb { // End
 								int listCount_More = super.listCount(driver,plusMoreStartXpath_loc);
 								for (int l = 1; l <= listCount_More; l++) {
 									String title = super.getText(driver,xpath+plusMoreStartXpath_loc+ "["+ l + "]/div/span[2]", waitTime);
-									if (title.equals(blotTitle_Topic)) {
+									if (title.equals(blogTitle_Topic)) {
 										super.clickAndHold_Actions(driver,xpath+plusMoreStartXpath_loc+ "["+ l + "]/div/span[2]", waitTime);
 
-										this.verifyToolTipData_MarketingCalendarPage(driver,testName, blotTitle_Topic,
+										this.verifyToolTipData_MarketingCalendarPage(driver,testName, blogTitle_Topic,
 												blogStatus, doctorFirstName, blogType);
 										super.assertContains_Text(driver,testName, "date verification", dateValue,
 												super.getText(driver,xpath

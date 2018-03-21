@@ -2,261 +2,217 @@ package nativeApp;
 
 import java.io.IOException;
 
+import io.appium.java_client.AppiumDriver;
+
 public class PublishPageApp extends HomePageApp { // Next Extends : VisitsPageApp
 
 	// -------------locators---------------------------------------------
 
-	private String firstTopicRadioBtn_TrendingTopics_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/ul/li/label";
-	private String firstTopicTxt_TrendingTopics_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/ul/li";
-
-	private String selectAndStartBtn_TrendingTopics_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div/div[2]/div/div[2]/div/button[2]";
+	
 
 	// ----------Editor-------------------------------------------------
 
-	private String blogTitle_Editor_loc = xpath + "/html/body/app-root/app-publish/div/div[2]/div[2]/div[2]/input";
-	private String description_EditorBeforePublish_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[2]/div[2]/div[3]";
-	private String description_EditorAfterPublish_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[2]/div/p/p";
-	private String windowTitle_Editor_loc = xpath + "/html/body/app-root/app-publish/div/div[2]/div[1]/span";
-
-	private String blogStatusStartXpath_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[1]/button[";
-	private String blogTypeStartXpath_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[1]/div/a[";
-	private String tagName_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[2]/div/tag-input/div/div/tag-input-form/form/input";
-	private String calenderloc_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/owl-date-time[1]/div/div[1]/div/i";
-	private String timeloc_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/owl-date-time[2]/div/div[1]/div/i";
-
-	private String dateFieldXpathStartValue_loc = "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/owl-date-time[1]/div/div[2]/div[2]/div[2]/table/tbody/tr[";
-	private String hourTxt_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/owl-date-time[2]/div/div[2]/div[2]/div[1]/div[2]/input";
-	private String minitueTxt_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/owl-date-time[2]/div/div[2]/div[2]/div[2]/div[3]/input";
-	private String enteredTimeTxt_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[2]/ul/li[3]/div/div[2]/span";
-	private String draft_Ionize_Schedule_Btn_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[3]/button";
-	private String publishNowBtn_Editor_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div[1]/div[2]/div[3]/button[3]";
+	
 
 	// --------- Success Pop-Up --------------------------------------------
 
-	private String successMsg_SuccessPopup_loc = xpath + "/html/body/app-root/app-publish/div/div[2]/div/h3";
-	private String publishDate_SuccessPopup_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div/div[3]/div[1]/ul/li[1]/b";
-	private String publishTime_SuccessPopup_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div/div[3]/div[2]/ul/li/b";
-	private String blogTitle_SuccessPopup_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div/div[3]/div[1]/ul/li[2]/p/b";
-	private String byUser_SuccessPopup_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div/div[3]/div[1]/ul/li[3]/p/b";
+	
+	public void verifyData_PublishPageApp(AppiumDriver<?> driver, String testName,
+			int draft_ionize_publishNow_Schedule_OptNumber, int news_blog_event_OptNumber, String blogTitle,
+			String description,String date, String time) throws IOException {
+		String blogType = super.pvNativeApp("blogType" + news_blog_event_OptNumber);
+		String daysLeft = super.pvNativeApp("daysLeft_Lists_PublishPage" + news_blog_event_OptNumber);
+		String blogActionButtons = super.pvNativeApp("BlogActionBtn_Lists_PublishPage" + news_blog_event_OptNumber);
+		
+		String Android_AddInputs_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.RelativeLayout/android.widget.Button";
+		String Android_Ionize_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout[2]/android.widget.Button";
+		String Android_view_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.Button";
 
-	private String creditsUsed_SuccessPopup_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div/div[3]/div[1]/ul/li[4]/p/b";
-	private String daysLeft_SuccessPopup_loc = xpath + "/html/body/app-root/app-publish/div/div[2]/div/div[3]/button";
+		// this.click_SubTabs_PublishPage(draft_ionize_publishNow_Schedule_OptNumber);
+		super.sleep(3000);
+		String Android_Title_loc = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.TextView[2]";
+		
+		boolean a = super.scrollDownUntilTextEquals(driver, Android_Title_loc, locator_iOS, blogTitle, 1);
+		if (a) {
 
-	private String closeIcon_SuccessPopup_loc = xpath + "/html/body/app-root/app-publish/div/div[2]/a";
+			String Android_Status_loc = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.TextView[1]";
+			String Android_DoctorName_loc = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout[1]/android.widget.TextView[1]";
+			String Android_BlogType_loc = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout[1]/android.widget.TextView[2]";
+			String Android_DaysLeft_loc = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[3]";
+			String Android_Date_loc = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.support.v4.view.ViewPager/android.widget.RelativeLayout/android.view.ViewGroup/android.support.v4.view.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[1]";
 
-	// ------------Publish Page -------------------------
-	private String CreatePostBtn_loc = xpath + "/html/body/app-root/app-publish/div/div/div/div/div/div[1]/div[2]/a[2]";
-	private String select_Add_BlogBtnStartXpath_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div[2]/div[2]/div/div[2]/div/button[";
+			super.assertEquals_Text(driver, testName, "blogStatus",
+					super.getTextOptional(driver, Android_Status_loc, locator_iOS, waitTime), super.pvNativeApp("BlogStatus_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
+			super.assertEquals_Text(driver, testName, "blogTitle",
+					super.getTextOptional(driver, Android_Title_loc, locator_iOS, waitTime), blogTitle);
+			super.assertEquals_Text(driver, testName, "doctorFullName",
+					super.getTextOptional(driver, Android_DoctorName_loc, locator_iOS, waitTime), super.doctorFullName);
+			super.assertEquals_Text(driver, testName, "blogType",
+					super.getTextOptional(driver, Android_BlogType_loc, locator_iOS, waitTime), blogType);
+			
+			super.assertContains_Text(driver, testName, "date",date,
+					super.getTextOptional(driver, Android_Date_loc, locator_iOS, waitTime));
+			
+			if(draft_ionize_publishNow_Schedule_OptNumber==1) {
+				
+				
+				super.assertEquals_Text(driver, testName, "IONIZE",
+						super.getTextOptional(driver, Android_Ionize_loc, locator_iOS, waitTime), "IONIZE");
+			}
+			if(draft_ionize_publishNow_Schedule_OptNumber==1 || draft_ionize_publishNow_Schedule_OptNumber==2) {
 
-	protected String subTabsStartXpath_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div/app-dashboard/div/div[3]/ul/li[";
+			super.assertEquals_Text(driver, testName, "blogActionButtons",
+					super.getTextOptional(driver, Android_AddInputs_loc, locator_iOS, waitTime), blogActionButtons);
+			super.assertEquals_Text(driver, testName, "daysLeft",
+					super.getTextOptional(driver, Android_DaysLeft_loc, locator_iOS, waitTime), daysLeft);
+			}
+			else if(draft_ionize_publishNow_Schedule_OptNumber==3 || draft_ionize_publishNow_Schedule_OptNumber==4){
+				super.assertEquals_Text(driver, testName, "blogActionButtons",
+						super.getTextOptional(driver, Android_view_loc, locator_iOS, waitTime), "VIEW");
+				
+			}
 
-	protected String blogStartXpath_ListPage_loc = xpath
-			+ "/html/body/app-root/app-publish/div/div/div/div/div/div[2]/div/div/div[";
 
-	public void click_SubTabs_PublishPage(int SubTabsOpt_PublishPage) {
-		if (SubTabsOpt_PublishPage == 4) {
-			SubTabsOpt_PublishPage = 3;
+		super.click(driver, Android_Title_loc, locator_iOS, waitTime);
+		super.sleep(2000);
+		super.assertEquals_Text(driver, testName, "blogTitle In Editor",
+				super.getTextOptional(driver, id+"blogtitle", locator_iOS, waitTime), blogTitle);
+		String Android_des_loc=xpath+"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View";
+		super.assertEquals_Text(driver, testName, "description",
+				super.getTextOptional(driver,Android_des_loc, locator_iOS, waitTime), description);
 		}
-		super.click(subTabsStartXpath_loc + SubTabsOpt_PublishPage + "]", waitTime);
-		super.sleep(7000);
+
 	}
 
-	public void verifyData_PublishPage(String testName, int draft_ionize_publishNow_Schedule_OptNumber,
-			int news_blog_event_OptNumber, String blogTitle, String description, String DoctorFirtName, String date,
-			String time) throws IOException {
-		String blogType = super.pvd("blogType" + news_blog_event_OptNumber);
+	public String addNewBlog_PublishPageApp(AppiumDriver<?> driver, String testName, int select_NewTopic_1_2_OptNumber,
+			int draft_ionize_publishNow_Schedule_OptNumber, int news_blog_event_OptNumber) throws IOException {
+		String Android_blogTitle_Editor_loc = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.webkit.WebView/android.webkit.WebView/android.view.View[1]";
 
-		this.click_SubTabs_PublishPage(draft_ionize_publishNow_Schedule_OptNumber);
-		if (draft_ionize_publishNow_Schedule_OptNumber > 1) {
-			super.scrollDownFullPage(10);
-			super.scrollUp(2);
-		}
-		for (int i = 1; i <= 200; i++) {
-			String actualTitle = super.getText(blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime);
-			System.out.println(actualTitle + " : " + blogTitle);
-			if (i % 4 == 0) {
-				super.scrollDown(1, 300);
-			}
+		String Android_BlogType_loc = xpath
+				+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.RadioGroup/android.widget.RadioButton["
+				+ news_blog_event_OptNumber + "]";
 
-			if (actualTitle.equals(blogTitle)) {
+		super.click_AddBlogFromFooter_HomePageApp(driver);
 
-				super.assertEquals_Text(testName, "BlogStatus",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[1]/a", waitTime),
-						super.pvd("BlogStatus_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
-				super.assertEquals_Text(testName, "BlogActionBtn_Lists_PublishPage",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime),
-						super.pvd("BlogActionBtn_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
-
-				if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
-
-					super.assertEquals_Text(testName, "BlogNextStatus",
-							super.getText(blogStartXpath_ListPage_loc + i + "]/div[6]/button[2]", waitTime), "IONIZE");
-
-				}
-				super.assertEquals_Text(testName, "BlogTitle",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[2]", waitTime), blogTitle);
-
-				super.assertEquals_Text(testName, "BlogTypeAndDoctor",
-						super.getText(blogStartXpath_ListPage_loc + i + "]/div[3]", waitTime),
-						"By " + DoctorFirtName + "|" + blogType);
-
-				super.assertEquals_Text(testName, "DaysLeft_CenterText",
-						super.removeSpaceInStr(
-								super.getText(blogStartXpath_ListPage_loc + i + "]/div[4]/div/div/div/span", waitTime)),
-						super.removeSpaceInStr(super.pvd(
-								"centerText_Lists_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber)));
-
-				super.click(blogStartXpath_ListPage_loc + i + "]/div[6]/button[1]", waitTime);
-
-				if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
-					super.assertEquals_Text(testName, "Description",
-							super.getText(description_EditorBeforePublish_loc, waitTime), description);
-				} else /* if (draft_ionize_publishOptNumber == 2) */ {
-					super.assertEquals_Text(testName, "Description",
-							super.getText(description_EditorAfterPublish_loc, waitTime), description);
-				}
-				String expectedWindowTitle = "Topic : " + blogTitle
-						+ super.pvd("windowTitleEnd_Editor_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber);
-				super.assertEquals_Text(testName, "WindowTitle",
-						super.getText(windowTitle_Editor_loc, waitTime).replaceAll("\\s+", ""),
-						expectedWindowTitle.replaceAll("\\s+", ""));
-				break;
-			}
-
-			else {
-				if (i == 18 || i == 38 || i == 58 || i == 78 || i == 98 || i == 118 || i == 138 || i == 158
-						|| i == 178) {
-					super.scrollDown(2, 300);
-				}
-			}
-
-		}
-	}
-
-	public void addNewBlog_PublishPage(String testName, int Home_PublishPage_1_2_OptNumber,
-			int select_NewTopic_1_2_OptNumber, int draft_ionize_publishNow_Schedule_OptNumber,
-			int news_blog_event_OptNumber) throws IOException {
-		if (Home_PublishPage_1_2_OptNumber == 1) {
-			super.click_QuickStartPopup_StartBlogOptions_HomePage(select_NewTopic_1_2_OptNumber);
-		} else if (Home_PublishPage_1_2_OptNumber == 2) {
-			super.click_SideMenuTabs_HomePage(2);
-			super.click(this.CreatePostBtn_loc, waitTime);
-			super.click(select_Add_BlogBtnStartXpath_loc + select_NewTopic_1_2_OptNumber + "]",
-					news_blog_event_OptNumber);
+		if (select_NewTopic_1_2_OptNumber == 1) {
+			super.click(driver, id + "select_the_topic", locator_iOS, waitTime);
+			String AndroidFirstTopicCategory = xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ExpandableListView/android.widget.LinearLayout[1]/android.widget.TextView";
+			String AndroidFirstTopic_loc= xpath
+					+ "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.ExpandableListView/android.widget.LinearLayout[2]/android.widget.CheckBox";
+			super.click(driver, AndroidFirstTopicCategory, locator_iOS, waitTime);
+			super.click(driver, AndroidFirstTopic_loc, locator_iOS, waitTime);
+			String topic = super.getTextOptional(driver, AndroidFirstTopic_loc, locator_iOS, waitTime);
+			
+			super.click(driver, id + "topicandstart", locator_iOS, waitTime);
+			String actualTopic = super.getTextOptional(driver, Android_blogTitle_Editor_loc, locator_iOS, waitTime);
+			super.assertEquals_Text(driver, testName, "SelectedTopic", actualTopic, topic);
+		} else if (select_NewTopic_1_2_OptNumber == 2) {
+			super.click(driver, id + "no_i_want_new_topic", locator_iOS, waitTime);
 		}
 
-		String opt = super.convertIntToStr(Home_PublishPage_1_2_OptNumber)
-				+ super.convertIntToStr(select_NewTopic_1_2_OptNumber)
+		String opt = super.convertIntToStr(select_NewTopic_1_2_OptNumber)
 				+ super.convertIntToStr(draft_ionize_publishNow_Schedule_OptNumber)
 				+ super.convertIntToStr(news_blog_event_OptNumber);
 
-		blogTitle_AddNewBlog = super.blogTitle_Editor_AddNewBlog_PublishPage + super.pvd(opt + "_Publish");
-		tagName_AddNewBlog = super.tagName_Editor_AddNewBlog_PublishPage + super.pvd(opt + "_Publish");
-		description_AddNewBlog = super.description_Editor_AddNewBlog_PublishPage + super.pvd(opt + "_Publish");
-
+		blogTitle_AddNewBlog = super.getOS(driver) + " " + super.blogTitle_Editor_AddNewBlog_PublishPage
+				+ super.pvNativeApp(opt + "_Publish");
+		tagName_AddNewBlog = super.tagName_Editor_AddNewBlog_PublishPage + super.pvNativeApp(opt + "_Publish");
+		description_AddNewBlog = super.getOS(driver) + " " + super.description_Editor_AddNewBlog_PublishPage
+				+ super.pvNativeApp(opt + "_Publish");
+String BlogDate="empty";
 		int today = super.convertStrToInt(super.getTodayDate());
 		int nday = today + 7;
-
-		if (nday > super.currentMonthDays()) {
-			nday = nday - super.currentMonthDays();
-		}
-
-		if (select_NewTopic_1_2_OptNumber == 1) {
-			String topic = super.getText(firstTopicTxt_TrendingTopics_loc, waitTime).replaceAll("\\s+", "");
-			super.click(firstTopicRadioBtn_TrendingTopics_loc, waitTime);
-			super.click(selectAndStartBtn_TrendingTopics_loc, waitTime);
-			String actualTopic = super.getAttributeValue_String(blogTitle_Editor_loc, "value", waitTime)
-					.replaceAll("\\s+", "");
-			System.out.println("Topic is : " + topic);
-			System.out.println("Actual Topic is : " + actualTopic);
-			super.assertEquals_Text(testName, "SelectedTopic", actualTopic, topic);
-		}
-		super.setText(blogTitle_Editor_loc, blogTitle_AddNewBlog, waitTime);
-		super.setText_ByActions(description_EditorBeforePublish_loc, description_AddNewBlog, waitTime);
-		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 2) {
-			super.click(blogStatusStartXpath_Editor_loc + draft_ionize_publishNow_Schedule_OptNumber + "]", waitTime);
-		} else {
-			super.click(blogStatusStartXpath_Editor_loc + 3 + "]", waitTime);
-		}
-		super.click(blogTypeStartXpath_Editor_loc + news_blog_event_OptNumber + "]", waitTime);
-		super.setText_ByActions(tagName_Editor_loc, tagName_AddNewBlog, waitTime);
-		super.kepad_Enter(tagName_Editor_loc, waitTime);
-		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 3) {
-			super.selectDateFromCalender(calenderloc_Editor_loc, dateFieldXpathStartValue_loc, super.getTodayDate(),
-					"owl-calendar-invalid");
-		} else if (draft_ionize_publishNow_Schedule_OptNumber == 2 || draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.selectDateFromCalender(calenderloc_Editor_loc, dateFieldXpathStartValue_loc,
-					super.convertIntToStr(nday), "owl-calendar-invalid");
-		}
-
-		super.click(timeloc_Editor_loc, hourTxt_Editor_loc);
-
-		// String publishTime=super.getText(enteredTimeTxt_Editor_PublishPage);
-
-		if (draft_ionize_publishNow_Schedule_OptNumber == 1 || draft_ionize_publishNow_Schedule_OptNumber == 2
-				|| draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.click(draft_Ionize_Schedule_Btn_Editor_loc, waitTime);
-		} else if (draft_ionize_publishNow_Schedule_OptNumber == 3) {
-			super.click(publishNowBtn_Editor_loc, waitTime);
-		}
-		// Assert time not added.Add it later
-		super.scrollDown(1, 500);
-		super.assertEquals_Text(testName, "SuccessMsg",
-				super.removeSpaceInStr(
-						super.getAttributeValue_String(successMsg_SuccessPopup_loc, "innerText", waitTime)),
-				super.removeSpaceInStr(
-						super.pvd("successMsg_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber)));
-
+		super.sleep(5000);
+		super.switchToWebViewContext(driver);
+		super.setText(driver, id + "zss_field_title", locator_iOS, blogTitle_AddNewBlog, waitTime);
+		super.setText(driver, id + "zss_field_content", locator_iOS, description_AddNewBlog, waitTime);
+		super.switchToNativeAppContext(driver);
 		if (draft_ionize_publishNow_Schedule_OptNumber == 1) {
+			super.click(driver, id + "draft_btn", locator_iOS, waitTime);
+			super.sleep(4000);
+			super.click(driver, Android_BlogType_loc, locator_iOS, waitTime);
+			super.setText(driver, id + "blogTags", locator_iOS, tagName_AddNewBlog, waitTime);
+			super.keypadClose(driver);
+			super.keypadClose(driver);
+			super.click(driver, id + "btnSave", locator_iOS, waitTime);
+			super.assertEquals_Text(driver, testName, "SuccessDate",
+					super.getText(driver, id + "publishDate", locator_iOS, waitTime),
+					super.date_02SpaceFebrauryComma2018);
+			BlogDate=super.getTodayDate();
+		} else if (draft_ionize_publishNow_Schedule_OptNumber == 2) {
+			super.click(driver, id + "ionize_btn_main", locator_iOS, waitTime);
+			super.sleep(2000);
+			super.click(driver, Android_BlogType_loc, locator_iOS, waitTime);
+			super.setText(driver, id + "blogTags", locator_iOS, tagName_AddNewBlog, waitTime);
+			super.keypadClose(driver);
+			super.keypadClose(driver);
+			super.click(driver, id + "btnIonize", locator_iOS, waitTime);
+			super.assertEquals_Text(driver, testName, "CreditsUsed",
+					super.getText(driver, id + "publishcredits", locator_iOS, waitTime), "8");
 
-			super.assertContains_Text(testName, "SuccessDate", super.getTodayDate(),
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
-
-		} else if (draft_ionize_publishNow_Schedule_OptNumber == 2 || draft_ionize_publishNow_Schedule_OptNumber == 4) {
-			super.assertContains_Text(testName, "SuccessDate", super.convertIntToStr(nday),
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
-			super.assertEquals_Text(testName, "CreditsUsed", super.getText(creditsUsed_SuccessPopup_loc, waitTime),
-					super.pvd("creditsUsed_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
-			super.assertEquals_Text(testName, "DaysLeft", super.getText(daysLeft_SuccessPopup_loc, waitTime),
-					super.pvd("daysLeft_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber));
+			String sDate = super.getText(driver, id + "publishDate", locator_iOS, waitTime);
+			super.assertContains_Text(driver, testName, "SuccessDate", super.convertIntToStr(nday), sDate);
+			super.assertEquals_Text(driver, testName, "Days Left",
+					super.getText(driver, id + "numberOfDays", locator_iOS, waitTime), "6 days to go");
+			BlogDate=super.convertIntToStr(nday);
 		} else if (draft_ionize_publishNow_Schedule_OptNumber == 3) {
-
-			super.assertContains_Text(testName, "SuccessDate", "Today",
-					super.getText(publishDate_SuccessPopup_loc, waitTime));
-			super.assertEquals_Text(testName, "CreditsUsed", super.getText(creditsUsed_SuccessPopup_loc, waitTime),
-					"0");
-
+			super.click(driver, id + "publish_btn", locator_iOS, waitTime);
+			super.sleep(2000);
+			super.click(driver, Android_BlogType_loc, locator_iOS, waitTime);
+			super.setText(driver, id + "blogTags", locator_iOS, tagName_AddNewBlog, waitTime);
+			super.keypadClose(driver);
+			super.keypadClose(driver);
+			super.click(driver, id + "btnPublish", locator_iOS, waitTime);
+			super.assertEquals_Text(driver, testName, "CreditsUsed",
+					super.getText(driver, id + "publishcredits", locator_iOS, waitTime), "0");
+			super.assertEquals_Text(driver, testName, "SuccessDate",
+					super.getText(driver, id + "publishDate", locator_iOS, waitTime),
+					super.date_02SpaceFebrauryComma2018);
+			super.assertEquals_Text(driver, testName, "Days Left",
+					super.getText(driver, id + "numberOfDays", locator_iOS, waitTime), "It will be live now");
+			BlogDate=super.getTodayDate();
+		} else if (draft_ionize_publishNow_Schedule_OptNumber == 4) {
+			super.click(driver, id + "publish_btn", locator_iOS, waitTime);
+			super.sleep(2000);
+			super.click(driver, Android_BlogType_loc, locator_iOS, waitTime);
+			super.setText(driver, id + "blogTags", locator_iOS, tagName_AddNewBlog, waitTime);
+			super.keypadClose(driver);
+			super.keypadClose(driver);
+			if (nday > super.currentMonthDays()) {
+				nday = nday - super.currentMonthDays();
+				super.selectDateFromCalendarApp(driver, id + "date_data", Android_BlogType_loc, "N", nday);
+			} else {
+				super.selectDateFromCalendarApp(driver, id + "date_data", Android_BlogType_loc, " ", nday);
+			}
+			super.click(driver, id + "btnSchedule", locator_iOS, waitTime);
+			String sDate = super.getText(driver, id + "publishDate", locator_iOS, waitTime);
+			super.assertContains_Text(driver, testName, "SuccessDate", super.convertIntToStr(nday), sDate);
+			super.assertEquals_Text(driver, testName, "CreditsUsed",
+					super.getText(driver, id + "publishcredits", locator_iOS, waitTime), "0");
+			super.assertEquals_Text(driver, testName, "Days Left",
+					super.getText(driver, id + "numberOfDays", locator_iOS, waitTime), "6 days to go");
+			BlogDate=super.convertIntToStr(nday);
 		}
 
-		super.assertEquals_Text(testName, "BlogTitle", super.getText(blogTitle_SuccessPopup_loc, waitTime),
-				blogTitle_AddNewBlog);
-		super.assertEquals_Text(testName, "ByUser", super.getText(byUser_SuccessPopup_loc, waitTime),
-				super.doctorFullName);
+		String successMsg = super.getText(driver, id + "add_promo_success_message", locator_iOS, waitTime);
+		super.assertEquals_Text(driver, testName, "SuccessMsg", super.removeSpaceInStr(successMsg),
+				super.removeSpaceInStr(super.pvNativeApp(
+						"successMsg_Popup_PublishPage" + draft_ionize_publishNow_Schedule_OptNumber)));
+		super.assertEquals_Text(driver, testName, "BlogTitle",
+				super.getTextOptional(driver, id + "publishtitle", locator_iOS, waitTime), blogTitle_AddNewBlog);
+		super.assertEquals_Text(driver, testName, "ByUser",
+				super.getTextOptional(driver, id + "publishby", locator_iOS, waitTime), super.doctorFullName);
 
-		super.click(this.closeIcon_SuccessPopup_loc, waitTime);
+		super.click(driver, id + "close_layout", locator_iOS, waitTime);
 		super.sleep(3000);
+		return BlogDate;
 	}
-
 }
