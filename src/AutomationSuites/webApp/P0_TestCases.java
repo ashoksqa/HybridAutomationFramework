@@ -240,7 +240,7 @@ public class P0_TestCases extends EndPage {
 
 	}
 
-	@Test(priority = 15)
+	// @Test(priority = 15)
 	public void addUser_SrDoctor_AccessAllQueries_WebSiteAskQuestion_Opt3_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 1, 4, 6, 3);
@@ -255,13 +255,13 @@ public class P0_TestCases extends EndPage {
 	}
 
 	@Test(priority = 17)
-	public void addUser_JuniorDoctor_AccessOpt2_WebSiteAskQuestion_Opt2_UsersPageWeb() throws IOException {
+	public void addUser_JrDoctor_AccessOpt3_WebSiteAskQuestion_Opt3_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 3, 3, 6, 3);
 	}
 
 	@Test(priority = 18)
-	public void addUser_JuniorDoctor_AccessOpt1_WebSiteAskQuestion_Opt1_UsersPageWeb() throws IOException {
+	public void addUser_JrDoctor_AccessOpt1_WebSiteAskQuestion_Opt1_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
 		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 3, 1, 6, 1);
 	}
@@ -269,7 +269,7 @@ public class P0_TestCases extends EndPage {
 	@Test(priority = 19)
 	public void addUser_BusinessHead_AccessSelectAllQueries_WebSiteAskQuestion_Opt2_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 6, 2);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 8, 2);
 	}
 
 	@AfterMethod

@@ -630,26 +630,26 @@ public class P2_TestCases extends EndPage {
 	@Test(priority = 630)
 	public void addUser_BusinessHead_AccessAllQueries_WebSiteAskQuestion_Opt1_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 6, 1);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 8, 1);
 
 	}
 	@Test(priority = 631)
 	public void addUser_BusinessHead_AccessAllQueries_WebSiteAskQuestion_Opt2_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 6, 2);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 8, 2);
 
 	}
 
 	@Test(priority = 632)
 	public void addUser_BusinessHead_AccessAllQueries_WebSiteAskQuestion_Opt3_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 6, 3);
+		super.addUser_AccessQueries_Website_askQuestion_UsersPageWeb(driver, testName, 4, 4, 8, 3);
 
 	}
 	@Test(priority = 633)
 	public void addUser_BusinessHead_AccessAllQueries_WebSiteAskQuery_UsersPageWeb() throws IOException {
 		String testName = Thread.currentThread().getStackTrace()[1].getMethodName();
-		super.addUser_AccessQueries_Website_askQuery_UsersPageWeb(driver, testName, 4, 4, 6);
+		super.addUser_AccessQueries_Website_askQuery_UsersPageWeb(driver, testName, 4, 4, 8);
 
 	}
 	

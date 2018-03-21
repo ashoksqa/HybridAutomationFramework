@@ -84,9 +84,9 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 		} else if (Opt1_Opt2_Opt3_SelectAll_OptNumber == 1) {
 			super.click(driver, selectQueryDropDownStartXpath_loc + "3]/label", waitTime);
 		} else if (Opt1_Opt2_Opt3_SelectAll_OptNumber == 2) {
-			super.click(driver, selectQueryDropDownStartXpath_loc + j + "1]/label", waitTime);
+			super.click(driver, selectQueryDropDownStartXpath_loc + "1]/label", waitTime);
 		} else if (Opt1_Opt2_Opt3_SelectAll_OptNumber == 3) {
-			super.click(driver, selectQueryDropDownStartXpath_loc + j + "2]/label", waitTime);
+			super.click(driver, selectQueryDropDownStartXpath_loc + "2]/label", waitTime);
 		}
 		super.click(driver, selectQuery_loc, waitTime);
 	}
@@ -116,11 +116,11 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 	public void verifyUserInUsersList_UsersPageWeb(WebDriver driver, String testName, String firstName,
 			int userRoleOptNumber_DFJB, String emailId) throws IOException {
 		super.sleep(4000);
-		for (int i = 1; i <= 40; i++) {
+		for (int i = 1; i <= 100; i++) {
 
 			String actualFirstName = super.getText(driver,
 					userslist_headerStartXpath_loc + i + userslist_headerStartEnd_loc, 0);
-			if (i == 40) {
+			if (i == 100) {
 				super.assertEquals_Text(driver, testName, "Users list page first name Header", actualFirstName,
 						firstName);
 			}
@@ -172,9 +172,12 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 	public void addUser_AccessQueries_Website_askQuestion_UsersPageWeb(WebDriver driver, String testName,
 			int addUser_UserRoleOptNumber_DFJB, int addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber,
 			int SettingsTabNuber, int askQuestion_Opt1_Opt2_Opt3_CategoryNumber) throws IOException {
-		String pfKey = addUser_UserRoleOptNumber_DFJB + addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber
-				+ askQuestion_Opt1_Opt2_Opt3_CategoryNumber + "_AUVQW";
+		String pfKey = super.convertIntToStr(addUser_UserRoleOptNumber_DFJB)
+				+ super.convertIntToStr(addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber)
+				+ super.convertIntToStr(askQuestion_Opt1_Opt2_Opt3_CategoryNumber) + "_AUVQW";
+		System.out.println("PF Key is :" + pfKey);
 		String userInfo = super.pvWebApp(pfKey);
+		System.out.println("userInfo is :" + userInfo);
 
 		String addUserFirstName = userInfo + super.randomString(3);
 		String adduserLastName = userInfo;
@@ -188,9 +191,9 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 		String askQuestionEmailID = "AskQuestionEmail" + userInfo + "@" + super.randomString(3) + "."
 				+ super.randomString(3);
 		String askQuestionAge = addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber + super.randomNumString(1);
-		String askQuestionMobileNumber = addUser_UserRoleOptNumber_DFJB
-				+ addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber + askQuestion_Opt1_Opt2_Opt3_CategoryNumber
-				+ super.randomNumString(7);
+		String askQuestionMobileNumber = super.convertIntToStr(addUser_UserRoleOptNumber_DFJB)
+				+ super.convertIntToStr(addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber)
+				+ super.convertIntToStr(askQuestion_Opt1_Opt2_Opt3_CategoryNumber) + super.randomNumString(7);
 
 		super.openWebAppUrl(driver);
 		super.loginWebApp(driver);
@@ -216,8 +219,8 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 	public void addUser_AccessQueries_Website_askQuery_UsersPageWeb(WebDriver driver, String testName,
 			int addUser_UserRoleOptNumber_DFJB, int addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber,
 			int SettingsTabNuber) throws IOException {
-		String pfKey = addUser_UserRoleOptNumber_DFJB + addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber
-				 + "4_AUVQW";
+		String pfKey = super.convertIntToStr(addUser_UserRoleOptNumber_DFJB)
+				+ super.convertIntToStr(addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber) + "4_AUVQW";
 		String userInfo = super.pvWebApp(pfKey);
 
 		String addUserFirstName = userInfo + super.randomString(3);
@@ -228,13 +231,11 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 
 		// Ask Query in web site
 		String askQueryName = "AskQueryName" + userInfo + " A" + super.randomString(5);
-		String askQueryEmail = "AskQueryEmail"+ userInfo + "@" + super.randomString(3) + "."
-				+ super.randomString(3);
-		String askQuerynMobileNumber = addUser_UserRoleOptNumber_DFJB
-				+ addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber 
-				+ super.randomNumString(8);
-		
-		String askQueryText = "AskQueryText"  + userInfo + super.randomString(9);
+		String askQueryEmail = "AskQueryEmail" + userInfo + "@" + super.randomString(3) + "." + super.randomString(3);
+		String askQuerynMobileNumber = super.convertIntToStr(addUser_UserRoleOptNumber_DFJB)
+				+ super.convertIntToStr(addUser_Opt1_Opt2_Opt3_SelectAll_QueryAccessNumber) + super.randomNumString(8);
+
+		String askQueryText = "AskQueryText" + userInfo + super.randomString(9);
 
 		super.openWebAppUrl(driver);
 		super.loginWebApp(driver);
@@ -245,12 +246,13 @@ public class UsersPageWeb extends ContactUsPageWeb {// Next Extends : SearchPage
 		this.verifyUserProfile_UsersPageWeb(driver, SettingsTabNuber, testName, userName, password, addUserFirstName,
 				adduserLastName, addUserEmailId);
 		super.openWebsiteUrl(driver);
-		super.askQuery_Website_QueriesPage(driver, testName, askQueryName, askQueryEmail, askQuerynMobileNumber, askQueryText);
+		super.askQuery_Website_QueriesPage(driver, testName, askQueryName, askQueryEmail, askQuerynMobileNumber,
+				askQueryText);
 		super.openWebAppUrl(driver);
 		super.loginWebApp(driver, userName, password);
 		super.click_SideMenuTabs_HomePageWeb(driver, 4);
-		super.verifyData_QueriesPage(driver, testName, 1, askQueryText + "...", askQueryText, askQueryName, "", "", askQuerynMobileNumber,
-				askQueryEmail);
+		super.verifyData_QueriesPage(driver, testName, 1, askQueryText + "...", askQueryText, askQueryName, "", "",
+				askQuerynMobileNumber, askQueryEmail);
 	}
 
 }
