@@ -1,0 +1,167 @@
+[debug] [W3C] Calling AppiumDriver.getSession() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getSession'
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getSession' command
+[debug] [JSONWP Proxy] Proxying [GET /] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n    \"capabilities\" : {\n      \"device\" : \"iphone\",\n      \"browserName\" : \"Safari\",\n      \"sdkVersion\" : \"11.4\",\n      \"CFBundleIdentifier\" : \"com.apple.mobilesafari\"\n    }\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[XCUITest] Merging WDA caps over Appium caps for session detail response
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [RemoteDebugger] Executing 'get_window_size' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[debug] [RemoteDebugger] Received WebKit data: '{"result":{"result":{"type":"object","value":{"width":980,"height":1445}},"wasThrown":false},"id":112}'
+[debug] [RemoteDebugger] Found method 'Runtime.evaluate' for message '112'
+[debug] [RemoteDebugger] Received result for atom 'get_window_size' execution: {"width":980,"height":1445}
+[debug] [MJSONWP] Responding to client with driver.getSession() result: {"udid":"0b9beb8b024bf28ced5e00d67e3cf6982eea7a7b","clearSystemFiles":true,"autoGrantPermissions":true,"automationName":"XCUITest","browserName":"Safari","commandTimeouts":{"default":40000},"deviceName":"iPhone8","newCommandTimeout":120,"noReset":false,"platformName":"iOS","platformVersion":"11.3.1","safariInitialUrl":"https://drive.google.com/file/d/1leV7mcA_hG-6j7VHIMi6jwmto5bjzLZc/view?usp=sharing","startIWDP":true,"useNewWDA":true,"wdaLocalPort":3523,"webkitDebugProxyPort":31456,"webkitResponseTimeout":25000,"xcodeOrgId":"92C2BE6YZQ","xcodeSigningId":"iPhone Developer","device":"iphone","sdkVersion":"11.4","CFBundleIdentifier":"com.apple.mobilesafari","pixelRatio":2,"statBarHeight":20,"viewportRect":{"left":0,"top":40,"width":1960,"height":2850}}
+[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3 200 399 ms - 832
+[HTTP] 
+[HTTP] --> GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.getSession() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getSession'
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getSession' command
+[debug] [JSONWP Proxy] Proxying [GET /] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n    \"capabilities\" : {\n      \"device\" : \"iphone\",\n      \"browserName\" : \"Safari\",\n      \"sdkVersion\" : \"11.4\",\n      \"CFBundleIdentifier\" : \"com.apple.mobilesafari\"\n    }\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[XCUITest] Merging WDA caps over Appium caps for session detail response
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [RemoteDebugger] Executing 'get_window_size' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[debug] [RemoteDebugger] Received WebKit data: '{"result":{"result":{"type":"object","value":{"width":980,"height":1445}},"wasThrown":false},"id":113}'
+[debug] [RemoteDebugger] Found method 'Runtime.evaluate' for message '113'
+[debug] [RemoteDebugger] Received result for atom 'get_window_size' execution: {"width":980,"height":1445}
+[debug] [MJSONWP] Responding to client with driver.getSession() result: {"udid":"0b9beb8b024bf28ced5e00d67e3cf6982eea7a7b","clearSystemFiles":true,"autoGrantPermissions":true,"automationName":"XCUITest","browserName":"Safari","commandTimeouts":{"default":40000},"deviceName":"iPhone8","newCommandTimeout":120,"noReset":false,"platformName":"iOS","platformVersion":"11.3.1","safariInitialUrl":"https://drive.google.com/file/d/1leV7mcA_hG-6j7VHIMi6jwmto5bjzLZc/view?usp=sharing","startIWDP":true,"useNewWDA":true,"wdaLocalPort":3523,"webkitDebugProxyPort":31456,"webkitResponseTimeout":25000,"xcodeOrgId":"92C2BE6YZQ","xcodeSigningId":"iPhone Developer","device":"iphone","sdkVersion":"11.4","CFBundleIdentifier":"com.apple.mobilesafari","pixelRatio":2,"statBarHeight":20,"viewportRect":{"left":0,"top":40,"width":1960,"height":2850}}
+[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3 200 407 ms - 832
+[HTTP] 
+[HTTP] --> GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.getSession() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getSession'
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getSession' command
+[debug] [JSONWP Proxy] Proxying [GET /] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n    \"capabilities\" : {\n      \"device\" : \"iphone\",\n      \"browserName\" : \"Safari\",\n      \"sdkVersion\" : \"11.4\",\n      \"CFBundleIdentifier\" : \"com.apple.mobilesafari\"\n    }\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[XCUITest] Merging WDA caps over Appium caps for session detail response
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [RemoteDebugger] Executing 'get_window_size' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[debug] [RemoteDebugger] Received WebKit data: '{"result":{"result":{"type":"object","value":{"width":980,"height":1445}},"wasThrown":false},"id":114}'
+[debug] [RemoteDebugger] Found method 'Runtime.evaluate' for message '114'
+[debug] [RemoteDebugger] Received result for atom 'get_window_size' execution: {"width":980,"height":1445}
+[debug] [MJSONWP] Responding to client with driver.getSession() result: {"udid":"0b9beb8b024bf28ced5e00d67e3cf6982eea7a7b","clearSystemFiles":true,"autoGrantPermissions":true,"automationName":"XCUITest","browserName":"Safari","commandTimeouts":{"default":40000},"deviceName":"iPhone8","newCommandTimeout":120,"noReset":false,"platformName":"iOS","platformVersion":"11.3.1","safariInitialUrl":"https://drive.google.com/file/d/1leV7mcA_hG-6j7VHIMi6jwmto5bjzLZc/view?usp=sharing","startIWDP":true,"useNewWDA":true,"wdaLocalPort":3523,"webkitDebugProxyPort":31456,"webkitResponseTimeout":25000,"xcodeOrgId":"92C2BE6YZQ","xcodeSigningId":"iPhone Developer","device":"iphone","sdkVersion":"11.4","CFBundleIdentifier":"com.apple.mobilesafari","pixelRatio":2,"statBarHeight":20,"viewportRect":{"left":0,"top":40,"width":1960,"height":2850}}
+[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3 200 391 ms - 832
+[HTTP] 
+[HTTP] --> GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.getSession() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getSession'
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getSession' command
+[debug] [JSONWP Proxy] Proxying [GET /] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n    \"capabilities\" : {\n      \"device\" : \"iphone\",\n      \"browserName\" : \"Safari\",\n      \"sdkVersion\" : \"11.4\",\n      \"CFBundleIdentifier\" : \"com.apple.mobilesafari\"\n    }\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[XCUITest] Merging WDA caps over Appium caps for session detail response
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenInfo' command
+[debug] [JSONWP Proxy] Proxying [GET /wda/screen] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/wda/screen] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : {\n    \"statusBarSize\" : {\n      \"width\" : 375,\n      \"height\" : 20\n    },\n    \"scale\" : 2\n  },\n  \"sessionId\" : \"4EA4CA5B-68E3-48F7-A7FC-730E6B22078A\",\n  \"status\" : 0\n}"
+[debug] [RemoteDebugger] Executing 'get_window_size' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var c=this;var aa...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[debug] [RemoteDebugger] Received WebKit data: '{"result":{"result":{"type":"object","value":{"width":980,"height":1445}},"wasThrown":false},"id":115}'
+[debug] [RemoteDebugger] Found method 'Runtime.evaluate' for message '115'
+[debug] [RemoteDebugger] Received result for atom 'get_window_size' execution: {"width":980,"height":1445}
+[debug] [MJSONWP] Responding to client with driver.getSession() result: {"udid":"0b9beb8b024bf28ced5e00d67e3cf6982eea7a7b","clearSystemFiles":true,"autoGrantPermissions":true,"automationName":"XCUITest","browserName":"Safari","commandTimeouts":{"default":40000},"deviceName":"iPhone8","newCommandTimeout":120,"noReset":false,"platformName":"iOS","platformVersion":"11.3.1","safariInitialUrl":"https://drive.google.com/file/d/1leV7mcA_hG-6j7VHIMi6jwmto5bjzLZc/view?usp=sharing","startIWDP":true,"useNewWDA":true,"wdaLocalPort":3523,"webkitDebugProxyPort":31456,"webkitResponseTimeout":25000,"xcodeOrgId":"92C2BE6YZQ","xcodeSigningId":"iPhone Developer","device":"iphone","sdkVersion":"11.4","CFBundleIdentifier":"com.apple.mobilesafari","pixelRatio":2,"statBarHeight":20,"viewportRect":{"left":0,"top":40,"width":1960,"height":2850}}
+[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3 200 405 ms - 832
+[HTTP] 
+[HTTP] --> POST /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/element/5018/click
+[HTTP] {"id":"5018"}
+[debug] [W3C] Calling AppiumDriver.click() with args: ["5018","51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'click'
+[debug] [RemoteDebugger] Executing 'click' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var h,aa=this;fun...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var h,aa=this;fun...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[MJSONWP] Encountered internal error running command: TimeoutError: operation timed out
+[MJSONWP]     at afterTimeout (/usr/local/lib/node_modules/appium/node_modules/bluebird/js/release/timers.js:46:19)
+[MJSONWP]     at Timeout.timeoutTimeout [as _onTimeo5ut] (/usr/local/lib/node_modules/appium/node_modulesm[HTTP] <-- POST /wd/hub/session/51ea0/bluebird/js/release/timers.js:76:13)
+[MJSONWP]     at ontimeout (timers.js:471:11)
+[MJSONWP]     at tryOnTimeout (timers.js:306:5)
+[MJSONWP]     at Timer.listOnTimeout (timers.js:266:5)
+932-af3a-466d-8e75-c45c092fc2f3/element/5018/click 500 25009 ms - 190
+[HTTP] 
+Not able to click and exception is :org.openqa.selenium.WebDriverException: An unknown server-side error occurred while processing the command. Original error: operation timed out (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 0 milliseconds
+Build info: version: '3.12.0', revision: '7c6e0b3', time: '2018-05-08T14:04:26.12Z'
+System info: host: '1234.local', ip: 'fe80:0:0:0:897:4e1f:e452:91a3%en0', os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '10.13.5', java.version: '1.8.0_121'
+Driver info: io.appium.java_client.ios.IOSDriver
+Capabilities {autoGrantPermissions: true, automationName: XCUITest, browserName: Safari, clearSystemFiles: true, commandTimeouts: {default: 40000}, databaseEnabled: false, deviceName: iPhone8, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: false, newCommandTimeout: 120, noReset: false, platform: MAC, platformName: MAC, platformVersion: 11.3.1, safariInitialUrl: https://drive.google.com/fi..., startIWDP: true, takesScreenshot: true, udid: 0b9beb8b024bf28ced5e00d67e3..., useNewWDA: true, wdaLocalPort: 3523, webStorageEnabled: false, webkitDebugProxyPort: 31456, webkitResponseTimeout: 25000, xcodeOrgId: 92C2BE6YZQ, xcodeSigningId: iPhone Developer}
+Session ID: 51ea0932-af3a-466d-8e75-c45c092fc2f3
+end time click GetStarted:3 :: 21-Jun-2018__10_48_28PM
+Waiting for click
+[HTTP] --> GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/source
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.getPageSource() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getPageSource'
+[debug] [RemoteDebugger] Executing 'execute_script' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var e=this;
+[debug] [RemoteDebugger] funct...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var e=this;\nfunc...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[debug] [XCUITest] Connection to WDA timed out
+[debug] [iProxy] recv failed: Operation not permitted
+[MJSONWP] Encountered internal error running command: TimeoutError: operation timed out
+[MJSONWP]     at afterTimeout (/usr/local/lib/node_modules/appium/node_modules/bluebird/js/release/timers.js:4[35m[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/source 500 25003 ms - 190
+[HTTP] 
+:19)
+[MJSONWP]     at Timeout.timeoutTimeout [as _onTimeout] (/usr/local/lib/node_modules/appium/node_modules/bluebird/js/release/timers.js:76:13)
+[MJSONWP]     at ontimeout (timers.js:471:11)
+[MJSONWP]     at tryOnTimeout (timers.js:306:5)
+[MJSONWP]     at Timer.listOnTimeout (timers.js:266:5)
+[HTTP] --> GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/screenshot
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.getScreenshot() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'getScreenshot'
+[debug] [XCUITest] Taking screenshot with WDA
+[debug] [XCUITest] Setting custom timeout to 40000 ms for 'getScreenshot' command
+[debug] [JSONWP Proxy] Proxying [GET /screenshot] to [GET http://localhost:3523/session/4EA4CA5B-68E3-48F7-A7FC-730E6B22078A/screenshot] with no body
+[debug] [JSONWP Proxy] Got response with status 200: "{\n  \"value\" : \"iVBORw0KGgoAAAANSUhEUgAAAu4AAAU2CAIAAABFtaRRAAAAAXNSR0IArs4c6QAA\\r\\nABxpRE9UAAAAAgAAAAAAAAKbAAAAKAAAApsAAAKbAAHJHflZSyQAAEAASURBVHgB\\r\\n7N0HnKVFlT\\/8zTnnvKLuumvWNWcRBAFBARVEJTMEBUQkT+6e3JPIIihKMq9rzqQB\\r\\ngcnD5NA9HaZ7ZoBF9\\/+Gz+f9v+v7vf2Deu\\/27dtz7zgjA\\/M8n\\/pUnzp16pxTp05V\\r\\nnaee5z79S\\/3VVVmgskBlgcoClQUqCzzjLDDQ1y9tHhwqacfWfuknW3qknVu7pf7+\\r\\nXmnrwJDUN9DfVlq7o1\\/KtWNrrzTQ3yP1DdTSYF9S72Af\\/v3S3rt+ae+xrjhXFqgs\\r\\nUFmgskBlgcoCT5UFqlDmqbJ8JbeyQGWBygKVBSoLVBbYAxYY6t0m9fcNSVv7t0t9\\r\\n\\/UPSYO82KYFOf\\/+2WurbLoW+9Tx8dmzdVlK4PXHGMywrnJ\\/I90CfRmdRncqMbpcK\\r\\nW1mgskBlgcoClQWe1haoQpmn9fBVylcWqCxQWaCyQGWB\\/d0CeXPFqypSXoLZPLhN\\r\\n2jQ0JG0Z3Cb19dfSQF9S7d2a1tPOrb3SYF+\\/FD49A0PDaXvPgFSDcyb0RFC11wak\\r\\nOpXZa6atGFcWqCxQWaCyQGWBp84CVSjz1Nm+klxZoLJAZYHKApUFKgv83BboGdos\\r\\nDfoNUy11Sz3beqXNQ\\/1SflX0xBlMvx8f1araSv0DPdL\\/5Llt68DwyzcOewYcBWHb\\r\\nLe3o2yz93B1qyqA6lWlqmqqiskBlgcoClQUqCzx9LVCFMm2PXXd39\\/bt2wcGBrZu\\r\\n3SrXvq+vTw4\\/ODgYdtu2bQNv2bJF7urt7UUjh0dWmoR4RB5uyVOlIYnyi...
+[debug] [MJSONWP] Responding to client with driver.getScreenshot() result: "iVBORw0KGgoAAAANSUhEUgAAAu4AAAU2CAIAAABFtaRRAAAAAXNSR0IArs4c6QAA\r\nABxpRE9UAAAAAgAAAAAAAAKbAAAAKAAAApsAAAKbAAHJHflZSyQAAEAASURBVHgB\r\n7N0HnKVFlT/8zTnnvKLuumvWNWcRBAFBARVEJTMEBUQkT+6e3JPIIihKMq9rzqQB\r\ngcnD5NA9HaZ7ZoBF9/+Gz+f9v+v7vf2Deu/27dtz7zgjA/M8n/pUnzp16pxTp05V\r\nnaee5z79S/3VVVmgskBlgcoClQUqCzzjLDDQ1y9tHhwqacfWfuknW3qknVu7pf7+\r\nXmnrwJDUN9DfVlq7o1/KtWNrrzTQ3yP1DdTSYF9S72Af/v3S3rt+ae+xrjhXFqgs\r\nUFmgskBlgcoCT5UFqlDmqbJ8JbeyQGWBygKVBSoLVBbYAxYY6t0m9fcNSVv7t0t9\r\n/UPSYO82KYFOf/+2WurbLoW+9Tx8dmzdVlK4PXHGMywrnJ/I90CfRmdRncqMbpcK\r\nW1mgskBlgcoClQWe1haoQpmn9fBVylcWqCxQWaCyQGWB/d0CeXPFqypSXoLZPLhN\r\n2jQ0JG0Z3Cb19dfSQF9S7d2a1tPOrb3SYF+/FD49A0PDaXvPgFSDcyb0RFC11wak\r\nOpXZa6atGFcWqCxQWaCyQGWBp84CVSjz1Nm+klxZoLJAZYHKApUFKgv83BboGdos\r\nDfoNUy11Sz3beqXNQ/1SflX0xBlMvx8f1araSv0DPdL/5Llt68DwyzcOewYcBWHb\r\nLe3o2yz93B1qyqA6lWlqmqqiskBlgcoClQUqCzx9LVCFMm2PXXd39/bt2wcGBrZu\r\n3SrXvq+vTw4/ODgYdtu2bQNv2bJF7urt7UUjh0dWmoR4RB5uyVOlIYnyiIPs6ekZ\r\nGhqCJGJE8z1eLJrobyTKIYPXI8rQjVwwJJhuAB2PlWKBWCME6Qi8olY4A0KMueIe\r\n...
+[HTTP] <-- GET /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/screenshot 200 164 ms - 241130
+[HTTP] 
+[HTTP] --> DELETE /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/window
+[HTTP] {}
+[debug] [W3C] Calling AppiumDriver.closeWindow() with args: ["51ea0932-af3a-466d-8e75-c45c092fc2f3"]
+[debug] [XCUITest] Executing command 'closeWindow'
+[debug] [RemoteDebugger] Executing 'execute_script' atom in default context
+[debug] [RemoteDebugger] Sending javascript command (function(){return function(){var e=this;
+[debug] [RemoteDebugger] funct...
+[debug] [RemoteDebugger] Sending WebKit data: {"method":"Runtime.evaluate","params":{"objectGroup":"console","includeCommandLineAPI":true,"doNotPauseOnExceptionsAndMuteConsole":true,"expression":"(function(){return function(){var e=this;\nfunc...
+[debug] [RemoteDebugger] Webkit response timeout: 25000
+[MJSONWP] Encountered internal error running command: TimeoutError: operation timed out
+[MJSONWP]     at afterTimeout (/usr/local/lib/node_modules/appium/node_modules/bluebird/js/release/timers.js:46:19)
+[MJSONWP] [HTTP] <-- DELETE /wd/hub/session/51ea0932-af3a-466d-8e75-c45c092fc2f3/window 500 25009 ms - 190
+t Timeout.timem[outTimeout [HTTP] 
+as _onTimeout] (/usr/local/lib/node_modules/appium/node_modules/bluebird/js/release/timers.js:76:13)
+[MJSONWP]     at ontimeout (timers.js:471:11)
+[MJSONWP]     at tryOnTimeout (timers.js:306:5)
+[MJSONWP]     at Timer.listOnTimeout (timers.js:266:5)
+
